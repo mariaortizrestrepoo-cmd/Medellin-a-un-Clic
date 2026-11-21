@@ -3,7 +3,7 @@
 // La marca se guarda en el celular, así sigue activa al recargar o sin internet.
 (function(){
   var t = false;
-  try { t = new URLSearchParams(location.search).get('fuente') === 'play' || (document.referrer || '').indexOf('android-app://com.mokeadigital.medellin') === 0; } catch(e) {}
+  try { t = new URLSearchParams(location.search).get('fuente') === 'play' || /^android-app:\/\/com\.mokeadigital\.medellinaunclic(\/|$)/.test(document.referrer || ''); } catch(e) {}
   try { if (t) localStorage.setItem('mde-tienda', '1'); else t = localStorage.getItem('mde-tienda') === '1'; } catch(e) {}
   if (t) document.documentElement.classList.add('tienda');
 })();

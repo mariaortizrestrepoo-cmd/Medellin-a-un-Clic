@@ -1,0 +1,6 @@
+llave/
+*.keystore
+*.jks
+*contrasenas*
+herramientas-candado/dist/
+herramientas-candado/src/index.src.html

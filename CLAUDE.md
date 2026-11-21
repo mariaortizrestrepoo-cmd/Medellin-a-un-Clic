@@ -99,7 +99,7 @@ Cambios de la v149 (sobre la v147):
   sin cursiva, sin "¡Qué chimba, parce!", sin emojis ni flechas, tarjeta crema con letra oscura y grande,
   botones que no se salen en celulares pequeños (probado a 320 px). El diseño del candado vive **solo** en
   `herramientas-candado/src/lock.css` (se quitaron las reglas `#lock` viejas de `app/index.html`).
-- **Modo tienda (Google Play):** si la app se abre con `?fuente=play` (o desde el paquete `com.mokeadigital.medellin`),
+- **Modo tienda (Google Play):** si la app se abre con `?fuente=play` (o desde el paquete `com.mokeadigital.medellinaunclic`),
   se guarda `mde-tienda=1` en el celular y se ocultan los enlaces de compra, el consejo de instalación y el botón
   "Instalar la app" (clases `solo-web` / `solo-tienda`). En la web no cambia nada. Los botones de tours con Paola se quedan.
 - Se quitaron las letras **Great Vibes** y **Pacifico**, que ya no usaba ninguna página.
@@ -134,7 +134,7 @@ Lo que falta:
 1. **Cuenta de desarrollador a nombre de Mokea Digital LLC.** Necesita el número **D-U-N-S** (pedido gratis a
    Dun & Bradstreet el 21 nov 2026; llega a info@mokeadigital.com). Sin él no se puede abrir la cuenta de organización.
 2. **Empaquetar como TWA** (Trusted Web Activity), p. ej. con Bubblewrap o PWABuilder, apuntando a
-   https://medellin.mokeadigital.com. Paquete sugerido: `com.mokeadigital.medellin`.
+   https://medellin.mokeadigital.com. Paquete: `com.mokeadigital.medellinaunclic` (aprobado por María; no se puede cambiar después de publicar).
    - Publicar `/.well-known/assetlinks.json` en Netlify. `build.mjs` ya lo copia; falta crear el archivo con la huella
      SHA-256 de la llave de firma (Paso 6). El paquete debe abrir `https://medellin.mokeadigital.com/?fuente=play`.
    - **La llave de firma (keystore) es secreta y no se puede perder:** guardarla fuera del repositorio y explicarle a María dónde queda.

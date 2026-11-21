@@ -1,5 +1,5 @@
 {
-  "packageId": "com.mokeadigital.medellin",
+  "packageId": "com.mokeadigital.medellinaunclic",
   "host": "medellin.mokeadigital.com",
   "name": "Medellín a un clic",
   "launcherName": "Medellín",
@@ -18,8 +18,8 @@
   "maskableIconUrl": "https://medellin.mokeadigital.com/icon-maskable-512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
-    "path": "../llave/mokea-medellin-subida.keystore",
-    "alias": "mokea-subida"
+    "path": "../../llave/mokea-medellinaunclic-subida.keystore",
+    "alias": "mokea-medellinaunclic"
   },
   "appVersionName": "1.0.0",
   "appVersionCode": 1,
@@ -28,7 +28,9 @@
   "webManifestUrl": "https://medellin.mokeadigital.com/manifest.json",
   "fallbackType": "customtabs",
   "features": {},
-  "alphaDependencies": { "enabled": false },
+  "alphaDependencies": {
+    "enabled": false
+  },
   "enableSiteSettingsShortcut": false,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
