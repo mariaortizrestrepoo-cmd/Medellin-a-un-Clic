@@ -10,6 +10,8 @@
     del(k){ try { localStorage.removeItem(k); } catch(e) {} }
   };
   const $ = id => document.getElementById(id);
+  // Sentry: avisar de fallas técnicas del candado (sin correos ni lo que se escribe)
+  function avisar(err, donde){ try { if (window.Sentry) { if (typeof err === 'string') Sentry.captureMessage(err, { tags: { donde: donde } }); else Sentry.captureException(err, { tags: { donde: donde } }); } } catch(x) {} }
   const lock = $('lock');
   // 'mde-idioma' es el idioma que la persona escogió (lo usa también la app); 'mde-lang' es el que mostró el candado.
   let lang = LS.get('mde-idioma') || LS.get('mde-lang') || ((navigator.language||'').toLowerCase().startsWith('es') ? 'es' : 'en');
@@ -117,6 +119,7 @@
         step('code');
         setTimeout(() => $('lk-code').focus(), 100);
       } else {
+        if (j.status >= 500) avisar('Candado: el servidor de acceso respondió ' + j.status + ' al pedir el código', 'candado-pedir-codigo');
         const k = j.error === 'not_buyer' ? 'not_buyer' : j.error === 'wait' ? 'wait' : 'net';
         msg(isResend ? 'code' : 'email', k);
       }
@@ -141,7 +144,7 @@
       } else if (j.error === 'limit') { step('limit'); }
       else if (j.error === 'expired') { msg('code', 'expired'); }
       else if (j.error === 'bad_code') { msg('code', 'bad_code'); }
-      else { msg('code', 'net'); }
+      else { if (j.status >= 500) avisar('Candado: el servidor de acceso respondió ' + j.status + ' al verificar el código', 'candado-verificar'); msg('code', 'net'); }
     } catch(e) { msg('code', 'net'); }
     $('lk-verify').disabled = false;
   }
@@ -157,7 +160,7 @@
     const key = LS.get('mde-key');
     if (!key) { step('email'); return; }
     try { await unlockWith(key); }
-    catch(e) { LS.del('mde-key'); step('email'); return; }
+    catch(e) { avisar(e, 'candado-abrir'); LS.del('mde-key'); step('email'); return; }
     // revisión en segundo plano: ¿sigue siendo este el celular activo?
     const tok = LS.get('mde-token');
     if (navigator.onLine && saved && tok) {

@@ -3,6 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Sentry (Mokea Digital LLC): solo errores técnicos. Sin Session Replay, sin Tracing, sin Logs y sin datos personales. -->
+<script>
+window.sentryOnLoad = function () {
+  var CORREO = /[^\s@"'<>]+@[^\s@"'<>]+\.[^\s@"'<>]+/g;
+  Sentry.init({
+    sendDefaultPii: false,          // sin IP, cookies ni datos del usuario
+    tracesSampleRate: 0,            // sin Tracing
+    replaysSessionSampleRate: 0,    // sin Session Replay
+    replaysOnErrorSampleRate: 0,
+    enableLogs: false,              // sin Logs
+    environment: location.hostname === 'medellin.mokeadigital.com' ? 'produccion' : 'pruebas',
+    beforeBreadcrumb: function (b) {
+      // no guardar lo que la persona escribe ni los mensajes de la consola
+      if (b.category === 'ui.input' || b.category === 'console') return null;
+      return b;
+    },
+    beforeSend: function (e) {
+      delete e.user;
+      if (e.request) { delete e.request.cookies; if (e.request.headers) delete e.request.headers.Cookie; }
+      e.tags = e.tags || {};
+      try {
+        e.tags.pantalla = document.body && document.body.classList.contains('locked') ? 'candado' : 'app';
+        e.tags.version = document.documentElement.classList.contains('tienda') ? 'tienda' : 'web';
+      } catch (x) {}
+      // por si acaso: borrar cualquier correo que aparezca en el reporte
+      try { return JSON.parse(JSON.stringify(e).replace(CORREO, '[correo]')); } catch (x) { return e; }
+    }
+  });
+};
+</script>
+<script src="https://js.sentry-cdn.com/0a7b23497c05ba1856f294d2e8ffd6dc.min.js" crossorigin="anonymous"></script>
 <title>Medellín one click away, in your pocket</title>
 <meta name="theme-color" content="#0B1626">
 <meta name="description" content="Your Medellín travel app: viewpoints, towns, typical food, nightlife and hotels. English &amp; Spanish. By Mokea Digital LLC.">

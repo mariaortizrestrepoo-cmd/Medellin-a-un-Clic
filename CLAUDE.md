@@ -59,7 +59,17 @@ Cambios de la v150 (sobre la v149):
 
 Versión anterior: v149 (`medellin-lock-1795281462731`).
 
-**Lista para el próximo .zip de Netlify (v154, sin publicar; incluye la v151, v152 y v153):**
+**Lista para el próximo .zip de Netlify (v155, sin publicar; incluye la v151 a la v154):**
+- **Sentry** (organización Mokea Digital, proyecto Browser JavaScript, solo Error Monitoring), en el `<head>` de
+  `app/index.html`: `window.sentryOnLoad` + Loader `js.sentry-cdn.com/0a7b23497c05ba1856f294d2e8ffd6dc.min.js` (clave
+  pública, no es secreta). `sendDefaultPii: false`; Tracing, Session Replay y Logs en 0/false; `beforeBreadcrumb` descarta
+  lo escrito (`ui.input`) y la consola; `beforeSend` borra `user` y cookies, reemplaza cualquier correo por `[correo]` y
+  agrega las etiquetas `pantalla` (candado/app) y `version` (web/tienda). `environment`: produccion en
+  medellin.mokeadigital.com, pruebas en otro lugar. En `lock.js`, `avisar()` reporta si la llave guardada no abre la app
+  (`candado-abrir`) o si el servidor de acceso responde 5xx (`candado-pedir-codigo`, `candado-verificar`).
+- Política de privacidad: sección nueva "Detección de fallas" / "Error monitoring" (Sentry, sin datos personales).
+- No hay Content-Security-Policy (ni en `_headers` ni en las páginas), así que nada bloquea a Sentry. Si algún día se
+  agrega una CSP, debe permitir `js.sentry-cdn.com`, `browser.sentry-cdn.com` y `*.ingest.sentry.io`.
 - SOS, Embajada: cada número llama a su propio teléfono. La tarjeta es un `<div class="sos-btn sos-emb">` (no llama) y
   cada línea es un enlace `a.tel-l` (`tel:+576012752000` y `tel:+576012754021`), con el número en dorado y una zona
   para tocar de al menos 44 px de alto. Probado con toques simulados en los dos idiomas y en 320/360/390 px.
@@ -129,7 +139,8 @@ Lo que falta:
 
 ## Pendientes
 
-- DSN de **Sentry** (monitor de errores, plan gratis) — María debe crear la cuenta con info@mokeadigital.com.
+- **Sentry, ajustes en la cuenta (los hace María):** en Project Settings → Loader Script, dejar apagados Performance/Tracing
+  y Session Replay; en Security & Privacy, activar "Prevent Storing of IP Addresses" y dejar activo el Data Scrubber.
 - **Precios de los tours** de Paola (hoy dice "pregúntale por WhatsApp").
 - El resto de la app le habla al turista de "usted"; "Quiénes somos" y los textos nuevos usan "tú". Unificar a "tú" con cuidado.
 - **"Phrases" en el menú:** queda como está. El botón tiene la clase `en` y solo se ve en inglés, a propósito
