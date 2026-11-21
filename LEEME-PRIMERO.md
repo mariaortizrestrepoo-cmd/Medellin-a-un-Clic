@@ -59,10 +59,13 @@ Cambios de la v150 (sobre la v149):
 
 Versión anterior: v149 (`medellin-lock-1795281462731`).
 
-**Lista para el próximo .zip de Netlify (v153, sin publicar; incluye la v151 y la v152):**
+**Lista para el próximo .zip de Netlify (v154, sin publicar; incluye la v151, v152 y v153):**
+- SOS, Embajada: cada número llama a su propio teléfono. La tarjeta es un `<div class="sos-btn sos-emb">` (no llama) y
+  cada línea es un enlace `a.tel-l` (`tel:+576012752000` y `tel:+576012754021`), con el número en dorado y una zona
+  para tocar de al menos 44 px de alto. Probado con toques simulados en los dos idiomas y en 320/360/390 px.
 - SOS: cada teléfono de la Embajada va en su propia línea con su nombre ("Línea principal:" / "Fuera de horario:";
   "Main line:" / "After hours:"; clase `tel-l`) y ningún número se parte (clase `tel-n`). En celulares pequeños el
-  nombre queda arriba de su número. El botón entero llama a la línea principal.
+  nombre queda arriba de su número.
 - Capturas de SOS (español e inglés) rehechas. Imagen destacada con frases más grandes (`tienda/destacada/`).
 - Sin emojis en la app: la bandera de EE. UU. del botón de la Embajada (SOS) es ahora un ícono de línea (edificio con
   columnas) y el 📍 del botón "Cerca de mí" del menú es un pin de línea, del mismo estilo que los demás íconos.
@@ -97,8 +100,8 @@ Hecho:
 - Paso 1: decisión de cobro (Opción 1).
 - Paso 2: candado en modo tienda y rediseño del candado (publicado en la web con la v149).
 - Paso 3: `build.mjs` listo para `assetlinks.json` (el archivo se crea en el Paso 6).
-- Paso 5 (en curso): las 7 capturas en español aprobadas (`tienda/capturas/es/`, v151, modo tienda, 1080 × 1920).
-  Capturas en inglés (`tienda/capturas/en/`) e imagen destacada 1024 × 500 en español e inglés (`tienda/destacada/`): hechas, en revisión.
+- Paso 5: aprobado. 7 capturas en español (`tienda/capturas/es/`) y 7 en inglés (`tienda/capturas/en/`), modo tienda,
+  1080 × 1920; imagen destacada 1024 × 500 en español e inglés (`tienda/destacada/`). Capturas de SOS rehechas con la v154.
 - Paso 4: textos de la tienda aprobados en `tienda/textos-tienda-es.txt` y `tienda/textos-tienda-en.txt`.
   Nombres: "Medellín a un clic – Guía" / "Medellín a un clic – Guide"; se le habla de "tú"; sin mencionar compra ni precio.
   La marca es "Medellín a un clic" (con "clic", correcto en español) en todas partes. Única excepción aprobada: la primera
