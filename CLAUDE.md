@@ -48,8 +48,16 @@ node build.mjs "https://kipooidlqcvivpngtebr.supabase.co/functions/v1/medellin-a
 
 ## Versión actual
 
-`medellin-lock-1795299039833` (sw.js de la app: `medellin-v157`), en vivo desde el 21 nov 2026.
-Subida por María a Netlify y revisada en vivo por Claude del chat. Incluye todo lo de la v150 a la v157 (detalle abajo).
+**v158** (sw.js de la app: `medellin-v158`), en vivo en Netlify, revisada por Claude del chat. Incluye todo lo de la
+v150 a la v157 (detalle abajo) y además: el archivo de verificación `assetlinks.json` y el modo tienda que reconoce
+solo el paquete `com.mokeadigital.medellinaunclic`.
+
+**Netlify no publica carpetas que empiezan con punto** (como `.well-known`) cuando se arrastra el .zip. Claude del chat
+lo resolvió en vivo con `assetlinks.json` en la raíz y la regla `/.well-known/assetlinks.json  /assetlinks.json  200`
+en `_redirects`. Desde ahora `build.mjs` hace eso solo. Verificar en vivo:
+https://medellin.mokeadigital.com/.well-known/assetlinks.json debe mostrar el paquete y la huella `35:94:…:58:CC`.
+
+Versión anterior: v157 (`medellin-lock-1795299039833`).
 
 Versiones anteriores en vivo: v150 (`medellin-lock-1795283981798`), v149 (`medellin-lock-1795281462731`).
 
@@ -124,6 +132,9 @@ Hecho:
 - Paso 3: `build.mjs` listo para `assetlinks.json` (el archivo se crea en el Paso 6).
 - Paso 5: aprobado. 7 capturas en español (`tienda/capturas/es/`) y 7 en inglés (`tienda/capturas/en/`), modo tienda,
   1080 × 1920; imagen destacada 1024 × 500 en español e inglés (`tienda/destacada/`). Capturas de SOS rehechas con la v154.
+- Paso 5: capturas e imagen destacada aprobadas.
+- Paso 6: paquete de Android listo (ver "Paquete de Android" abajo). **Falta la prueba en un celular**, que se hará con
+  la prueba interna de Google Play cuando exista la cuenta (ver abajo).
 - Paso 4: textos de la tienda aprobados en `tienda/textos-tienda-es.txt` y `tienda/textos-tienda-en.txt`.
   Nombres: "Medellín a un clic – Guía" / "Medellín a un clic – Guide"; se le habla de "tú"; sin mencionar compra ni precio.
   La marca es "Medellín a un clic" (con "clic", correcto en español) en todas partes. Única excepción aprobada: la primera
@@ -154,6 +165,10 @@ Lo que falta:
   hasta 2054). Huella SHA-256: `35:94:F9:DE:0C:F4:14:40:FF:4B:77:F6:B3:E0:60:73:15:26:8E:3D:E1:79:EB:6C:5E:4A:2F:E4:E7:1A:58:CC`.
   **Solo la tiene María** (Google Drive: MOKEA DIGITAL / LLAVE APP MEDELLIN UN CLIC, y su computador), con las
   contraseñas en un archivo aparte. Se borró de la nube al terminar el Paso 6. Para volver a firmar, María la sube.
+- El `.aab` (`Medellin-a-un-clic-1.0.0-GooglePlay.aab`, versión 1.0.0) lo guarda María junto a la llave.
+- **Prueba en el celular pendiente:** el .apk de prueba no se pudo instalar en el Samsung Galaxy Z Fold de María porque
+  el "Bloqueador automático" de Samsung lo impide, y María decidió no desactivarlo. La prueba se hará desde Google Play
+  (**prueba interna**) cuando llegue el D-U-N-S, con la lista de pruebas (celular cerrado y abierto).
 - `app/.well-known/assetlinks.json` tiene la huella de la llave de subida. **Al crear la app en Play Console, agregar la
   huella de la llave de Google** (Play Console → Integridad de la app) y volver a publicar el sitio.
 - Ícono de la tienda: usar la versión cuadrada completa (`icon-maskable-512.png`); en `icon-512.png` las montañas se

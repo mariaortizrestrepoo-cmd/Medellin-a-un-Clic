@@ -14,3 +14,7 @@ Se arma con **Bubblewrap 1.27.0** (herramienta oficial de Google para Trusted We
   subida, el dueño de la cuenta pide a Google cambiarla.
 - `assetlinks.json` (en `app/.well-known/`, lo copia build.mjs) debe tener la huella SHA-256 de la llave de subida
   (para probar el .apk) y, cuando exista la cuenta, la huella de la llave de Google (Play Console → Integridad de la app).
+- Netlify no publica `.well-known` al arrastrar el .zip: `build.mjs` copia `assetlinks.json` también en la raíz y agrega
+  `/.well-known/assetlinks.json  /assetlinks.json  200` en `_redirects`.
+- Paquetes 1.0.0 armados el 21 nov 2026 (.apk de prueba y .aab). La prueba en celular se hará con la prueba interna de
+  Google Play (el bloqueador automático de Samsung impide instalar el .apk directamente).

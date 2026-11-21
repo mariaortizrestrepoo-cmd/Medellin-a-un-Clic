@@ -57,11 +57,15 @@ fs.writeFileSync(path.join(OUT, 'index.html'), html);
 if (HAS_ASSETLINKS) {
   fs.mkdirSync(path.join(OUT, '.well-known'), { recursive: true });
   fs.copyFileSync(ASSETLINKS, path.join(OUT, '.well-known', 'assetlinks.json'));
-  console.log('assetlinks.json copiado a dist/.well-known/');
+  // Netlify (al arrastrar el .zip) no publica carpetas que empiezan con punto: se copia también en la raíz
+  // y una regla en _redirects lo sirve en /.well-known/assetlinks.json (arreglo hecho en vivo con la v158).
+  fs.copyFileSync(ASSETLINKS, path.join(OUT, 'assetlinks.json'));
+  console.log('assetlinks.json copiado a dist/.well-known/ y a dist/ (raíz)');
 }
 const sw = fs.readFileSync(path.join(APP, 'sw.js'), 'utf8').replace(/const VERSION = '[^']*';/, `const VERSION = 'medellin-lock-${Date.now()}';`);
 if (!sw.includes('medellin-lock-')) throw new Error('sw sin VERSION');
 fs.writeFileSync(path.join(OUT, 'sw.js'), sw);
 fs.writeFileSync(path.join(OUT, '_headers'), '/sw.js\n  Cache-Control: no-cache\n/\n  Cache-Control: no-cache\n/index.html\n  Cache-Control: no-cache\n');
-fs.writeFileSync(path.join(OUT, '_redirects'), '/welcome  https://apps.mokeadigital.com/medellin  302\n/welcome/  https://apps.mokeadigital.com/medellin  302\n');
+fs.writeFileSync(path.join(OUT, '_redirects'), '/welcome  https://apps.mokeadigital.com/medellin  302\n/welcome/  https://apps.mokeadigital.com/medellin  302\n'
+  + (HAS_ASSETLINKS ? '/.well-known/assetlinks.json  /assetlinks.json  200\n' : ''));
 console.log('ok', (html.length / 1024).toFixed(0) + ' KB', 'secreto cifrado:', (secret.length / 1024).toFixed(0) + ' KB');
