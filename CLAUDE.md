@@ -99,6 +99,8 @@ Hecho:
   Capturas en inglés (`tienda/capturas/en/`) e imagen destacada 1024 × 500 en español e inglés (`tienda/destacada/`): hechas, en revisión.
 - Paso 4: textos de la tienda aprobados en `tienda/textos-tienda-es.txt` y `tienda/textos-tienda-en.txt`.
   Nombres: "Medellín a un clic – Guía" / "Medellín a un clic – Guide"; se le habla de "tú"; sin mencionar compra ni precio.
+  La marca es "Medellín a un clic" (con "clic", correcto en español) en todas partes. Única excepción aprobada: la primera
+  frase de la descripción en inglés dice "Medellín a un clic (Medellín, one click away)", para que aparezca "click".
 
 Lo que falta:
 
