@@ -59,6 +59,12 @@ Cambios de la v150 (sobre la v149):
 
 Versión anterior: v149 (`medellin-lock-1795281462731`).
 
+**Lista para el próximo .zip de Netlify (v151, sin publicar):**
+- Sin emojis en la app: la bandera de EE. UU. del botón de la Embajada (SOS) es ahora un ícono de línea (edificio con
+  columnas) y el 📍 del botón "Cerca de mí" del menú es un pin de línea, del mismo estilo que los demás íconos.
+- Quedan solo símbolos de texto: ♡/♥ (favoritos) y las flechas ← → de navegación. El 💛 del mensaje prellenado de
+  WhatsApp a Paola no se ve en la app (va dentro del mensaje).
+
 Cambios de la v149 (sobre la v147):
 - **Candado rediseñado** con el estilo de la app: Plus Jakarta Sans, azul noche #0B1626 y dorado, ícono arriba,
   sin cursiva, sin "¡Qué chimba, parce!", sin emojis ni flechas, tarjeta crema con letra oscura y grande,
