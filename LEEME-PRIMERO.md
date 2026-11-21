@@ -79,7 +79,8 @@ Hecho:
 - Paso 1: decisión de cobro (Opción 1).
 - Paso 2: candado en modo tienda y rediseño del candado (publicado en la web con la v149).
 - Paso 3: `build.mjs` listo para `assetlinks.json` (el archivo se crea en el Paso 6).
-- Paso 4 (en curso): textos de la tienda. Español aprobado; nombre "Medellín a un clic – Guía"; se le habla de "tú".
+- Paso 4: textos de la tienda aprobados en `tienda/textos-tienda-es.txt` y `tienda/textos-tienda-en.txt`.
+  Nombres: "Medellín a un clic – Guía" / "Medellín a un clic – Guide"; se le habla de "tú"; sin mencionar compra ni precio.
 
 Lo que falta:
 
