@@ -48,18 +48,15 @@ node build.mjs "https://kipooidlqcvivpngtebr.supabase.co/functions/v1/medellin-a
 
 ## Versión actual
 
-`medellin-lock-1795283981798` (sw.js de la app: `medellin-v150`), en vivo desde el 21 nov 2026.
-Subida por María a Netlify y revisada en vivo por Claude del chat.
+`medellin-lock-1795299039833` (sw.js de la app: `medellin-v157`), en vivo desde el 21 nov 2026.
+Subida por María a Netlify y revisada en vivo por Claude del chat. Incluye todo lo de la v150 a la v157 (detalle abajo).
 
-Cambios de la v150 (sobre la v149):
-- La app abre en el idioma que mostró el candado: si la persona toca EN/ES se guarda en `mde-idioma` (el que lee la app);
-  si nunca escogió, al desbloquear se usa el idioma que mostró el candado (p. ej. celular en español).
-- SOS: el título "Embajada de EE. UU. en Bogotá" ya no se sale de su caja (`.sos-btn span b` puede bajar de línea).
-- "Planee su viaje": en celulares pequeños (menos de 360 px) la tabla cabe en su caja.
+Versiones anteriores en vivo: v150 (`medellin-lock-1795283981798`), v149 (`medellin-lock-1795281462731`).
 
-Versión anterior: v149 (`medellin-lock-1795281462731`).
+Cambios de la v150: la app abre en el idioma que mostró el candado (`mde-idioma`); el título de la Embajada en SOS
+ya no se sale de su caja; la tabla de "Planee su viaje" cabe en celulares pequeños.
 
-**Lista para el próximo .zip de Netlify (v157, sin publicar; incluye la v151 a la v156). Aprobada por María:**
+**Cambios de la v151 a la v157 (en vivo):**
 - **Sin precios** (pedido de Cristina, 21 nov 2026): se quitaron todos los valores de actividades, entradas, tours,
   comida, restaurantes, transporte y hotel, en español e inglés. Las actividades, tours, restaurantes y lugares se quedan
   con su descripción y los datos útiles ("solo en efectivo", "lleve efectivo", "reserve"). Se quedan los "gratis" y los
@@ -154,8 +151,7 @@ Lo que falta:
 
 ## Pendientes
 
-- **Sentry, ajustes en la cuenta (los hace María):** en Project Settings → Loader Script, dejar apagados Performance/Tracing
-  y Session Replay; en Security & Privacy, activar "Prevent Storing of IP Addresses" y dejar activo el Data Scrubber.
+- **Sentry configurado en la cuenta (María, 21 nov 2026):** sin IP, sin Tracing, sin Session Replay y sin Logs.
 - **Precios de los tours** de Paola (hoy dice "pregúntale por WhatsApp").
 - El resto de la app le habla al turista de "usted"; "Quiénes somos" y los textos nuevos usan "tú". Unificar a "tú" con cuidado.
 - **"Phrases" en el menú:** queda como está. El botón tiene la clase `en` y solo se ve en inglés, a propósito
