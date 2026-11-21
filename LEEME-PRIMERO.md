@@ -48,8 +48,16 @@ node build.mjs "https://kipooidlqcvivpngtebr.supabase.co/functions/v1/medellin-a
 
 ## Versión actual
 
-`medellin-lock-1795281462731` (sw.js de la app: `medellin-v149`), en vivo desde el 21 nov 2026.
+`medellin-lock-1795283981798` (sw.js de la app: `medellin-v150`), en vivo desde el 21 nov 2026.
 Subida por María a Netlify y revisada en vivo por Claude del chat.
+
+Cambios de la v150 (sobre la v149):
+- La app abre en el idioma que mostró el candado: si la persona toca EN/ES se guarda en `mde-idioma` (el que lee la app);
+  si nunca escogió, al desbloquear se usa el idioma que mostró el candado (p. ej. celular en español).
+- SOS: el título "Embajada de EE. UU. en Bogotá" ya no se sale de su caja (`.sos-btn span b` puede bajar de línea).
+- "Planee su viaje": en celulares pequeños (menos de 360 px) la tabla cabe en su caja.
+
+Versión anterior: v149 (`medellin-lock-1795281462731`).
 
 Cambios de la v149 (sobre la v147):
 - **Candado rediseñado** con el estilo de la app: Plus Jakarta Sans, azul noche #0B1626 y dorado, ícono arriba,
@@ -107,11 +115,6 @@ Lo que falta:
 - DSN de **Sentry** (monitor de errores, plan gratis) — María debe crear la cuenta con info@mokeadigital.com.
 - **Precios de los tours** de Paola (hoy dice "pregúntale por WhatsApp").
 - El resto de la app le habla al turista de "usted"; "Quiénes somos" y los textos nuevos usan "tú". Unificar a "tú" con cuidado.
-- **Lista para el próximo .zip de Netlify (v150, aprobada y probada, sin publicar):**
-  - La app abre en el idioma del candado: si la persona toca EN/ES en el candado se guarda en `mde-idioma`
-    (el que lee la app); si nunca escogió, al desbloquear se usa el idioma que mostró el candado (p. ej. celular en español).
-  - SOS: el título "Embajada de EE. UU. en Bogotá" ya no se sale de su caja (`.sos-btn span b` puede bajar de línea).
-  - "Planee su viaje": en celulares pequeños (menos de 360 px) la tabla cabe en su caja (letra y márgenes un poco menores).
 - **"Phrases" en el menú:** queda como está. El botón tiene la clase `en` y solo se ve en inglés, a propósito
   (las frases son para el turista que habla inglés). Decisión de María, 21 nov 2026.
 - **Lista de fotos con IA** que muestran negocios o personas reales (p. ej. el 903 de Maluma), para que María decida
