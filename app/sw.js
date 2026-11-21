@@ -1,5 +1,5 @@
 // Cambie este número cada vez que publique una versión nueva.
-const VERSION = 'medellin-v155';
+const VERSION = 'medellin-v157';
 const BASE = VERSION + '-base';
 const FOTOS = VERSION + '-fotos';
 const FILES = ['./', './index.html', './manifest.json', './icon.svg', './portada.jpg', './apple-touch-icon.png', './icon-192.png', './icon-512.png'];

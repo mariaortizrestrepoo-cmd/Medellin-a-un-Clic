@@ -59,7 +59,22 @@ Cambios de la v150 (sobre la v149):
 
 Versión anterior: v149 (`medellin-lock-1795281462731`).
 
-**Lista para el próximo .zip de Netlify (v155, sin publicar; incluye la v151 a la v154):**
+**Lista para el próximo .zip de Netlify (v157, sin publicar; incluye la v151 a la v156). Aprobada por María:**
+- **Sin precios** (pedido de Cristina, 21 nov 2026): se quitaron todos los valores de actividades, entradas, tours,
+  comida, restaurantes, transporte y hotel, en español e inglés. Las actividades, tours, restaurantes y lugares se quedan
+  con su descripción y los datos útiles ("solo en efectivo", "lleve efectivo", "reserve"). Se quedan los "gratis" y los
+  datos históricos (premio de 300.000 dólares, moneda de 20.000 pesos, billetes de US$50/US$100). **No volver a poner
+  precios**: cambian con la temporada.
+- Tours: recuadro "El precio del tour no incluye actividades, entradas ni alimentación. Pregúntale a Paola si quieres
+  que te armemos un plan con todo incluido." (y en inglés).
+- Botones "Pregúntale a Paola por el transporte" (WhatsApp +57 319 463 5142 con mensaje prellenado) en Llegada al
+  aeropuerto y en el plan del día de Cisneros.
+- Se quitaron las fuentes cuyo tema era una tarifa o un precio (taxi, bus, peaje, pasaje, bandeja, tarifas de ingreso).
+- Enlaces nuevos (pestaña nueva): step.state.gov, la advertencia de viaje de EE. UU. para Colombia,
+  migracioncolombia.gov.co (Check-MIG) y haciendanapoles.com.
+- Foto real de Elcielo (`img/elcielo-restaurante.jpg`, 941 × 624, 59 KB) en la tarjeta "Alta cocina: Elcielo".
+  Ojo: `img/el-cielo.jpg` es del **Mirador El Cielo**, no del restaurante. María usa la foto bajo su responsabilidad.
+
 - **Sentry** (organización Mokea Digital, proyecto Browser JavaScript, solo Error Monitoring), en el `<head>` de
   `app/index.html`: `window.sentryOnLoad` + Loader `js.sentry-cdn.com/0a7b23497c05ba1856f294d2e8ffd6dc.min.js` (clave
   pública, no es secreta). `sendDefaultPii: false`; Tracing, Session Replay y Logs en 0/false; `beforeBreadcrumb` descarta
