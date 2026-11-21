@@ -21,7 +21,6 @@
     "path": "../../llave/mokea-medellinaunclic-subida.keystore",
     "alias": "mokea-medellinaunclic"
   },
-  "appVersionName": "1.0.0",
   "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
@@ -35,7 +34,8 @@
   "isChromeOSOnly": false,
   "isMetaQuest": false,
   "fullScopeUrl": "https://medellin.mokeadigital.com/",
-  "minSdkVersion": 23,
+  "minSdkVersion": 24,
   "additionalTrustedOrigins": [],
-  "retainedBundles": []
+  "retainedBundles": [],
+  "appVersion": "1.0.0"
 }

@@ -143,6 +143,22 @@ Lo que falta:
 5. **Formulario "Seguridad de los datos":** se guarda el correo (acceso); la ubicación se usa solo en el celular; Meta Pixel en la página de pago.
 6. **Cobro:** hoy se paga por fuera (Systeme). Revisar las reglas **vigentes** de Google Play sobre pagos externos antes de enviar.
 
+## Paquete de Android (Paso 6, 21 nov 2026)
+
+- Bubblewrap 1.27.0, Java 17, build-tools 36.1.0, Android 16 (target 36), **mínimo Android 7 (nivel 24)**, que es lo que
+  exige la biblioteca de Google (androidbrowserhelper 2.7.4). Configuración en `android/twa-manifest.json`
+  (`appVersion` 1.0.0, `appVersionCode` 1). Ver `android/LEEME-ANDROID.md`.
+- Paquete `com.mokeadigital.medellinaunclic`; nombre "Medellín a un clic"; bajo el ícono "Medellín"; abre
+  `https://medellin.mokeadigital.com/?fuente=play`; sin permisos especiales (ni ubicación).
+- Llave de subida: `mokea-medellinaunclic-subida.keystore` (PKCS12, RSA 4096, alias `mokea-medellinaunclic`, válida
+  hasta 2054). Huella SHA-256: `35:94:F9:DE:0C:F4:14:40:FF:4B:77:F6:B3:E0:60:73:15:26:8E:3D:E1:79:EB:6C:5E:4A:2F:E4:E7:1A:58:CC`.
+  **Solo la tiene María** (Google Drive: MOKEA DIGITAL / LLAVE APP MEDELLIN UN CLIC, y su computador), con las
+  contraseñas en un archivo aparte. Se borró de la nube al terminar el Paso 6. Para volver a firmar, María la sube.
+- `app/.well-known/assetlinks.json` tiene la huella de la llave de subida. **Al crear la app en Play Console, agregar la
+  huella de la llave de Google** (Play Console → Integridad de la app) y volver a publicar el sitio.
+- Ícono de la tienda: usar la versión cuadrada completa (`icon-maskable-512.png`); en `icon-512.png` las montañas se
+  salen por las esquinas de abajo.
+
 ## Apple (después)
 
 - Requiere una **Mac** (María tiene Windows) o un servicio de compilación en la nube.
