@@ -59,7 +59,9 @@ Cambios de la v150 (sobre la v149):
 
 Versión anterior: v149 (`medellin-lock-1795281462731`).
 
-**Lista para el próximo .zip de Netlify (v151, sin publicar):**
+**Lista para el próximo .zip de Netlify (v152, sin publicar; incluye la v151):**
+- SOS: cada teléfono de la Embajada queda completo en una sola línea (clase `tel-n`, `white-space:nowrap`),
+  en los dos idiomas y en celulares pequeños. Captura de SOS en inglés rehecha.
 - Sin emojis en la app: la bandera de EE. UU. del botón de la Embajada (SOS) es ahora un ícono de línea (edificio con
   columnas) y el 📍 del botón "Cerca de mí" del menú es un pin de línea, del mismo estilo que los demás íconos.
 - Se quedan como están, por decisión de María: ♡/♥ (favoritos), las flechas ← → de navegación y el 💛 del mensaje
