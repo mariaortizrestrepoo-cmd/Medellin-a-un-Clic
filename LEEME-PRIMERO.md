@@ -48,20 +48,47 @@ node build.mjs "https://kipooidlqcvivpngtebr.supabase.co/functions/v1/medellin-a
 
 ## Versión actual
 
-`medellin-lock-1795272992493` (sw.js de la app: `medellin-v147`), 21 nov 2026.
-Incluye: diseño premium oscuro, portada nueva (celular y computador), fotos en vez de emojis, buscador,
+`medellin-lock-1795281462731` (sw.js de la app: `medellin-v149`), en vivo desde el 21 nov 2026.
+Subida por María a Netlify y revisada en vivo por Claude del chat.
+
+Cambios de la v149 (sobre la v147):
+- **Candado rediseñado** con el estilo de la app: Plus Jakarta Sans, azul noche #0B1626 y dorado, ícono arriba,
+  sin cursiva, sin "¡Qué chimba, parce!", sin emojis ni flechas, tarjeta crema con letra oscura y grande,
+  botones que no se salen en celulares pequeños (probado a 320 px). El diseño del candado vive **solo** en
+  `herramientas-candado/src/lock.css` (se quitaron las reglas `#lock` viejas de `app/index.html`).
+- **Modo tienda (Google Play):** si la app se abre con `?fuente=play` (o desde el paquete `com.mokeadigital.medellin`),
+  se guarda `mde-tienda=1` en el celular y se ocultan los enlaces de compra, el consejo de instalación y el botón
+  "Instalar la app" (clases `solo-web` / `solo-tienda`). En la web no cambia nada. Los botones de tours con Paola se quedan.
+- Se quitaron las letras **Great Vibes** y **Pacifico**, que ya no usaba ninguna página.
+- `build.mjs` copia `app/.well-known/assetlinks.json` a `dist/.well-known/` **si existe** (lo revisa antes de tocar `dist/`).
+
+La app incluye: diseño premium oscuro, portada nueva (celular y computador), fotos en vez de emojis, buscador,
 favoritos, "Úsala sin internet", botón "Instalar la app", **SOS / Emergencias** (123, 911, Embajada EE. UU.,
 enviar ubicación), **Cerca de mí** (geolocalización, solo en el dispositivo), **Tours con Paola** (WhatsApp
 +57 319 463 5142 con mensaje prellenado), **Frases útiles con audio** (Web Speech API, solo en inglés),
 **Quiénes somos** con María y Paola, vehículos, Política de privacidad y Términos.
 
-## Plan para Google Play (lo que falta)
+## Plan para Google Play
+
+**Decisión (21 nov 2026): Opción 1.** En Google Play la app es gratis y solo entran quienes ya compraron, con su correo.
+La venta sigue por fuera (QR del carro, Systeme, anuncios). En la app de la tienda no hay ningún enlace de compra.
+El plan paso a paso y su avance están en el documento "Medellín a un clic — Diagnóstico y plan para Google Play"
+(https://claude.ai/artifact/Po3DMxUpdJqXKoAkNZaHGd).
+
+Hecho:
+- Paso 1: decisión de cobro (Opción 1).
+- Paso 2: candado en modo tienda y rediseño del candado (publicado en la web con la v149).
+- Paso 3: `build.mjs` listo para `assetlinks.json` (el archivo se crea en el Paso 6).
+- Paso 4 (en curso): textos de la tienda. Español aprobado; nombre "Medellín a un clic – Guía"; se le habla de "tú".
+
+Lo que falta:
 
 1. **Cuenta de desarrollador a nombre de Mokea Digital LLC.** Necesita el número **D-U-N-S** (pedido gratis a
    Dun & Bradstreet el 21 nov 2026; llega a info@mokeadigital.com). Sin él no se puede abrir la cuenta de organización.
 2. **Empaquetar como TWA** (Trusted Web Activity), p. ej. con Bubblewrap o PWABuilder, apuntando a
    https://medellin.mokeadigital.com. Paquete sugerido: `com.mokeadigital.medellin`.
-   - Publicar `/.well-known/assetlinks.json` en Netlify (hay que agregarlo a build.mjs, que hoy no copia esa carpeta).
+   - Publicar `/.well-known/assetlinks.json` en Netlify. `build.mjs` ya lo copia; falta crear el archivo con la huella
+     SHA-256 de la llave de firma (Paso 6). El paquete debe abrir `https://medellin.mokeadigital.com/?fuente=play`.
    - **La llave de firma (keystore) es secreta y no se puede perder:** guardarla fuera del repositorio y explicarle a María dónde queda.
 3. **Material de la tienda** (inglés y español): descripción corta/larga, capturas, imagen destacada 1024×500, icono 512.
 4. **Cuenta de prueba para los revisores:** dar acceso de cortesía a un correo de prueba en `mde_buyers`.
@@ -79,3 +106,12 @@ enviar ubicación), **Cerca de mí** (geolocalización, solo en el dispositivo),
 - DSN de **Sentry** (monitor de errores, plan gratis) — María debe crear la cuenta con info@mokeadigital.com.
 - **Precios de los tours** de Paola (hoy dice "pregúntale por WhatsApp").
 - El resto de la app le habla al turista de "usted"; "Quiénes somos" y los textos nuevos usan "tú". Unificar a "tú" con cuidado.
+- **Botón "Phrases" en el menú en español:** el botón de frases del menú dice "Phrases" también en español
+  (`app/index.html`, `<button class="hx-chip en" data-go="frases">`). Debe decir "Frases" en español.
+- **Idioma del candado:** si el cliente escoge español en el candado, la app abre en inglés. Causa: el candado guarda
+  el idioma en `mde-lang` (`lock.js`) y la app lo lee de `mde-idioma` (`index.html`). Debe abrir en el idioma escogido.
+- **Lista de fotos con IA** que muestran negocios o personas reales (p. ej. el 903 de Maluma), para que María decida
+  cuáles cambiar, antes de enviar a Google.
+- **Términos:** mencionan el precio US$19.99; revisarlos junto con la Política de privacidad (Supabase y Resend).
+- **El contenido cifrado** solo se puede armar con la `CONTENT_KEY`. Claude del chat la guarda y arma el .zip para
+  Netlify; Claude Code trabaja con una llave de prueba y nunca la pide en el chat.
