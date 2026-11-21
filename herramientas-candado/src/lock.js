@@ -25,7 +25,9 @@
 
   const helpMsg = encodeURIComponent('Hi! I bought Medellín a un clic and I need help with my access. / ¡Hola! Compré Medellín a un clic y necesito ayuda con mi acceso.');
   lock.querySelectorAll('.lk-help').forEach(a => a.href = 'https://wa.me/' + SUPPORT_WA + '?text=' + helpMsg);
-  lock.querySelectorAll('.lk-buy').forEach(a => a.href = BUY_URL);
+  // En la tienda (Google Play) se quitan los enlaces de compra; en la web se quedan.
+  const TIENDA = document.documentElement.classList.contains('tienda');
+  lock.querySelectorAll('.lk-buy').forEach(a => { if (TIENDA) a.remove(); else a.href = BUY_URL; });
 
   function step(name){
     lock.querySelectorAll('.lk-step').forEach(s => s.classList.toggle('on', s.dataset.step === name));

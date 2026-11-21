@@ -32,3 +32,7 @@ body.locked .top, body.locked .bar, body.locked main{display:none !important}
 #lock .lk-step{display:none}
 #lock .lk-step.on{display:block}
 #lock .lk-credit{text-align:center;font-size:13px;color:#8a857a;margin-top:26px}
+/* Versión de la tienda (Google Play): sin enlaces de compra ni consejos de instalación */
+.solo-tienda{display:none}
+html.tienda .solo-tienda{display:inline}
+html.tienda .solo-web, html.tienda .lk-buy, html.tienda .js-install{display:none !important}
