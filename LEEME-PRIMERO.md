@@ -107,10 +107,14 @@ Lo que falta:
 - DSN de **Sentry** (monitor de errores, plan gratis) — María debe crear la cuenta con info@mokeadigital.com.
 - **Precios de los tours** de Paola (hoy dice "pregúntale por WhatsApp").
 - El resto de la app le habla al turista de "usted"; "Quiénes somos" y los textos nuevos usan "tú". Unificar a "tú" con cuidado.
-- **Botón "Phrases" en el menú en español:** el botón de frases del menú dice "Phrases" también en español
-  (`app/index.html`, `<button class="hx-chip en" data-go="frases">`). Debe decir "Frases" en español.
-- **Idioma del candado:** si el cliente escoge español en el candado, la app abre en inglés. Causa: el candado guarda
-  el idioma en `mde-lang` (`lock.js`) y la app lo lee de `mde-idioma` (`index.html`). Debe abrir en el idioma escogido.
+- **Lista para el próximo .zip de Netlify (v150, aprobada y probada, sin publicar):**
+  - La app abre en el idioma del candado: si la persona toca EN/ES en el candado se guarda en `mde-idioma`
+    (el que lee la app); si nunca escogió, al desbloquear se usa el idioma que mostró el candado (p. ej. celular en español).
+  - SOS: el título "Embajada de EE. UU. en Bogotá" ya no se sale de su caja (`.sos-btn span b` puede bajar de línea).
+- **"Phrases" en el menú:** queda como está. El botón tiene la clase `en` y solo se ve en inglés, a propósito
+  (las frases son para el turista que habla inglés). Decisión de María, 21 nov 2026.
+- **"Planee su viaje", celulares pequeños (320 px), en español:** los tiempos ("~2 h") se salen unos 9 px de su caja.
+  Ya estaba así. Pendiente de que María decida si se corrige.
 - **Lista de fotos con IA** que muestran negocios o personas reales (p. ej. el 903 de Maluma), para que María decida
   cuáles cambiar, antes de enviar a Google.
 - **Términos:** mencionan el precio US$19.99; revisarlos junto con la Política de privacidad (Supabase y Resend).

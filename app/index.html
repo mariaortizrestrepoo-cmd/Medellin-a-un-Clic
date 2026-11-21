@@ -455,7 +455,8 @@ html.es-app .js-install{display:none!important}
 .sos-btn{display:flex;align-items:center;gap:14px;width:100%;margin:0 0 12px;padding:16px;border-radius:20px;border:1px solid var(--linea);background:linear-gradient(180deg,#152540,#111F35);color:var(--tinta);text-decoration:none;font:inherit;text-align:left;cursor:pointer}
 .sos-btn>b{flex:0 0 64px;height:64px;border-radius:16px;display:grid;place-items:center;font:800 24px "Plus Jakarta Sans",sans-serif;background:rgba(255,255,255,.06);color:var(--oro2)}
 .sos-btn,.sos-btn *{text-decoration:none!important}.sos-btn>span{flex:1;min-width:0}.sos-btn small{white-space:normal;overflow-wrap:anywhere}
-.sos-btn span b{display:block;font-size:17px;color:var(--tinta)}.sos-btn small{display:block;font-size:13.5px;color:var(--gris);line-height:1.35;margin-top:2px}
+.sos-btn span b{display:block;font-size:17px;color:var(--tinta)}
+.sos-btn span b{white-space:normal;overflow-wrap:break-word;line-height:1.25} /* el título baja de línea (los enlaces tel: no se parten por defecto) */.sos-btn small{display:block;font-size:13.5px;color:var(--gris);line-height:1.35;margin-top:2px}
 .sos-red{background:linear-gradient(135deg,#B3261E,#8C1D18);border-color:#d4554d}
 .sos-red>b{background:#fff;color:#B3261E}.sos-red small{color:#ffd9d6}.sos-red span b{color:#fff}
 .bar .nav-sos{color:#ff8a80!important}.bar .nav-sos.on{color:#ff6659!important}

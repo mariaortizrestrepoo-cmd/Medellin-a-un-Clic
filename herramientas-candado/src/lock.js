@@ -89,6 +89,9 @@
   let started = false;
   async function unlockWith(key){
     await openVault(key);
+    // Si la persona nunca escogió idioma, la app abre en el mismo idioma que mostró el candado
+    // (por ejemplo, español si su celular está en español).
+    if (!LS.get('mde-idioma')) LS.set('mde-idioma', lang);
     lock.hidden = true;
     document.body.classList.remove('locked');
     if (!started) { started = true; startApp(); }
