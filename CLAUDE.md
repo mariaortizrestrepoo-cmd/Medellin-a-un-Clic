@@ -62,8 +62,8 @@ Versión anterior: v149 (`medellin-lock-1795281462731`).
 **Lista para el próximo .zip de Netlify (v151, sin publicar):**
 - Sin emojis en la app: la bandera de EE. UU. del botón de la Embajada (SOS) es ahora un ícono de línea (edificio con
   columnas) y el 📍 del botón "Cerca de mí" del menú es un pin de línea, del mismo estilo que los demás íconos.
-- Quedan solo símbolos de texto: ♡/♥ (favoritos) y las flechas ← → de navegación. El 💛 del mensaje prellenado de
-  WhatsApp a Paola no se ve en la app (va dentro del mensaje).
+- Se quedan como están, por decisión de María: ♡/♥ (favoritos), las flechas ← → de navegación y el 💛 del mensaje
+  prellenado de WhatsApp a Paola (no se ve en la app).
 
 Cambios de la v149 (sobre la v147):
 - **Candado rediseñado** con el estilo de la app: Plus Jakarta Sans, azul noche #0B1626 y dorado, ícono arriba,
@@ -93,6 +93,8 @@ Hecho:
 - Paso 1: decisión de cobro (Opción 1).
 - Paso 2: candado en modo tienda y rediseño del candado (publicado en la web con la v149).
 - Paso 3: `build.mjs` listo para `assetlinks.json` (el archivo se crea en el Paso 6).
+- Paso 5 (en curso): las 7 capturas en español aprobadas (`tienda/capturas/es/`, v151, modo tienda, 1080 × 1920).
+  Capturas en inglés (`tienda/capturas/en/`) e imagen destacada 1024 × 500 en español e inglés (`tienda/destacada/`): hechas, en revisión.
 - Paso 4: textos de la tienda aprobados en `tienda/textos-tienda-es.txt` y `tienda/textos-tienda-en.txt`.
   Nombres: "Medellín a un clic – Guía" / "Medellín a un clic – Guide"; se le habla de "tú"; sin mencionar compra ni precio.
 
