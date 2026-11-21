@@ -8,6 +8,14 @@ const [ACCESS_API, BUY_URL, KEY_B64] = process.argv.slice(2);
 if (!ACCESS_API || !BUY_URL || !KEY_B64) { console.error('faltan argumentos'); process.exit(1); }
 
 const SRC = 'src', OUT = 'dist', APP = '../app';
+// Google Play: el archivo assetlinks.json se crea en el Paso 6 con la huella de la llave de firma.
+// Si existe, se revisa aquí, antes de tocar dist/: si está mal escrito, la herramienta se detiene sin cambiar nada.
+const ASSETLINKS = path.join(APP, '.well-known', 'assetlinks.json');
+const HAS_ASSETLINKS = fs.existsSync(ASSETLINKS);
+if (HAS_ASSETLINKS) {
+  try { JSON.parse(fs.readFileSync(ASSETLINKS, 'utf8')); }
+  catch (e) { console.error('assetlinks.json está mal escrito: ' + e.message); process.exit(1); }
+}
 let html = fs.readFileSync(path.join(SRC, 'index.src.html'), 'utf8');
 
 const a = html.indexOf('<!--VAULT-START-->'), b = html.indexOf('<!--VAULT-END-->');
@@ -45,6 +53,12 @@ fs.mkdirSync(OUT, { recursive: true });
 fs.cpSync(path.join(APP, 'img'), path.join(OUT, 'img'), { recursive: true });
 for (const f of ['manifest.json', 'icon.svg', 'portada.jpg', 'portada-movil.jpg', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'terminos.html', 'privacidad.html', 'compartir.jpg']) fs.copyFileSync(path.join(APP, f), path.join(OUT, f));
 fs.writeFileSync(path.join(OUT, 'index.html'), html);
+// Google Play (TWA): si existe app/.well-known/assetlinks.json (se revisó al inicio), se copia a /.well-known/.
+if (HAS_ASSETLINKS) {
+  fs.mkdirSync(path.join(OUT, '.well-known'), { recursive: true });
+  fs.copyFileSync(ASSETLINKS, path.join(OUT, '.well-known', 'assetlinks.json'));
+  console.log('assetlinks.json copiado a dist/.well-known/');
+}
 const sw = fs.readFileSync(path.join(APP, 'sw.js'), 'utf8').replace(/const VERSION = '[^']*';/, `const VERSION = 'medellin-lock-${Date.now()}';`);
 if (!sw.includes('medellin-lock-')) throw new Error('sw sin VERSION');
 fs.writeFileSync(path.join(OUT, 'sw.js'), sw);
