@@ -1,0 +1,49 @@
+<div id="lock">
+  <div class="lk-top">
+    <div class="lk-lang"><button data-lklang="en">EN</button><button data-lklang="es">ES</button></div>
+    <div class="lk-brand"><div class="lk-city">Medellín</div><div class="lk-clic">a un clic</div><div class="lk-sub">¡Qué chimba, parce!</div></div>
+  </div>
+  <div class="lk-body">
+
+    <!-- 1. Correo -->
+    <div class="lk-step" data-step="email">
+      <h2><span class="en">🔒 Welcome! Let's unlock your app</span><span class="es">🔒 ¡Bienvenido! Desbloqueemos su app</span></h2>
+      <p><span class="en">Enter the email you used to buy Medellín a un clic.</span><span class="es">Escriba el correo con el que compró Medellín a un clic.</span></p>
+      <div class="lk-msg" id="lk-msg-email"></div>
+      <input type="email" id="lk-email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+      <button class="lk-btn" id="lk-send"><span class="en">Send me my code →</span><span class="es">Envíenme mi código →</span></button>
+      <div class="lk-tip"><span class="en">📲 <b>Tip:</b> first add this page to your Home Screen (Share → "Add to Home Screen"), then open it from there and unlock it.</span><span class="es">📲 <b>Consejo:</b> primero agregue esta página a su pantalla de inicio (Compartir → "Agregar a pantalla de inicio"), ábrala desde ahí y desbloquéela.</span></div>
+      <div class="lk-small"><span class="en">Bought it but can't get in?</span><span class="es">¿La compró y no puede entrar?</span> <a class="lk-help" target="_blank" rel="noopener"><span class="en">Get help</span><span class="es">Pida ayuda</span></a></div>
+    </div>
+
+    <!-- 2. Código -->
+    <div class="lk-step" data-step="code">
+      <h2><span class="en">📩 Check your email</span><span class="es">📩 Revise su correo</span></h2>
+      <p><span class="en">We sent a 6-digit code to</span><span class="es">Le enviamos un código de 6 números a</span> <b id="lk-email-show"></b>. <span class="en">Type it here:</span><span class="es">Escríbalo aquí:</span></p>
+      <div class="lk-msg" id="lk-msg-code"></div>
+      <input class="code" id="lk-code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••">
+      <button class="lk-btn" id="lk-verify"><span class="en">Unlock my app ✓</span><span class="es">Desbloquear mi app ✓</span></button>
+      <div class="lk-small"><span class="en">Didn't get it? Check your spam folder or</span><span class="es">¿No le llegó? Revise la carpeta de spam o</span> <button id="lk-resend"><span class="en">send it again</span><span class="es">envíelo otra vez</span></button></div>
+      <div class="lk-small"><button id="lk-back"><span class="en">← Use a different email</span><span class="es">← Usar otro correo</span></button></div>
+    </div>
+
+    <!-- 3. Se abrió en otro celular -->
+    <div class="lk-step" data-step="moved">
+      <div class="lk-warn"><b><span class="en">Your app was opened on another phone</span><span class="es">Su app se abrió en otro celular</span></b>
+        <span class="en">Each purchase works on one phone at a time. If it was you, unlock it again here with your email.</span><span class="es">Cada compra funciona en un solo celular a la vez. Si fue usted, desbloquéela otra vez aquí con su correo.</span></div>
+      <button class="lk-btn" data-goto="email"><span class="en">Unlock on this phone</span><span class="es">Desbloquear en este celular</span></button>
+      <div class="lk-small"><span class="en">Want your own copy?</span><span class="es">¿Quiere la suya?</span> <a class="lk-buy" target="_blank" rel="noopener"><span class="en">Get Medellín one click away</span><span class="es">Compre Medellín a un clic</span></a></div>
+    </div>
+
+    <!-- 4. Límite de celulares -->
+    <div class="lk-step" data-step="limit">
+      <div class="lk-warn"><b><span class="en">This app is already active on another phone</span><span class="es">Esta app ya está activa en otro celular</span></b>
+        <span class="en">Each purchase works on one device. Changed phones? Message us and we'll move your access.</span><span class="es">Cada compra funciona en un solo celular. ¿Cambió de celular? Escríbanos y le pasamos el acceso.</span></div>
+      <a class="lk-btn lk-wa lk-help" target="_blank" rel="noopener"><span class="en">💬 Message us on WhatsApp</span><span class="es">💬 Escríbanos por WhatsApp</span></a>
+      <div class="lk-small"><span class="en">Want your own copy?</span><span class="es">¿Quiere la suya?</span> <a class="lk-buy" target="_blank" rel="noopener"><span class="en">Get Medellín one click away</span><span class="es">Compre Medellín a un clic</span></a></div>
+    </div>
+
+    <div class="lk-credit"><span class="en">Created by</span><span class="es">Creado por</span> Mokea Digital LLC</div>
+  </div>
+</div>
+<script type="application/octet-stream" id="vault">__VAULT__</script>
