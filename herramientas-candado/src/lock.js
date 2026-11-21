@@ -11,16 +11,18 @@
   };
   const $ = id => document.getElementById(id);
   const lock = $('lock');
-  let lang = LS.get('mde-lang') || ((navigator.language||'').toLowerCase().startsWith('es') ? 'es' : 'en');
+  // 'mde-idioma' es el idioma que la persona escogió (lo usa también la app); 'mde-lang' es el que mostró el candado.
+  let lang = LS.get('mde-idioma') || LS.get('mde-lang') || ((navigator.language||'').toLowerCase().startsWith('es') ? 'es' : 'en');
 
-  function setLkLang(l){
+  function setLkLang(l, escogido){
     lang = l; LS.set('mde-lang', l);
+    if (escogido) LS.set('mde-idioma', l);   // así la app abre en el idioma que la persona tocó en el candado
     document.body.classList.toggle('lang-en', l === 'en');
     document.body.classList.toggle('lang-es', l === 'es');
     document.documentElement.lang = l;
     lock.querySelectorAll('[data-lklang]').forEach(b => b.classList.toggle('on', b.dataset.lklang === l));
   }
-  lock.querySelectorAll('[data-lklang]').forEach(b => b.onclick = () => setLkLang(b.dataset.lklang));
+  lock.querySelectorAll('[data-lklang]').forEach(b => b.onclick = () => setLkLang(b.dataset.lklang, true));
   setLkLang(lang);
 
   const helpMsg = encodeURIComponent('Hi! I bought Medellín a un clic and I need help with my access. / ¡Hola! Compré Medellín a un clic y necesito ayuda con mi acceso.');
