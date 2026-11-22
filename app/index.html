@@ -512,6 +512,54 @@ html.es-app .js-install{display:none!important}
 .tour h3{font-size:20px!important;margin:0 0 6px}
 .tour p{font-size:15.5px;color:var(--gris);line-height:1.5;margin:0 0 12px}
 .tour-btn{display:block;text-align:center;background:linear-gradient(135deg,#F3D08E,#E4B45E);color:#1A1406!important;font-weight:800;text-decoration:none!important;border-radius:99px;padding:12px}
+/* ===== Reservas de tours (Mokea Digital LLC) ===== */
+.rsv{border-radius:22px;border:1px solid rgba(243,208,142,.45);background:linear-gradient(180deg,#17294A,#111F35);padding:18px 16px;margin:0 0 18px;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+.rsv h3{font-size:21px!important;margin:0 0 6px;color:#F7F2E8}
+.rsv p{font-size:16px;color:var(--gris);line-height:1.5;margin:0 0 10px}
+.rsv-prueba{background:#F4B63F;color:#1A1406;font-weight:800;font-size:13px;letter-spacing:.04em;border-radius:10px;padding:6px 10px;margin:0 0 12px;text-align:center}
+.rsv-form{display:none;margin-top:6px}
+.rsv.abierto .rsv-form{display:block}
+.rsv.abierto .rsv-empezar{display:none}
+.rsv label{display:block;font-weight:800;font-size:15px;color:#F7F2E8;margin:16px 0 6px}
+.rsv label small{font-weight:600;color:var(--gris)}
+.rsv select,.rsv input{width:100%;box-sizing:border-box;background:#0D192B;border:1px solid rgba(255,255,255,.22);border-radius:14px;color:#F4EEE3;font:600 17px "Plus Jakarta Sans",Nunito,sans-serif;padding:13px 14px;min-height:50px;outline:none;color-scheme:dark}
+.rsv select:focus,.rsv input:focus{border-color:var(--oro);box-shadow:0 0 0 3px rgba(228,180,94,.2)}
+.rsv-desc{background:rgba(255,255,255,.05);border-radius:12px;padding:10px 12px;margin-top:8px;font-size:15px;color:#DCD5C7;line-height:1.45}
+.rsv-grupos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rsv-grupos button{min-height:50px;border-radius:14px;border:1px solid rgba(255,255,255,.22);background:#0D192B;color:#F4EEE3;font:800 15px "Plus Jakarta Sans",sans-serif;cursor:pointer;padding:6px 4px;line-height:1.15}
+.rsv-grupos button small{display:block;font-weight:600;font-size:11.5px;color:var(--gris)}
+.rsv-grupos button.on{background:linear-gradient(135deg,#F3D08E,#E4B45E);color:#1A1406;border-color:transparent}
+.rsv-grupos button.on small{color:#3A2E12}
+.rsv-dos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.rsv-dos>div{min-width:0}
+.rsv select,.rsv input{min-width:0;max-width:100%}
+.rsv input[type=date],.rsv input[type=time]{padding-left:10px;padding-right:8px}
+.rsv-msg{display:none;border-radius:12px;padding:10px 12px;margin-top:8px;font-size:15px;line-height:1.45}
+.rsv-msg.err{display:block;background:rgba(240,122,143,.12);border:1px solid rgba(240,122,143,.5);color:#FFD3DA}
+.rsv-msg.ok{display:block;background:rgba(61,190,132,.12);border:1px solid rgba(61,190,132,.5);color:#C8F2DD}
+.rsv-pagos{display:grid;gap:8px}
+.rsv-pagos label{margin:0;display:flex;gap:10px;align-items:flex-start;background:#0D192B;border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:12px;cursor:pointer;font-weight:600}
+.rsv-pagos label.on{border-color:var(--oro);box-shadow:0 0 0 2px rgba(228,180,94,.25)}
+.rsv-pagos input{width:22px;height:22px;min-height:0;margin:2px 0 0;flex:0 0 auto;accent-color:#E4B45E}
+.rsv-pagos b{display:block;color:#F7F2E8;font-size:16px}
+.rsv-pagos span.v{display:block;color:var(--oro2);font-weight:800;font-size:17px;margin-top:2px}
+.rsv-pagos small{display:block;color:var(--gris);font-size:13.5px;margin-top:2px}
+.rsv-nota{font-size:14.5px!important;color:#DCD5C7!important;background:rgba(255,255,255,.04);border-left:3px solid var(--oro);border-radius:0 10px 10px 0;padding:8px 10px;margin:12px 0 0!important}
+.rsv-acepto{display:flex!important;gap:10px;align-items:flex-start;font-weight:600!important;font-size:14.5px!important;color:#DCD5C7!important}
+.rsv-acepto input{width:22px;height:22px;min-height:0;flex:0 0 auto;margin:1px 0 0;accent-color:#E4B45E}
+.rsv-pagar{margin-top:16px;width:100%;border:0;cursor:pointer;font-size:18px!important;padding:15px!important}
+.rsv-pagar[disabled]{opacity:.55;cursor:not-allowed}
+.rsv-wa{display:block;text-align:center;margin-top:10px;border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:11px;color:#F4EEE3!important;font-weight:800;text-decoration:none!important}
+.tour-btn2{display:block;text-align:center;margin-top:8px;border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:10px;color:#F4EEE3!important;font-weight:700;text-decoration:none!important;font-size:15px}
+.rsv-ok{text-align:center}
+.rsv-ok .ico{width:56px;height:56px;border-radius:50%;background:var(--esmeralda);color:#06231a;display:grid;place-items:center;margin:4px auto 10px;font-weight:900;font-size:28px}
+.rsv-resumen{background:#0D192B;border-radius:14px;padding:12px 14px;text-align:left;font-size:15px;color:#DCD5C7;line-height:1.6;margin:10px 0}
+.rsv-resumen b{color:#F7F2E8}
+.rsv-sim{position:fixed;inset:0;z-index:2000;background:rgba(5,10,20,.75);display:grid;place-items:center;padding:16px}
+.rsv-sim>div{background:#fff;color:#1A1A1A;border-radius:18px;max-width:380px;width:100%;padding:20px;font-family:Arial,sans-serif;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.rsv-sim h4{margin:0 0 4px;font-size:18px}.rsv-sim p{margin:0 0 12px;color:#444;font-size:15px;line-height:1.4}
+.rsv-sim .b{display:block;width:100%;border:0;border-radius:10px;padding:13px;font-size:16px;font-weight:700;margin-top:8px;cursor:pointer}
+@media (max-width:359px){.rsv-grupos{grid-template-columns:1fr 1fr}.rsv-dos{grid-template-columns:1fr}}
 .hx-tours{display:block;width:100%;height:170px;border:0;border-radius:22px;margin:14px 0 0;position:relative;overflow:hidden;background-size:cover;background-position:center;cursor:pointer;color:#fff;font:inherit;text-align:left;padding:0}
 .hx-tours::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,22,38,.9),rgba(11,22,38,.2))}
 .hx-tours .hx-t b{font-size:22px}
@@ -689,8 +737,87 @@ html.es-app .js-install{display:none!important}
 <!-- ============ TOURS ============ -->
 <section class="page" id="tours"><div class="wrap">
   <div class="pg-head"><h2 class="en">Tours with transportation</h2><h2 class="es">Tours con transporte</h2>
-  <p class="en">Choose your plan and Paola, your trusted person in Medellín, takes you. The price depends on how many people travel: ask her on WhatsApp.</p><p class="es">Escoge tu plan y Paola, tu persona de confianza en Medellín, te lleva. El precio depende de cuántas personas viajen: pregúntale por WhatsApp.</p></div>
+  <p class="en">Choose your plan and Paola, your trusted person in Medellín, takes you. The price depends on how many people travel. Book and pay right here, or ask her on WhatsApp.</p><p class="es">Escoge tu plan y Paola, tu persona de confianza en Medellín, te lleva. El precio depende de cuántas personas viajen. Reserva y paga aquí mismo, o pregúntale por WhatsApp.</p></div>
   <div class="nota"><span class="en">The tour price does not include activities, admission fees or meals. Ask Paola if you’d like us to put together an all-inclusive plan for you.</span><span class="es">El precio del tour no incluye actividades, entradas ni alimentación. Pregúntale a Paola si quieres que te armemos un plan con todo incluido.</span></div>
+  <!-- ============ RESERVAS: formulario de reserva y pago ============ -->
+  <div class="rsv" id="reserva">
+    <div class="rsv-prueba" id="rsv-prueba" hidden><span class="en">TEST MODE · no real charges</span><span class="es">MODO DE PRUEBA · no se cobra nada</span></div>
+    <h3><span class="en">Book and pay for your tour</span><span class="es">Reserva y paga tu tour</span></h3>
+    <p><span class="en">Choose your tour, date and group size, and pay right here by card. Paola gets your booking right away.</span><span class="es">Escoge tu tour, la fecha y cuántos son, y paga aquí mismo con tarjeta. Paola recibe tu reserva al instante.</span></p>
+    <button class="tour-btn rsv-empezar" type="button" style="width:100%;border:0;cursor:pointer"><span class="en">Book now</span><span class="es">Reservar ahora</span></button>
+    <div class="rsv-form" id="rsv-form">
+      <label for="rsv-tour"><span class="en">Tour</span><span class="es">Tour</span></label>
+      <select id="rsv-tour"></select>
+      <div class="rsv-desc" id="rsv-desc"></div>
+
+      <label><span class="en">How many people?</span><span class="es">¿Cuántas personas son?</span></label>
+      <div class="rsv-grupos" id="rsv-grupos"></div>
+      <p class="rsv-nota" style="margin-top:8px!important"><span class="en">More than 16 people? Message Paola and she’ll arrange it.</span><span class="es">¿Más de 16 personas? Escríbele a Paola y ella lo organiza.</span></p>
+
+      <div id="rsv-aero" hidden>
+        <label for="rsv-tramo"><span class="en">Which trip?</span><span class="es">¿Qué trayecto?</span></label>
+        <select id="rsv-tramo"></select>
+        <label for="rsv-municipio"><span class="en">Where are you staying?</span><span class="es">¿Dónde te hospedas?</span></label>
+        <select id="rsv-municipio"></select>
+        <p class="rsv-nota" id="rsv-aero-nota"></p>
+        <div id="rsv-otro" hidden>
+          <p class="rsv-nota"><span class="en">Staying in El Retiro or somewhere that’s not on the list? Message Paola on WhatsApp and she’ll give you a price for the trip.</span><span class="es">¿Te hospedas en El Retiro o en otro lugar que no está en la lista? Escríbele a Paola por WhatsApp y te cotiza el trayecto.</span></p>
+          <a class="rsv-wa" target="_blank" rel="noopener" id="rsv-otro-wa" href="https://wa.me/573194635142"><span class="en">Message Paola on WhatsApp</span><span class="es">Escríbele a Paola por WhatsApp</span></a>
+        </div>
+        <div id="rsv-llegada">
+          <label><span class="en">Your arrival</span><span class="es">Tu llegada</span></label>
+          <div class="rsv-dos">
+            <div><label for="rsv-fecha-lleg" style="margin-top:0"><small><span class="en">Date</span><span class="es">Fecha</span></small></label><input type="date" id="rsv-fecha-lleg"></div>
+            <div><label for="rsv-hora-lleg" style="margin-top:0"><small><span class="en">Landing time</span><span class="es">Hora de llegada</span></small></label><input type="time" id="rsv-hora-lleg"></div>
+          </div>
+          <label for="rsv-vuelo-lleg"><small><span class="en">Flight number</span><span class="es">Número de vuelo</span></small></label><input type="text" id="rsv-vuelo-lleg" maxlength="12" autocomplete="off" placeholder="AV 123">
+        </div>
+        <div id="rsv-salida">
+          <label><span class="en">Your departure</span><span class="es">Tu salida</span></label>
+          <div class="rsv-dos">
+            <div><label for="rsv-fecha-sal" style="margin-top:0"><small><span class="en">Date</span><span class="es">Fecha</span></small></label><input type="date" id="rsv-fecha-sal"></div>
+            <div><label for="rsv-hora-sal" style="margin-top:0"><small><span class="en">Flight time</span><span class="es">Hora del vuelo</span></small></label><input type="time" id="rsv-hora-sal"></div>
+          </div>
+          <label for="rsv-hora-hotel"><small><span class="en">Pickup time at your hotel</span><span class="es">Hora de recogida en el hotel</span></small></label><input type="time" id="rsv-hora-hotel">
+        </div>
+      </div>
+
+      <div id="rsv-normal">
+        <div class="rsv-dos">
+          <div><label for="rsv-fecha"><span class="en">Date</span><span class="es">Fecha</span></label><input type="date" id="rsv-fecha"></div>
+          <div><label for="rsv-hora"><span class="en">Pickup time</span><span class="es">Hora de recogida</span></label><input type="time" id="rsv-hora"></div>
+        </div>
+        <p class="rsv-nota"><span class="en">Write the time you’d like to be picked up. Paola confirms it with you on WhatsApp.</span><span class="es">Escribe la hora a la que quieres que te recojan. Paola te la confirma por WhatsApp.</span></p>
+      </div>
+      <p class="rsv-nota" id="rsv-luces" hidden></p>
+      <div class="rsv-msg" id="rsv-msg-fecha"></div>
+      <div id="rsv-resto">
+
+      <label for="rsv-sitio"><span class="en" id="rsv-sitio-en">Pickup place (hotel or address)</span><span class="es" id="rsv-sitio-es">Sitio de recogida (hotel o dirección)</span></label>
+      <input type="text" id="rsv-sitio" maxlength="160" autocomplete="street-address">
+
+      <label for="rsv-nombre"><span class="en">Full name</span><span class="es">Nombre completo</span></label>
+      <input type="text" id="rsv-nombre" maxlength="80" autocomplete="name">
+      <label for="rsv-wa"><span class="en">WhatsApp (with country code)</span><span class="es">WhatsApp (con el código del país)</span></label>
+      <input type="tel" id="rsv-wa" maxlength="20" autocomplete="tel" inputmode="tel" placeholder="+1 555 123 4567">
+      <label for="rsv-correo"><span class="en">Email</span><span class="es">Correo</span></label>
+      <input type="email" id="rsv-correo" maxlength="120" autocomplete="email" inputmode="email">
+
+      <label><span class="en">How would you like to pay?</span><span class="es">¿Cómo quieres pagar?</span></label>
+      <div class="rsv-pagos" id="rsv-pagos"></div>
+      <p class="rsv-nota" id="rsv-hora-extra"></p>
+      <p class="rsv-nota"><span class="en">To hold your date, you pay a 20% deposit by card and the rest on the day of the tour, or, if you prefer, pay the full amount now. If you can’t make it, let us know at least 2 days in advance and your deposit stays valid for your next visit for one year. If you don’t let us know in time, the deposit is not refundable.</span><span class="es">Para separar la fecha, pagas un anticipo del 20% con tarjeta, y el resto el día del tour, o, si prefieres, pagas el total de una vez. Si no puedes viajar, avísanos con al menos 2 días de anticipación y tu anticipo te queda para tu próxima visita, válido por un año. Si no avisas a tiempo, el anticipo no se devuelve.</span></p>
+      <p class="rsv-nota"><span class="en">The tour price does not include activities, admission fees or meals. Ask Paola if you’d like us to put together an all-inclusive plan for you.</span><span class="es">El precio del tour no incluye actividades, entradas ni alimentación. Pregúntale a Paola si quieres que te armemos un plan con todo incluido.</span></p>
+      <label class="rsv-acepto"><input type="checkbox" id="rsv-acepto"><span><span class="en">I accept the booking conditions and the <a href="terminos.html" target="_blank" rel="noopener">Terms</a>.</span><span class="es">Acepto las condiciones de la reserva y los <a href="terminos.html" target="_blank" rel="noopener">Términos</a>.</span></span></label>
+      <div class="rsv-msg" id="rsv-msg"></div>
+      <button class="tour-btn rsv-pagar" type="button" id="rsv-pagar"><span class="en">Pay by card</span><span class="es">Pagar con tarjeta</span></button>
+      <p style="font-size:13px!important;text-align:center;margin-top:8px!important"><span class="en">Secure payment with Bold. We never see your card details.</span><span class="es">Pago seguro con Bold. Nunca vemos los datos de tu tarjeta.</span></p>
+      </div>
+    </div>
+    <p class="rsv-nota" style="margin-top:16px!important"><span class="en">Book at least 2 days in advance so we can guarantee your vehicle and driver. But if something comes up at the last minute, you need the tour today or tomorrow, or more people are joining than you planned, don’t worry: message us and we’ll find a solution for you.</span><span class="es">Haz tu reserva con mínimo 2 días de anticipación, así te garantizamos el vehículo y el conductor. Pero si te surge algo de último momento, necesitas el tour para hoy o mañana, o resultaron más personas de las que tenías previstas, no te preocupes: escríbenos, que nosotros te tenemos una solución.</span></p>
+    <a class="rsv-wa" id="rsv-wa-btn" target="_blank" rel="noopener" href="https://wa.me/573194635142"><span class="en">Message Paola on WhatsApp</span><span class="es">Escríbele a Paola por WhatsApp</span></a>
+  </div>
+  <div class="rsv" id="rsv-listo" hidden></div>
   <div class="tour"><img src="img/comuna13.jpg" alt="Medellín esencial" loading="lazy" decoding="async"><div class="tour-in">
     <span class="tour-d"><span class="en">1 day</span><span class="es">1 día</span></span>
     <h3 class="en">Essential Medellín</h3><h3 class="es">Medellín esencial</h3>
@@ -707,7 +834,7 @@ html.es-app .js-install{display:none!important}
     <span class="tour-d"><span class="en">Full day</span><span class="es">Día completo</span></span>
     <h3 class="en">Guatapé and El Peñol</h3><h3 class="es">Guatapé y El Peñol</h3>
     <p class="en">Early departure, the Rock of El Peñol and the reservoir viewpoints, lunch and a walk through the colorful town. Back in the late afternoon.</p><p class="es">Salida temprano, la Piedra del Peñol y los miradores del embalse, almuerzo y paseo por el pueblo de colores. Regreso al final de la tarde.</p>
-    <a class="tour-btn" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Guatap%C3%A9%20y%20El%20Pe%C3%B1ol%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Guatap%C3%A9%20and%20El%20Pe%C3%B1ol" target="_blank" rel="noopener"><span class="en">Book with Paola</span><span class="es">Reservar con Paola</span></a>
+    <button class="tour-btn rsv-abrir" type="button" data-tour="guatape" style="width:100%;border:0;cursor:pointer"><span class="en">Book and pay</span><span class="es">Reservar y pagar</span></button><a class="tour-btn2" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Guatap%C3%A9%20y%20El%20Pe%C3%B1ol%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Guatap%C3%A9%20and%20El%20Pe%C3%B1ol" target="_blank" rel="noopener"><span class="en">or ask Paola on WhatsApp</span><span class="es">o pregúntale a Paola por WhatsApp</span></a>
   </div></div>
   <div class="tour"><img src="img/puente-occidente.jpg" alt="Santa Fe de Antioquia" loading="lazy" decoding="async"><div class="tour-in">
     <span class="tour-d"><span class="en">Full day</span><span class="es">Día completo</span></span>
@@ -719,7 +846,7 @@ html.es-app .js-install{display:none!important}
     <span class="tour-d"><span class="en">Half day</span><span class="es">Medio día</span></span>
     <h3 class="en">Santa Elena, land of the silleteros</h3><h3 class="es">Santa Elena silletera</h3>
     <p class="en">Visit a flower farm in the mountains and learn the silletero tradition up close.</p><p class="es">Visita una finca de flores en la montaña y conoce de cerca la tradición silletera.</p>
-    <a class="tour-btn" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Santa%20Elena%20silletera%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Santa%20Elena%2C%20land%20of%20the%20silleteros" target="_blank" rel="noopener"><span class="en">Book with Paola</span><span class="es">Reservar con Paola</span></a>
+    <button class="tour-btn rsv-abrir" type="button" data-tour="flores" style="width:100%;border:0;cursor:pointer"><span class="en">Book and pay</span><span class="es">Reservar y pagar</span></button><a class="tour-btn2" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Santa%20Elena%20silletera%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Santa%20Elena%2C%20land%20of%20the%20silleteros" target="_blank" rel="noopener"><span class="en">or ask Paola on WhatsApp</span><span class="es">o pregúntale a Paola por WhatsApp</span></a>
   </div></div>
   <div class="tour"><img src="img/jardin.jpg" alt="Jardín" loading="lazy" decoding="async"><div class="tour-in">
     <span class="tour-d"><span class="en">Long day or overnight</span><span class="es">Día largo o con noche</span></span>
@@ -731,19 +858,19 @@ html.es-app .js-install{display:none!important}
     <span class="tour-d"><span class="en">1–2 days</span><span class="es">1–2 días</span></span>
     <h3 class="en">Río Claro</h3><h3 class="es">Río Claro</h3>
     <p class="en">A marble canyon with crystal-clear water, rafting and caves. About 3 hours from Medellín.</p><p class="es">Cañón de mármol con aguas cristalinas, rafting y cavernas. A unas 3 horas de Medellín.</p>
-    <a class="tour-btn" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20R%C3%ADo%20Claro%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20R%C3%ADo%20Claro" target="_blank" rel="noopener"><span class="en">Book with Paola</span><span class="es">Reservar con Paola</span></a>
+    <button class="tour-btn rsv-abrir" type="button" data-tour="rioclaro" style="width:100%;border:0;cursor:pointer"><span class="en">Book and pay</span><span class="es">Reservar y pagar</span></button><a class="tour-btn2" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20R%C3%ADo%20Claro%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20R%C3%ADo%20Claro" target="_blank" rel="noopener"><span class="en">or ask Paola on WhatsApp</span><span class="es">o pregúntale a Paola por WhatsApp</span></a>
   </div></div>
   <div class="tour"><img src="img/hacienda-napoles.jpg" alt="Hacienda Nápoles" loading="lazy" decoding="async"><div class="tour-in">
     <span class="tour-d"><span class="en">1–2 days</span><span class="es">1–2 días</span></span>
     <h3 class="en">Hacienda Nápoles</h3><h3 class="es">Hacienda Nápoles</h3>
     <p class="en">A theme park with animals, water parks and museums. Long trip: leave early.</p><p class="es">Parque temático con animales, parques acuáticos y museos. Viaje largo: salir temprano.</p>
-    <a class="tour-btn" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Hacienda%20N%C3%A1poles%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Hacienda%20N%C3%A1poles" target="_blank" rel="noopener"><span class="en">Book with Paola</span><span class="es">Reservar con Paola</span></a>
+    <button class="tour-btn rsv-abrir" type="button" data-tour="napoles" style="width:100%;border:0;cursor:pointer"><span class="en">Book and pay</span><span class="es">Reservar y pagar</span></button><a class="tour-btn2" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Hacienda%20N%C3%A1poles%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Hacienda%20N%C3%A1poles" target="_blank" rel="noopener"><span class="en">or ask Paola on WhatsApp</span><span class="es">o pregúntale a Paola por WhatsApp</span></a>
   </div></div>
   <div class="tour"><img src="img/aeropuerto.jpg" alt="Recogida en el aeropuerto" loading="lazy" decoding="async"><div class="tour-in">
     <span class="tour-d"><span class="en">When you land</span><span class="es">Cuando aterrices</span></span>
     <h3 class="en">Airport pickup</h3><h3 class="es">Recogida en el aeropuerto</h3>
     <p class="en">Someone you can trust waits for you at José María Córdova airport and takes you to your hotel.</p><p class="es">Alguien de confianza te espera en el aeropuerto José María Córdova y te lleva a tu hotel.</p>
-    <a class="tour-btn" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Recogida%20en%20el%20aeropuerto%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Airport%20pickup" target="_blank" rel="noopener"><span class="en">Book with Paola</span><span class="es">Reservar con Paola</span></a>
+    <button class="tour-btn rsv-abrir" type="button" data-tour="aeropuerto" style="width:100%;border:0;cursor:pointer"><span class="en">Book and pay</span><span class="es">Reservar y pagar</span></button><a class="tour-btn2" href="https://wa.me/573194635142?text=Hola%20Paola%21%20Vengo%20de%20la%20app%20Medell%C3%ADn%20a%20un%20clic.%20Me%20interesa%3A%20Recogida%20en%20el%20aeropuerto%20/%20Hi%21%20I%20found%20you%20in%20the%20Medell%C3%ADn%20a%20un%20clic%20app.%20I%20am%20interested%20in%3A%20Airport%20pickup" target="_blank" rel="noopener"><span class="en">or ask Paola on WhatsApp</span><span class="es">o pregúntale a Paola por WhatsApp</span></a>
   </div></div>
   <div class="nota"><span class="en">Entrance fees, guides and meals are paid separately unless agreed otherwise. Routes and times are confirmed with Paola before you travel.</span><span class="es">Entradas, guías y comidas se pagan aparte, salvo que se acuerde otra cosa. La ruta y los horarios se confirman con Paola antes de viajar.</span></div>
   <button class="btn" data-go="menu"><span class="en">Back to start</span><span class="es">Volver al inicio</span></button>
@@ -2593,6 +2720,293 @@ show(location.hash.slice(1) || 'inicio');
     b.classList.add('sonando'); u.onend=u.onerror=function(){ b.classList.remove('sonando'); };
     speechSynthesis.speak(u);
   });
+})();
+
+// ===== Reservas de tours con pago (Bold) y calendario de Paola =====
+// Para cambiar precios, tasa o tours: edite RESERVAS aquí (y la tabla de Supabase cuando esté conectada).
+const RESERVAS = {
+  modo: 'prueba',                 // 'prueba' = sin cobros reales (simulación); 'real' = Bold y Supabase
+  api: '',                        // URL de la función de Supabase "medellin-reservas" (se llena al conectar)
+  tasa: 3461,                     // pesos por dólar (se actualiza una vez al mes)
+  anticipo: 0.20,                 // 20 %
+  diasMinimos: 2,                 // reservar con mínimo 2 días de anticipación
+  grupos: ['1-3', '4-6', '7-10', '11-16'],
+  horaExtra: [30, 30, 35, 40],    // US$ por hora adicional (se paga el día del tour)
+  whatsapp: '573194635142',
+  // Aeropuerto: el precio de la lista es aeropuerto ↔ Medellín. Hoteles en estos municipios suman un recargo por trayecto.
+  aeroRecargo: 10,                // US$ por trayecto
+  aeroMunicipios: ['Bello', 'Copacabana', 'Girardota', 'Barbosa', 'Itagüí', 'Envigado', 'Sabaneta', 'La Estrella', 'Caldas'],
+  aeroSinRecargo: ['Rionegro', 'Llanogrande', 'La Ceja'],      // mismo precio que Medellín
+  aeroGuatapeCOP: [320000, 400000, 480000, 540000],             // valores netos de Paola por trayecto (se pasan a US$ redondeando hacia arriba)
+  // Recargo nocturno por trayecto (sobre el precio del trayecto, con el recargo del municipio incluido)
+  nocturno: { desde: '22:00', hasta: '04:00', porcentaje: 15 },
+  // Tour de Luces: solo en temporada de alumbrados (mes-día)
+  lucesTemporada: { desde: '12-01', hasta: '01-10' },
+  // precios en US$ por grupo: [1-3, 4-6, 7-10, 11-16]
+  tours: [
+    { id: 'aeropuerto',  es: 'Aeropuerto', en: 'Airport', precios: [60, 65, 80, 115], aeropuerto: true,
+      dEs: 'Alguien de confianza te espera en el aeropuerto José María Córdova y te lleva a tu hotel, o te lleva del hotel al aeropuerto. El precio es por trayecto.',
+      dEn: 'Someone you can trust waits for you at José María Córdova airport and takes you to your hotel, or takes you from your hotel to the airport. The price is per trip.' },
+    { id: 'city',        es: 'City Tour', en: 'City Tour', precios: [95, 105, 120, 135],
+      dEs: 'Lo esencial de Medellín en un recorrido: el centro, la Plaza Botero y los barrios más conocidos de la ciudad.',
+      dEn: 'The essentials of Medellín in one ride: downtown, Plaza Botero and the city’s best-known neighborhoods.' },
+    { id: 'comuna13',    es: 'Comuna 13', en: 'Comuna 13', precios: [95, 105, 120, 135],
+      dEs: 'Las escaleras eléctricas, los grafitis y la historia de transformación de la Comuna 13, con transporte de ida y regreso.',
+      dEn: 'The outdoor escalators, the graffiti and the transformation story of Comuna 13, with round-trip transportation.' },
+    { id: 'flores',      es: 'Tour de Flores (Santa Elena)', en: 'Flower Tour (Santa Elena)', precios: [95, 105, 120, 135],
+      dEs: 'Santa Elena y las fincas de los silleteros: flores, tradición y montaña, muy cerca de Medellín.',
+      dEn: 'Santa Elena and the silletero farms: flowers, tradition and mountains, very close to Medellín.' },
+    { id: 'luces',       es: 'Tour de Luces', en: 'Christmas Lights Tour', precios: [95, 105, 120, 135], temporada: 'luces',
+      dEs: 'Un recorrido de noche por los alumbrados navideños de Medellín y sus alrededores.',
+      dEn: 'A night ride through the Christmas lights of Medellín and nearby towns.' },
+    { id: 'tequendamita',es: 'Tequendamita', en: 'Tequendamita', precios: [100, 115, 125, 150],
+      dEs: 'La cascada de Tequendamita, en El Retiro, y los paisajes verdes del Oriente antioqueño.',
+      dEn: 'The Tequendamita waterfall in El Retiro and the green landscapes of eastern Antioquia.' },
+    { id: 'sanfelix',    es: 'San Félix', en: 'San Félix', precios: [125, 140, 170, 210],
+      dEs: 'Las montañas de San Félix, con vistas sobre todo el valle, famosas por el parapente. El precio es solo el transporte: el parapente no está incluido y se paga aparte.',
+      dEn: 'The mountains of San Félix, with views over the whole valley, famous for paragliding. The price covers transportation only: paragliding is not included and is paid separately.' },
+    { id: 'cuatrimotos', es: 'Cuatrimotos', en: 'ATV ride', precios: [175, 215, 260, 285],
+      dEs: 'Un paseo en cuatrimoto por caminos de montaña en Rionegro, en el Oriente antioqueño.',
+      dEn: 'An ATV ride along mountain trails in Rionegro, in eastern Antioquia.' },
+    { id: 'guatape',     es: 'Guatapé y El Peñol', en: 'Guatapé and El Peñol', precios: [230, 275, 295, 320],
+      dEs: 'Salida temprano, la Piedra del Peñol y los miradores del embalse, almuerzo y paseo por el pueblo de colores. Regreso al final de la tarde.',
+      dEn: 'Early departure, the Rock of El Peñol and the reservoir viewpoints, lunch and a walk through the colorful town. Back in the late afternoon.' },
+    { id: 'rioclaro',    es: 'Río Claro', en: 'Río Claro', precios: [315, 385, 435, 490],
+      dEs: 'Cañón de mármol con aguas cristalinas, rafting y cavernas. A unas 3 horas de Medellín.',
+      dEn: 'A marble canyon with crystal-clear water, rafting and caves. About 3 hours from Medellín.' },
+    { id: 'napoles',     es: 'Hacienda Nápoles', en: 'Hacienda Nápoles', precios: [490, 590, 660, 835],
+      dEs: 'Parque temático con animales, parques acuáticos y museos. Viaje largo: salir temprano.',
+      dEn: 'A theme park with animals, water parks and museums. Long trip: leave early.' }
+  ]
+};
+
+(function () {
+  const $ = id => document.getElementById(id);
+  const caja = $('reserva'); if (!caja) return;
+  const T = (en, es) => '<span class="en">' + en + '</span><span class="es">' + es + '</span>';
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const L = () => (document.body.classList.contains('lang-es') ? 'es' : 'en');
+  const fmtCOP = n => n.toLocaleString('es-CO');
+  const fmtUSD = n => (Math.round(n * 100) / 100).toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  const aCOP = usd => Math.ceil(usd * RESERVAS.tasa / 1000) * 1000;   // redondeo a miles, hacia arriba
+
+  // Fecha de hoy en Colombia y mínimo para reservar
+  const hoyCO = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Bogota', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  const masDias = (f, n) => { const d = new Date(f + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+  const minimo = masDias(hoyCO(), RESERVAS.diasMinimos);
+  const fechaBonita = f => { const d = new Date(f + 'T12:00:00Z'); return d.toLocaleDateString(L() === 'es' ? 'es-CO' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }); };
+
+  // Días CERRADO (en modo real vienen del Google Calendar de Paola)
+  let cerrados = [];
+  async function cargarCerrados() {
+    if (RESERVAS.modo === 'prueba') { cerrados = [masDias(minimo, 3), masDias(minimo, 7)]; return; }
+    try { const r = await fetch(RESERVAS.api + '/disponibilidad', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ desde: minimo }) }); const j = await r.json(); cerrados = j.cerrados || []; } catch (e) { cerrados = []; }
+  }
+
+  const TRAMOS = [
+    { id: 'recogida', es: 'Recogida: aeropuerto → hotel', en: 'Pickup: airport → hotel' },
+    { id: 'llevada', es: 'Llevada: hotel → aeropuerto', en: 'Drop-off: hotel → airport' },
+    { id: 'ida-regreso', es: 'Ida y regreso (2 trayectos)', en: 'Round trip (2 trips)' }
+  ];
+  let tour = RESERVAS.tours[0], grupo = 0, pago = 'anticipo';
+  const sel = $('rsv-tour'), grupos = $('rsv-grupos');
+
+  function pintarTours() {
+    sel.innerHTML = RESERVAS.tours.map(t => '<option value="' + t.id + '">' + esc(t[L()]) + '</option>').join('');
+    sel.value = tour.id;
+    const tv = $('rsv-tramo').value || 'recogida';
+    $('rsv-tramo').innerHTML = TRAMOS.map(x => '<option value="' + x.id + '">' + esc(x[L()]) + '</option>').join('');
+    $('rsv-tramo').value = tv;
+  }
+  function pintarGrupos() {
+    grupos.innerHTML = RESERVAS.grupos.map((g, i) => '<button type="button" data-i="' + i + '" class="' + (i === grupo ? 'on' : '') + '">' + g + '<small>' + T('people', 'personas') + '</small></button>').join('');
+  }
+  const esAero = () => !!tour.aeropuerto;
+  const tramo = () => $('rsv-tramo').value;
+  const trayectos = () => (esAero() && tramo() === 'ida-regreso' ? 2 : 1);
+  const municipio = () => (esAero() ? ($('rsv-municipio').value || 'Medellín') : '');
+  const esOtro = () => esAero() && municipio() === 'otro';
+  const recargo = () => (esAero() && RESERVAS.aeroMunicipios.includes(municipio()) ? RESERVAS.aeroRecargo : 0);
+  const guatapeUSD = g => Math.ceil(RESERVAS.aeroGuatapeCOP[g] / RESERVAS.tasa);
+  const baseTrayecto = () => (esAero() && municipio() === 'Guatapé' ? guatapeUSD(grupo) : tour.precios[grupo] + recargo());
+  // ¿La hora cae en el horario nocturno? (por ejemplo, de 22:00 a 04:00)
+  const nocturna = hhmm => { if (!hhmm) return false; const n = RESERVAS.nocturno; return n.desde > n.hasta ? (hhmm >= n.desde || hhmm < n.hasta) : (hhmm >= n.desde && hhmm < n.hasta); };
+  // Lista de trayectos con su hora: recogida = hora de llegada del vuelo; llevada = hora de recogida en el hotel
+  function listaTrayectos() {
+    if (!esAero()) return [{ tipo: 'tour', noche: false }];
+    const t = tramo(), l = [];
+    if (t !== 'llevada') l.push({ tipo: 'recogida', noche: nocturna($('rsv-hora-lleg').value) });
+    if (t !== 'recogida') l.push({ tipo: 'llevada', noche: nocturna($('rsv-hora-hotel').value) });
+    return l;
+  }
+  const precioTrayecto = tr => { const b = baseTrayecto(); return tr.noche ? Math.round(b * (1 + RESERVAS.nocturno.porcentaje / 100) * 100) / 100 : b; };
+  const totalUSD = () => (esAero() ? listaTrayectos().reduce((s, tr) => s + precioTrayecto(tr), 0) : tour.precios[grupo]);
+  function pintarMunicipios() {
+    const v = $('rsv-municipio').value || 'Medellín';
+    const zonas = ['Medellín'].concat(RESERVAS.aeroSinRecargo, RESERVAS.aeroMunicipios, ['Guatapé']);
+    $('rsv-municipio').innerHTML = zonas.map(m => '<option value="' + esc(m) + '">' + esc(m) + '</option>').join('') + '<option value="otro">' + esc(L() === 'es' ? 'Otro lugar (El Retiro u otro)' : 'Somewhere else (El Retiro or other)') + '</option>';
+    $('rsv-municipio').value = v;
+    const lista = RESERVAS.aeroMunicipios, r = RESERVAS.aeroRecargo, n = RESERVAS.nocturno;
+    const y = (arr, w) => arr.length > 1 ? arr.slice(0, -1).join(', ') + ' ' + w + ' ' + arr[arr.length - 1] : arr.join('');
+    const h12 = (hh, es) => { const [H, M] = hh.split(':').map(Number); const ap = H < 12 ? (es ? 'a. m.' : 'a.m.') : (es ? 'p. m.' : 'p.m.'); return ((H % 12) || 12) + ':' + String(M).padStart(2, '0') + ' ' + ap; };
+    $('rsv-aero-nota').innerHTML = T('José María Córdova airport is in Rionegro, about an hour from Medellín. The price covers the trip between the airport and Medellín (same price for ' + esc(y(RESERVAS.aeroSinRecargo, 'and')) + '). If you’re staying in another town in the metropolitan area (' + esc(y(lista, 'or')) + '), US$' + r + ' is added per trip. Guatapé has its own price. Trips between ' + h12(n.desde, false) + ' and ' + h12(n.hasta, false) + ' have a ' + n.porcentaje + '% night surcharge.',
+      'El aeropuerto José María Córdova queda en Rionegro, a una hora de Medellín. El precio incluye el trayecto entre el aeropuerto y Medellín (mismo precio para ' + esc(y(RESERVAS.aeroSinRecargo, 'y')) + '). Si te hospedas en otro municipio del área metropolitana (' + esc(y(lista, 'o')) + '), se suman US$' + r + ' por trayecto. Guatapé tiene su propio precio. Los trayectos entre las ' + h12(n.desde, true) + ' y las ' + h12(n.hasta, true) + ' tienen un recargo nocturno del ' + n.porcentaje + ' %.');
+  }
+
+  function nocheTxt(es) {
+    const noches = listaTrayectos().filter(t => t.noche); if (!noches.length) return '';
+    const nom = t => (es ? (t.tipo === 'recogida' ? 'recogida' : 'llevada') : (t.tipo === 'recogida' ? 'pickup' : 'drop-off'));
+    const cual = trayectos() === 2 ? ' (' + noches.map(nom).join(es ? ' y ' : ' and ') + ')' : '';
+    return es ? ', incluye ' + RESERVAS.nocturno.porcentaje + ' % de recargo nocturno' + cual : ', includes ' + RESERVAS.nocturno.porcentaje + '% night surcharge' + cual;
+  }
+  function pintarPrecio() {
+    $('rsv-otro').hidden = !esOtro(); $('rsv-resto').hidden = esOtro();
+    if (esOtro()) return;
+    const usd = totalUSD(), cop = aCOP(usd);
+    const antUSD = usd * RESERVAS.anticipo, antCOP = aCOP(antUSD);
+    const resto = cop - antCOP;
+    $('rsv-pagos').innerHTML =
+      '<label class="' + (pago === 'anticipo' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="anticipo"' + (pago === 'anticipo' ? ' checked' : '') + '><span><b>' + T('20% deposit', 'Anticipo del 20%') + '</b><span class="v">US$' + fmtUSD(antUSD) + ' · COP ' + fmtCOP(antCOP) + '</span><small>' + T('The rest (COP ' + fmtCOP(resto) + ') is paid on the day of the tour.', 'El resto (COP ' + fmtCOP(resto) + ') se paga el día del tour.') + '</small></span></label>' +
+      '<label class="' + (pago === 'total' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="total"' + (pago === 'total' ? ' checked' : '') + '><span><b>' + T('Full amount', 'Total') + '</b><span class="v">US$' + fmtUSD(usd) + ' · COP ' + fmtCOP(cop) + '</span><small>' + T('Price for ' + RESERVAS.grupos[grupo] + ' people' + (trayectos() === 2 ? ', 2 trips' : '') + (recargo() ? ', includes US$' + recargo() + ' per trip to ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', Guatapé price' : '') + nocheTxt(false) + '.', 'Precio para ' + RESERVAS.grupos[grupo] + ' personas' + (trayectos() === 2 ? ', 2 trayectos' : '') + (recargo() ? ', incluye US$' + recargo() + ' por trayecto a ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', precio de Guatapé' : '') + nocheTxt(true) + '.') + '</small></span></label>';
+    const he = RESERVAS.horaExtra[grupo];
+    $('rsv-hora-extra').innerHTML = T('<b>Extra hours</b> are not charged now: if you need more time, each extra hour (US$' + he + ' for ' + RESERVAS.grupos[grupo] + ' people) is paid to Paola on the day of the tour.',
+      '<b>Las horas adicionales</b> no se cobran ahora: si necesitas más tiempo, cada hora adicional (US$' + he + ' para ' + RESERVAS.grupos[grupo] + ' personas) se le paga a Paola el día del tour.');
+  }
+  // Temporada del Tour de Luces: la próxima ventana que todavía se puede reservar
+  function ventanaLuces() {
+    const t = RESERVAS.lucesTemporada; let y = Number(minimo.slice(0, 4)) - 1;
+    for (let k = 0; k < 3; k++, y++) { const ini = y + '-' + t.desde, fin = (t.hasta < t.desde ? y + 1 : y) + '-' + t.hasta; if (fin >= minimo) return { ini: ini > minimo ? ini : minimo, fin, desde: ini }; }
+  }
+  function pintarLuces() {
+    const f = $('rsv-fecha'), av = $('rsv-luces');
+    if (tour.temporada !== 'luces') { f.min = minimo; f.removeAttribute('max'); av.hidden = true; return; }
+    const v = ventanaLuces(); f.min = v.ini; f.max = v.fin; av.hidden = false;
+    const hoyEn = hoyCO() >= v.desde && hoyCO() <= v.fin;
+    av.innerHTML = T((hoyEn ? '' : '<b>Out of season.</b> ') + 'This tour runs only during the Christmas lights season, from ' + fechaBonita(v.desde).replace(/^\w+, /, '') + ' to ' + fechaBonita(v.fin).replace(/^\w+, /, '') + '. You can only choose dates in that season.',
+      (hoyEn ? '' : '<b>Fuera de temporada.</b> ') + 'Este tour solo está en la temporada de alumbrados, del ' + fechaBonita(v.desde).replace(/^[^,]+, /, '') + ' al ' + fechaBonita(v.fin).replace(/^[^,]+, /, '') + '. Solo puedes escoger fechas de esa temporada.');
+  }
+  function pintarTour() {
+    $('rsv-desc').innerHTML = T(esc(tour.dEn), esc(tour.dEs));
+    pintarLuces();
+    $('rsv-aero').hidden = !esAero();
+    $('rsv-normal').hidden = esAero();
+    if (esAero()) { $('rsv-llegada').hidden = tramo() === 'llevada'; $('rsv-salida').hidden = tramo() === 'recogida'; }
+    const hotel = esAero();
+    $('rsv-sitio-en').textContent = hotel ? 'Hotel name and address' : 'Pickup place (hotel or address)';
+    $('rsv-sitio-es').textContent = hotel ? 'Nombre y dirección del hotel' : 'Sitio de recogida (hotel o dirección)';
+    pintarPrecio();
+  }
+  function pintarTodo() { pintarTours(); pintarMunicipios(); pintarGrupos(); pintarTour(); }
+
+  // Fechas: mínimo 2 días; los días CERRADO no se ofrecen
+  ['rsv-fecha', 'rsv-fecha-lleg', 'rsv-fecha-sal'].forEach(id => { $(id).min = minimo; $(id).addEventListener('change', revisarFechas); });
+  function revisarFechas() {
+    const m = $('rsv-msg-fecha'); m.className = 'rsv-msg'; m.innerHTML = '';
+    const ids = esAero() ? (tramo() === 'recogida' ? ['rsv-fecha-lleg'] : tramo() === 'llevada' ? ['rsv-fecha-sal'] : ['rsv-fecha-lleg', 'rsv-fecha-sal']) : ['rsv-fecha'];
+    for (const id of ids) {
+      const f = $(id).value; if (!f) continue;
+      if (f < minimo) { m.className = 'rsv-msg err'; m.innerHTML = T('Bookings need at least 2 days’ notice. For today or tomorrow, message Paola on WhatsApp.', 'Las reservas son con mínimo 2 días de anticipación. Para hoy o mañana, escríbele a Paola por WhatsApp.'); return false; }
+      if (tour.temporada === 'luces' && !esAero()) { const v = ventanaLuces(); if (f < v.ini || f > v.fin) { m.className = 'rsv-msg err'; m.innerHTML = T('The Christmas Lights Tour can only be booked between ' + fechaBonita(v.ini) + ' and ' + fechaBonita(v.fin) + '.', 'El Tour de Luces solo se puede reservar entre el ' + fechaBonita(v.ini) + ' y el ' + fechaBonita(v.fin) + '.'); return false; } }
+      if (cerrados.includes(f)) { m.className = 'rsv-msg err'; m.innerHTML = T('Paola is not available on ' + fechaBonita(f) + '. Please choose another date.', 'Paola no tiene disponibilidad el ' + fechaBonita(f) + '. Por favor escoge otra fecha.'); return false; }
+    }
+    if (ids.length === 2 && $('rsv-fecha-lleg').value && $('rsv-fecha-sal').value && $('rsv-fecha-sal').value < $('rsv-fecha-lleg').value) { m.className = 'rsv-msg err'; m.innerHTML = T('Your departure date must be after your arrival.', 'La fecha de salida debe ser después de la llegada.'); return false; }
+    return true;
+  }
+
+  // Eventos
+  caja.querySelector('.rsv-empezar').addEventListener('click', () => caja.classList.add('abierto'));
+  sel.addEventListener('change', () => { tour = RESERVAS.tours.find(t => t.id === sel.value); pintarTour(); revisarFechas(); });
+  grupos.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; grupo = +b.dataset.i; pintarGrupos(); pintarPrecio(); });
+  $('rsv-tramo').addEventListener('change', () => { pintarTour(); revisarFechas(); });
+  $('rsv-municipio').addEventListener('change', pintarPrecio);
+  ['rsv-hora-lleg', 'rsv-hora-hotel'].forEach(id => $(id).addEventListener('input', pintarPrecio));
+  $('rsv-pagos').addEventListener('change', e => { if (e.target.name === 'rsv-pago') { pago = e.target.value; pintarPrecio(); } });
+  document.querySelectorAll('.rsv-abrir').forEach(b => b.addEventListener('click', () => {
+    tour = RESERVAS.tours.find(t => t.id === b.dataset.tour) || tour; caja.classList.add('abierto'); pintarTodo();
+    caja.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+  new MutationObserver(() => { pintarTours(); pintarMunicipios(); pintarTour(); }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  try { const c = localStorage.getItem('mde-email'); if (c) $('rsv-correo').value = c; } catch (e) {}
+  $('rsv-form').addEventListener('input', () => { $('rsv-msg').className = 'rsv-msg'; $('rsv-msg').innerHTML = ''; });
+  $('rsv-form').addEventListener('change', () => { $('rsv-msg').className = 'rsv-msg'; $('rsv-msg').innerHTML = ''; });
+
+  function datos() {
+    const d = { tour: tour.id, grupo: RESERVAS.grupos[grupo], pago, nombre: $('rsv-nombre').value.trim(), whatsapp: $('rsv-wa').value.trim(), correo: $('rsv-correo').value.trim().toLowerCase(), sitio: $('rsv-sitio').value.trim(), idioma: L() };
+    if (esAero()) {
+      d.tramo = tramo(); d.municipio = municipio();
+      if (d.tramo !== 'llevada') { d.fechaLlegada = $('rsv-fecha-lleg').value; d.horaLlegada = $('rsv-hora-lleg').value; d.vuelo = $('rsv-vuelo-lleg').value.trim().toUpperCase(); }
+      if (d.tramo !== 'recogida') { d.fechaSalida = $('rsv-fecha-sal').value; d.horaVuelo = $('rsv-hora-sal').value; d.horaRecogidaHotel = $('rsv-hora-hotel').value; }
+      d.nocturno = listaTrayectos().filter(t => t.noche).map(t => t.tipo);
+    } else { d.fecha = $('rsv-fecha').value; d.hora = $('rsv-hora').value; }
+    return d;
+  }
+  function falta(d) {
+    const f = (en, es) => T(en, es);
+    if (esAero()) {
+      if (d.tramo !== 'llevada' && (!d.fechaLlegada || !d.horaLlegada || !d.vuelo)) return f('Please add your arrival date, landing time and flight number.', 'Escribe la fecha, la hora de llegada y el número de vuelo.');
+      if (esOtro()) return f('For that place, message Paola on WhatsApp and she’ll give you a price.', 'Para ese lugar, escríbele a Paola por WhatsApp y te cotiza el trayecto.');
+      if (d.tramo !== 'recogida' && (!d.fechaSalida || !d.horaVuelo || !d.horaRecogidaHotel)) return f('Please add your departure date, flight time and pickup time at your hotel.', 'Escribe la fecha, la hora de tu vuelo y la hora de recogida en el hotel.');
+    } else if (!d.fecha || !d.hora) return f('Please choose the date and pickup time.', 'Escoge la fecha y la hora de recogida.');
+    if (!revisarFechas()) return f('Please check the date.', 'Revisa la fecha.');
+    if (d.sitio.length < 4) return f('Please write the pickup place or hotel address.', 'Escribe el sitio de recogida o la dirección del hotel.');
+    if (d.nombre.length < 3) return f('Please write your full name.', 'Escribe tu nombre completo.');
+    if (d.whatsapp.replace(/\D/g, '').length < 8) return f('Please write your WhatsApp number with the country code.', 'Escribe tu WhatsApp con el código del país.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.correo)) return f('Please write a valid email.', 'Escribe un correo válido.');
+    if (!$('rsv-acepto').checked) return f('Please accept the booking conditions.', 'Acepta las condiciones de la reserva.');
+    return '';
+  }
+
+  // Pago: en modo de prueba se simula Bold; en modo real, la función de Supabase calcula el precio y abre Bold
+  async function crearReserva(d) {
+    if (RESERVAS.modo === 'prueba') {
+      const usd = totalUSD(), cop = aCOP(usd), ant = aCOP(usd * RESERVAS.anticipo);
+      return { ok: true, orden: 'PRUEBA-' + Date.now().toString(36).toUpperCase(), totalUSD: usd, totalCOP: cop, cobroCOP: d.pago === 'total' ? cop : ant, restoCOP: d.pago === 'total' ? 0 : cop - ant };
+    }
+    const r = await fetch(RESERVAS.api + '/crear', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+    return r.json();
+  }
+  function simularBold(res) {
+    return new Promise(ok => {
+      const w = document.createElement('div'); w.className = 'rsv-sim';
+      w.innerHTML = '<div><h4>Bold · SIMULACIÓN DE PRUEBA</h4><p>' + T('Test checkout. No real charge. Amount', 'Pago de prueba. No se cobra nada. Valor') + ': <b>COP ' + fmtCOP(res.cobroCOP) + '</b><br>' + T('Order', 'Orden') + ': ' + esc(res.orden) + '</p><button class="b" style="background:#121e6c;color:#fff" data-r="1">' + T('Approve payment (test)', 'Aprobar pago (prueba)') + '</button><button class="b" style="background:#eee;color:#333" data-r="0">' + T('Decline payment (test)', 'Rechazar pago (prueba)') + '</button></div>';
+      w.addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (b) { w.remove(); ok(b.dataset.r === '1'); } });
+      document.body.appendChild(w);
+    });
+  }
+  function listo(d, res) {
+    const linea = (en, es, v) => '<div>' + T(en, es) + ': <b>' + esc(v) + '</b></div>';
+    let fechas = '';
+    if (d.fecha) fechas = linea('Date', 'Fecha', fechaBonita(d.fecha)) + linea('Pickup time', 'Hora de recogida', d.hora + ' ' + (L() === 'es' ? '(Paola te la confirma)' : '(Paola will confirm it)'));
+    if (d.fechaLlegada) fechas += linea('Arrival', 'Llegada', fechaBonita(d.fechaLlegada) + ' · ' + d.horaLlegada + ' · ' + d.vuelo);
+    if (d.fechaSalida) fechas += linea('Departure flight', 'Vuelo de salida', fechaBonita(d.fechaSalida) + ' · ' + d.horaVuelo) + linea('Hotel pickup', 'Recogida en el hotel', d.horaRecogidaHotel);
+    const msg = encodeURIComponent('Hola Paola! Acabo de reservar en la app Medellín a un clic. Orden ' + res.orden + ' / Hi Paola! I just booked in the Medellín a un clic app. Order ' + res.orden);
+    const ok = $('rsv-listo');
+    ok.innerHTML = '<div class="rsv-ok">' + (RESERVAS.modo === 'prueba' ? '<div class="rsv-prueba">' + T('TEST MODE · no real charges', 'MODO DE PRUEBA · no se cobra nada') + '</div>' : '') +
+      '<div class="ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>' + T('Your tour is booked!', '¡Tu tour quedó reservado!') + '</h3><p>' + T('We sent the confirmation to', 'Te enviamos la confirmación a') + ' <b>' + esc(d.correo) + '</b>. ' + T('Paola will write to you on WhatsApp.', 'Paola te escribirá por WhatsApp.') + '</p>' +
+      '<div class="rsv-resumen">' + linea('Order', 'Orden', res.orden) + linea('Tour', 'Tour', tour[L()] + (d.tramo ? ' · ' + $('rsv-tramo').selectedOptions[0].text : '')) + linea('People', 'Personas', d.grupo) + fechas + linea('Pickup / hotel', 'Recogida / hotel', d.sitio + (d.municipio ? ' (' + d.municipio + ')' : '')) +
+      linea('Paid now', 'Pagado ahora', 'COP ' + fmtCOP(res.cobroCOP)) + (res.restoCOP ? linea('To pay on the tour day', 'Por pagar el día del tour', 'COP ' + fmtCOP(res.restoCOP)) : '') + '</div>' +
+      '<a class="rsv-wa" target="_blank" rel="noopener" href="https://wa.me/' + RESERVAS.whatsapp + '?text=' + msg + '">' + T('Message Paola on WhatsApp', 'Escríbele a Paola por WhatsApp') + '</a></div>';
+    caja.hidden = true; ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  $('rsv-pagar').addEventListener('click', async () => {
+    const m = $('rsv-msg'); m.className = 'rsv-msg'; m.innerHTML = '';
+    const d = datos(); const e = falta(d);
+    if (e) { m.className = 'rsv-msg err'; m.innerHTML = e; return; }
+    const b = $('rsv-pagar'); b.disabled = true;
+    try {
+      const res = await crearReserva(d);
+      if (!res || !res.ok) throw new Error('crear');
+      const aprobado = RESERVAS.modo === 'prueba' ? await simularBold(res) : false; // modo real: Bold (pendiente de conectar)
+      if (aprobado) listo(d, res);
+      else { m.className = 'rsv-msg err'; m.innerHTML = T('The payment was not approved and nothing was charged. You can try again or message Paola.', 'El pago no fue aprobado y no se cobró nada. Puedes intentarlo otra vez o escribirle a Paola.'); }
+    } catch (x) { m.className = 'rsv-msg err'; m.innerHTML = T('We couldn’t connect. Check your internet and try again.', 'No pudimos conectarnos. Revisa tu internet e inténtalo otra vez.'); }
+    b.disabled = false;
+  });
+
+  $('rsv-otro-wa').href = 'https://wa.me/' + RESERVAS.whatsapp + '?text=' + encodeURIComponent('Hola Paola! Vengo de la app Medellín a un clic. Quiero cotizar el transporte del aeropuerto a mi hotel. / Hi Paola! I found you in the Medellín a un clic app. I’d like a price for the airport transfer to my hotel.');
+  if (RESERVAS.modo === 'prueba') $('rsv-prueba').hidden = false;
+  cargarCerrados().then(() => { if (RESERVAS.modo === 'prueba') $('rsv-prueba').innerHTML += '<br><small style="font-weight:600">' + T('Test CLOSED days', 'Días CERRADO de prueba') + ': ' + cerrados.join(', ') + '</small>'; });
+  pintarTodo();
 })();
 
 try { if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(()=>{}); } catch(e) {}

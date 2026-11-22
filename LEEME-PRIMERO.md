@@ -154,6 +154,36 @@ Lo que falta:
 5. **Formulario "Seguridad de los datos":** se guarda el correo (acceso); la ubicación se usa solo en el celular; Meta Pixel en la página de pago.
 6. **Cobro:** hoy se paga por fuera (Systeme). Revisar las reglas **vigentes** de Google Play sobre pagos externos antes de enviar.
 
+## Reservas de tours con pago y calendario (proyecto nuevo, 22 nov 2026)
+
+**Estado: v159 en MODO DE PRUEBA, guardada y sin publicar.** El formulario está en la página de Tours
+(`#reserva`, código `// ===== Reservas de tours` en `app/index.html`, dentro de la parte cifrada). Mientras
+`RESERVAS.modo = 'prueba'`, el pago es una simulación ("Aprobar / Rechazar"), con una franja "MODO DE PRUEBA".
+**No publicar la v159** hasta tener la parte de Supabase, Bold y el calendario conectada y aprobada.
+
+- Se reservan con pago 11 tours: Aeropuerto, City Tour, Comuna 13, Tour de Flores (= Santa Elena silletera), Tour de
+  Luces, Tequendamita, San Félix, Cuatrimotos (en Rionegro), Guatapé, Río Claro, Hacienda Nápoles. Santa Fe, Jardín,
+  Medellín esencial y Ciudad y naturaleza siguen solo con WhatsApp (Paola confirma sus precios).
+- **Precios de los tours de Paola en la app:** decisión nueva de María (22 nov 2026). Las actividades y entradas siguen
+  sin precio.
+- Todo lo que cambia está en el objeto `RESERVAS` (al principio del código): `modo`, `api`, `tasa` (3.461; el cobro en
+  pesos se redondea a miles hacia arriba), `anticipo` (20 %), `diasMinimos` (2), `grupos`, `horaExtra` (se paga el día
+  del tour), precios en US$ por grupo, `aeroRecargo` (US$10 por trayecto) y `aeroMunicipios` (Bello, Copacabana,
+  Girardota, Barbosa, Itagüí, Envigado, Sabaneta, La Estrella, Caldas), `aeroSinRecargo` (Rionegro, Llanogrande,
+  La Ceja), `aeroGuatapeCOP` (valores netos de Paola por trayecto: 320.000/400.000/480.000/540.000; se pasan a US$
+  redondeando hacia arriba, así nunca se cobra menos), `nocturno` (22:00 a 04:00, 15 % por trayecto) y `lucesTemporada`
+  (1 dic a 10 ene).
+- Aeropuerto: Recogida (fecha, vuelo, hora de llegada), Llevada (fecha, hora del vuelo, hora de recogida en el hotel)
+  o Ida y regreso (dos trayectos, se cobra cada uno). "Otro lugar (El Retiro u otro)" → cotizar por WhatsApp.
+  El 20 % del anticipo se calcula sobre el total con recargos (aprobado).
+- Hora de recogida libre; Paola la confirma por WhatsApp. Fechas desde pasado mañana (hora de Colombia); los días con
+  un evento de todo el día "CERRADO" en el calendario de Paola no se ofrecen (en modo de prueba hay dos días falsos).
+- Bold a nombre de Transportes R.T (aprobado por María: aparece solo en el pago y el comprobante; en la app, "Paola").
+- Datos que se guardan: nombre, WhatsApp, correo y lo de la reserva; se borran 1,5 años después del tour.
+- **Falta:** tablas y función en Supabase (modo de prueba), claves de prueba de Bold (las pone Paola en los secretos de
+  Supabase), Gmail de Paola y cuenta de servicio de Google para el calendario, Política de privacidad y Términos
+  (regla del anticipo; conviene revisión de un abogado), y la aprobación final de María.
+
 ## Paquete de Android (Paso 6, 21 nov 2026)
 
 - Bubblewrap 1.27.0, Java 17, build-tools 36.1.0, Android 16 (target 36), **mínimo Android 7 (nivel 24)**, que es lo que
@@ -183,7 +213,8 @@ Lo que falta:
 ## Pendientes
 
 - **Sentry configurado en la cuenta (María, 21 nov 2026):** sin IP, sin Tracing, sin Session Replay y sin Logs.
-- **Precios de los tours** de Paola (hoy dice "pregúntale por WhatsApp").
+- **Precios de los tours** de Paola: ya están en el formulario de reservas (v159, modo de prueba). Faltan los de
+  Santa Fe, Jardín, Medellín esencial y Ciudad y naturaleza.
 - El resto de la app le habla al turista de "usted"; "Quiénes somos" y los textos nuevos usan "tú". Unificar a "tú" con cuidado.
 - **"Phrases" en el menú:** queda como está. El botón tiene la clase `en` y solo se ve en inglés, a propósito
   (las frases son para el turista que habla inglés). Decisión de María, 21 nov 2026.
