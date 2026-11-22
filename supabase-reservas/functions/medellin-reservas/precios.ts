@@ -45,7 +45,7 @@ export type Reserva = {
   nombre: string; whatsapp: string; correo: string; sitio: string; idioma: "en" | "es";
   tramo?: string; municipio?: string; vuelo?: string; horaVuelo?: string;
   trayectos: Trayecto[];
-  totalUSD: number; totalCOP: number; cobroCOP: number; restoCOP: number;
+  totalUSD: number; totalCOP: number; cobroUSD: number; restoUSD: number; cobroCOP: number; restoCOP: number;
   ultimaFecha: string;
 };
 
@@ -112,11 +112,12 @@ export function revisar(cfg: Config, d: Record<string, unknown>, cerrados: strin
   const totalUSD = Math.round(trayectos.reduce((s, t) => s + t.precioUSD, 0) * 100) / 100;
   const totalCOP = aCOP(cfg, totalUSD), anticipoCOP = aCOP(cfg, totalUSD * cfg.anticipo);
   const cobroCOP = pago === "total" ? totalCOP : anticipoCOP;
+  const cobroUSD = pago === "total" ? totalUSD : Math.round(totalUSD * cfg.anticipo * 100) / 100;
   return {
     ok: true,
     r: {
       tour, grupoIdx, grupo: cfg.grupos[grupoIdx], pago, nombre, whatsapp, correo, sitio, idioma,
-      tramo, municipio, vuelo, horaVuelo, trayectos, totalUSD, totalCOP, cobroCOP,
+      tramo, municipio, vuelo, horaVuelo, trayectos, totalUSD, totalCOP, cobroUSD, restoUSD: Math.round((totalUSD - cobroUSD) * 100) / 100, cobroCOP,
       restoCOP: totalCOP - cobroCOP, ultimaFecha: trayectos.map((t) => t.fecha).sort().pop()!,
     },
   };

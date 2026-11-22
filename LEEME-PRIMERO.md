@@ -170,8 +170,8 @@ Lo que falta:
   pesos se redondea a miles hacia arriba), `anticipo` (20 %), `diasMinimos` (2), `grupos`, `horaExtra` (se paga el día
   del tour), precios en US$ por grupo, `aeroRecargo` (US$10 por trayecto) y `aeroMunicipios` (Bello, Copacabana,
   Girardota, Barbosa, Itagüí, Envigado, Sabaneta, La Estrella, Caldas), `aeroSinRecargo` (Rionegro, Llanogrande,
-  La Ceja), `aeroGuatapeCOP` (valores netos de Paola por trayecto: 320.000/400.000/480.000/540.000; se pasan a US$
-  redondeando hacia arriba, así nunca se cobra menos), `nocturno` (22:00 a 04:00, 15 % por trayecto) y `lucesTemporada`
+  La Ceja), `aeroGuatapeUSD` (Aeropuerto ↔ Guatapé, US$ por trayecto, precio final:
+  115/140/170/190; se cobra en pesos con la misma tasa), `nocturno` (22:00 a 04:00, 15 % por trayecto) y `lucesTemporada`
   (1 dic a 10 ene).
 - Aeropuerto: Recogida (fecha, vuelo, hora de llegada), Llevada (fecha, hora del vuelo, hora de recogida en el hotel)
   o Ida y regreso (dos trayectos, se cobra cada uno). "Otro lugar (El Retiro u otro)" → cotizar por WhatsApp.
@@ -180,6 +180,12 @@ Lo que falta:
   un evento de todo el día "CERRADO" en el calendario de Paola no se ofrecen (en modo de prueba hay dos días falsos).
 - Bold a nombre de Transportes R.T (aprobado por María: aparece solo en el pago y el comprobante; en la app, "Paola").
 - Datos que se guardan: nombre, WhatsApp, correo y lo de la reserva; se borran 1,5 años después del tour.
+- **Todo en dólares, con su conversión a pesos al lado** (decisión de María, 22 nov 2026): precios, anticipo, resto,
+  resumen, simulación de pago, correos y calendario muestran "US$… · COP …". Bold cobra en pesos.
+- **Parte de Supabase (modo de prueba, sin instalar):** carpeta `supabase-reservas/` (ver `LEEME-RESERVAS.md`):
+  tablas `mde_ajustes`, `mde_tours`, `mde_reservas` con borrado automático; función `medellin-reservas` (`/precios`,
+  `/disponibilidad`, `/crear`, `/confirmar`, `/webhook-bold`); 68 pruebas sin internet (`bash pruebas/correr.sh`).
+  Para instalarla, María da una llave de acceso de Supabase por el formulario seguro (opción b) y la borra al terminar.
 - **Falta:** tablas y función en Supabase (modo de prueba), claves de prueba de Bold (las pone Paola en los secretos de
   Supabase), Gmail de Paola y cuenta de servicio de Google para el calendario, Política de privacidad y Términos
   (regla del anticipo; conviene revisión de un abogado), y la aprobación final de María.

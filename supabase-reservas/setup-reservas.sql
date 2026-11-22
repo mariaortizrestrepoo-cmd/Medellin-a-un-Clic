@@ -70,6 +70,8 @@ create table if not exists public.mde_reservas (
   total_cop      int not null,
   cobro_cop      int not null,                     -- lo que se cobra en Bold ahora
   resto_cop      int not null,                     -- lo que se paga el día del tour
+  cobro_usd      numeric not null,                 -- lo mismo en dólares (lo que ve el cliente)
+  resto_usd      numeric not null,
   bold_id        text,                             -- id de la transacción en Bold
   pagada_en      timestamptz,
   eventos        text[] not null default '{}',     -- eventos creados en el calendario de Paola

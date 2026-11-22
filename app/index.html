@@ -2863,9 +2863,9 @@ const RESERVAS = {
     if (esOtro()) return;
     const usd = totalUSD(), cop = aCOP(usd);
     const antUSD = usd * RESERVAS.anticipo, antCOP = aCOP(antUSD);
-    const resto = cop - antCOP;
+    const resto = cop - antCOP, restoUSD = Math.round((usd - antUSD) * 100) / 100;
     $('rsv-pagos').innerHTML =
-      '<label class="' + (pago === 'anticipo' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="anticipo"' + (pago === 'anticipo' ? ' checked' : '') + '><span><b>' + T('20% deposit', 'Anticipo del 20%') + '</b><span class="v">US$' + fmtUSD(antUSD) + ' · COP ' + fmtCOP(antCOP) + '</span><small>' + T('The rest (COP ' + fmtCOP(resto) + ') is paid on the day of the tour.', 'El resto (COP ' + fmtCOP(resto) + ') se paga el día del tour.') + '</small></span></label>' +
+      '<label class="' + (pago === 'anticipo' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="anticipo"' + (pago === 'anticipo' ? ' checked' : '') + '><span><b>' + T('20% deposit', 'Anticipo del 20%') + '</b><span class="v">US$' + fmtUSD(antUSD) + ' · COP ' + fmtCOP(antCOP) + '</span><small>' + T('The rest (US$' + fmtUSD(restoUSD) + ' · COP ' + fmtCOP(resto) + ') is paid on the day of the tour.', 'El resto (US$' + fmtUSD(restoUSD) + ' · COP ' + fmtCOP(resto) + ') se paga el día del tour.') + '</small></span></label>' +
       '<label class="' + (pago === 'total' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="total"' + (pago === 'total' ? ' checked' : '') + '><span><b>' + T('Full amount', 'Total') + '</b><span class="v">US$' + fmtUSD(usd) + ' · COP ' + fmtCOP(cop) + '</span><small>' + T('Price for ' + RESERVAS.grupos[grupo] + ' people' + (trayectos() === 2 ? ', 2 trips' : '') + (recargo() ? ', includes US$' + recargo() + ' per trip to ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', Guatapé price' : '') + nocheTxt(false) + '.', 'Precio para ' + RESERVAS.grupos[grupo] + ' personas' + (trayectos() === 2 ? ', 2 trayectos' : '') + (recargo() ? ', incluye US$' + recargo() + ' por trayecto a ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', precio de Guatapé' : '') + nocheTxt(true) + '.') + '</small></span></label>';
     const he = RESERVAS.horaExtra[grupo];
     $('rsv-hora-extra').innerHTML = T('<b>Extra hours</b> are not charged now: if you need more time, each extra hour (US$' + he + ' for ' + RESERVAS.grupos[grupo] + ' people) is paid to Paola on the day of the tour.',
@@ -2959,7 +2959,8 @@ const RESERVAS = {
   async function crearReserva(d) {
     if (RESERVAS.modo === 'prueba') {
       const usd = totalUSD(), cop = aCOP(usd), ant = aCOP(usd * RESERVAS.anticipo);
-      return { ok: true, orden: 'PRUEBA-' + Date.now().toString(36).toUpperCase(), totalUSD: usd, totalCOP: cop, cobroCOP: d.pago === 'total' ? cop : ant, restoCOP: d.pago === 'total' ? 0 : cop - ant };
+      const cobroUSD = d.pago === 'total' ? usd : Math.round(usd * RESERVAS.anticipo * 100) / 100;
+      return { ok: true, orden: 'PRUEBA-' + Date.now().toString(36).toUpperCase(), totalUSD: usd, totalCOP: cop, cobroUSD, restoUSD: Math.round((usd - cobroUSD) * 100) / 100, cobroCOP: d.pago === 'total' ? cop : ant, restoCOP: d.pago === 'total' ? 0 : cop - ant };
     }
     const r = await fetch(RESERVAS.api + '/crear', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
     return r.json();
@@ -2967,7 +2968,7 @@ const RESERVAS = {
   function simularBold(res) {
     return new Promise(ok => {
       const w = document.createElement('div'); w.className = 'rsv-sim';
-      w.innerHTML = '<div><h4>Bold · SIMULACIÓN DE PRUEBA</h4><p>' + T('Test checkout. No real charge. Amount', 'Pago de prueba. No se cobra nada. Valor') + ': <b>COP ' + fmtCOP(res.cobroCOP) + '</b><br>' + T('Order', 'Orden') + ': ' + esc(res.orden) + '</p><button class="b" style="background:#121e6c;color:#fff" data-r="1">' + T('Approve payment (test)', 'Aprobar pago (prueba)') + '</button><button class="b" style="background:#eee;color:#333" data-r="0">' + T('Decline payment (test)', 'Rechazar pago (prueba)') + '</button></div>';
+      w.innerHTML = '<div><h4>Bold · SIMULACIÓN DE PRUEBA</h4><p>' + T('Test checkout. No real charge. Amount', 'Pago de prueba. No se cobra nada. Valor') + ': <b>US$' + fmtUSD(res.cobroUSD) + ' · COP ' + fmtCOP(res.cobroCOP) + '</b><br>' + T('Order', 'Orden') + ': ' + esc(res.orden) + '</p><button class="b" style="background:#121e6c;color:#fff" data-r="1">' + T('Approve payment (test)', 'Aprobar pago (prueba)') + '</button><button class="b" style="background:#eee;color:#333" data-r="0">' + T('Decline payment (test)', 'Rechazar pago (prueba)') + '</button></div>';
       w.addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (b) { w.remove(); ok(b.dataset.r === '1'); } });
       document.body.appendChild(w);
     });
@@ -2983,7 +2984,7 @@ const RESERVAS = {
     ok.innerHTML = '<div class="rsv-ok">' + (RESERVAS.modo === 'prueba' ? '<div class="rsv-prueba">' + T('TEST MODE · no real charges', 'MODO DE PRUEBA · no se cobra nada') + '</div>' : '') +
       '<div class="ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>' + T('Your tour is booked!', '¡Tu tour quedó reservado!') + '</h3><p>' + T('We sent the confirmation to', 'Te enviamos la confirmación a') + ' <b>' + esc(d.correo) + '</b>. ' + T('Paola will write to you on WhatsApp.', 'Paola te escribirá por WhatsApp.') + '</p>' +
       '<div class="rsv-resumen">' + linea('Order', 'Orden', res.orden) + linea('Tour', 'Tour', tour[L()] + (d.tramo ? ' · ' + $('rsv-tramo').selectedOptions[0].text : '')) + linea('People', 'Personas', d.grupo) + fechas + linea('Pickup / hotel', 'Recogida / hotel', d.sitio + (d.municipio ? ' (' + d.municipio + ')' : '')) +
-      linea('Paid now', 'Pagado ahora', 'COP ' + fmtCOP(res.cobroCOP)) + (res.restoCOP ? linea('To pay on the tour day', 'Por pagar el día del tour', 'COP ' + fmtCOP(res.restoCOP)) : '') + '</div>' +
+      linea('Paid now', 'Pagado ahora', 'US$' + fmtUSD(res.cobroUSD) + ' · COP ' + fmtCOP(res.cobroCOP)) + (res.restoCOP ? linea('To pay on the tour day', 'Por pagar el día del tour', 'US$' + fmtUSD(res.restoUSD) + ' · COP ' + fmtCOP(res.restoCOP)) : '') + '</div>' +
       '<a class="rsv-wa" target="_blank" rel="noopener" href="https://wa.me/' + RESERVAS.whatsapp + '?text=' + msg + '">' + T('Message Paola on WhatsApp', 'Escríbele a Paola por WhatsApp') + '</a></div>';
     caja.hidden = true; ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }

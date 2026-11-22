@@ -44,6 +44,9 @@ const json = (b: unknown, s = 200) => new Response(JSON.stringify(b), { status: 
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 const ORDEN_RE = /^MDE-[A-Z0-9-]{6,56}$/;
 const fmtCOP = (n: number) => n.toLocaleString("es-CO");
+const fmtUSD = (n: number) => Number(n).toLocaleString("en-US", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+// Siempre dólares primero y su conversión a pesos (lo que cobra Bold)
+const plata = (usd: number, cop: number) => "US$" + fmtUSD(Number(usd)) + " · COP " + fmtCOP(Number(cop));
 
 export function crearManejador(dep: Dependencias) {
   const { almacen, ajustes: A } = dep;
@@ -126,8 +129,8 @@ export function crearManejador(dep: Dependencias) {
         tr.tipo === "recogida" ? "Vuelo: " + det.vuelo + " · aterriza " + tr.hora : "",
         tr.tipo === "llevada" ? "Vuelo de salida: " + det.horaVuelo + " · recoger en el hotel " + tr.hora : "",
         tr.noche ? "Incluye recargo nocturno" : "",
-        "Pagado en Bold: COP " + fmtCOP(f.cobro_cop) + (f.pago === "anticipo" ? " (anticipo)" : " (total)"),
-        f.resto_cop ? "POR COBRAR el día: COP " + fmtCOP(f.resto_cop) : "Ya está pagado completo",
+        "Pagado en Bold: " + plata(f.cobro_usd, f.cobro_cop) + (f.pago === "anticipo" ? " (anticipo)" : " (total)"),
+        f.resto_cop ? "POR COBRAR el día: " + plata(f.resto_usd, f.resto_cop) : "Ya está pagado completo",
         prueba ? "\nRESERVA DE PRUEBA: no es un cliente real." : "",
       ].filter(Boolean);
       const horas = tr.tipo === "tour" ? (tour?.horas ?? 4) : 2;
@@ -166,8 +169,8 @@ export function crearManejador(dep: Dependencias) {
       filas += fila(k, fechaLarga(tr.fecha, es) + " · " + tr.hora + (tr.tipo === "recogida" ? " · " + det.vuelo : ""));
     }
     filas += fila(es ? "Recogida / hotel" : "Pickup / hotel", det.sitio + (det.municipio ? " (" + det.municipio + ")" : ""));
-    filas += fila(es ? "Pagado ahora" : "Paid now", "COP " + fmtCOP(f.cobro_cop));
-    if (f.resto_cop) filas += fila(es ? "Por pagar el día del tour" : "To pay on the tour day", "COP " + fmtCOP(f.resto_cop));
+    filas += fila(es ? "Pagado ahora" : "Paid now", plata(f.cobro_usd, f.cobro_cop));
+    if (f.resto_cop) filas += fila(es ? "Por pagar el día del tour" : "To pay on the tour day", plata(f.resto_usd, f.resto_cop));
     const extra = es
       ? "Las horas adicionales no están incluidas: si necesitas más tiempo, cada hora adicional se le paga a Paola el día del tour."
       : "Extra hours are not included: if you need more time, each extra hour is paid to Paola on the day of the tour.";
@@ -198,8 +201,8 @@ export function crearManejador(dep: Dependencias) {
         det.vuelo ? ["Vuelo de llegada", det.vuelo] : null, det.horaVuelo ? ["Hora del vuelo de salida", det.horaVuelo] : null,
         ["Recogida / hotel", det.sitio + (det.municipio ? " (" + det.municipio + ")" : "")],
         ["Cliente", f.nombre], ["WhatsApp", f.whatsapp], ["Correo", f.correo], ["Idioma", es ? "español" : "inglés"],
-        ["Pagado en Bold", "COP " + fmtCOP(f.cobro_cop) + (f.pago === "anticipo" ? " (anticipo 20 %)" : " (total)")],
-        ["Por cobrar el día", f.resto_cop ? "COP " + fmtCOP(f.resto_cop) : "nada, ya pagó todo"],
+        ["Pagado en Bold", plata(f.cobro_usd, f.cobro_cop) + (f.pago === "anticipo" ? " (anticipo 20 %)" : " (total)")],
+        ["Por cobrar el día", f.resto_cop ? plata(f.resto_usd, f.resto_cop) : "nada, ya pagó todo"],
       ].filter(Boolean) as string[][];
       const htmlPaola = `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;color:#1d1d1b">
         <h2 style="color:#121e6c;margin:0 0 4px">Nueva reserva pagada</h2>${marcaPrueba}
@@ -268,13 +271,13 @@ export function crearManejador(dep: Dependencias) {
       orden, modo: A.modo, estado: "pendiente", tour: r.tour.id, grupo: r.grupo, pago: r.pago,
       nombre: r.nombre, whatsapp: r.whatsapp, correo: r.correo, idioma: r.idioma,
       detalle: { sitio: r.sitio, tramo: r.tramo ?? null, municipio: r.municipio ?? null, vuelo: r.vuelo ?? null, horaVuelo: r.horaVuelo ?? null, trayectos: r.trayectos },
-      tasa: cfg.tasa, total_usd: r.totalUSD, total_cop: r.totalCOP, cobro_cop: r.cobroCOP, resto_cop: r.restoCOP,
+      tasa: cfg.tasa, total_usd: r.totalUSD, total_cop: r.totalCOP, cobro_cop: r.cobroCOP, resto_cop: r.restoCOP, cobro_usd: r.cobroUSD, resto_usd: r.restoUSD,
       ultima_fecha: r.ultimaFecha, borrar_despues: borrar.toISOString().slice(0, 10),
     });
     const nombreTour = r.idioma === "es" ? r.tour.es : r.tour.en;
     const descripcion = (nombreTour + " · " + r.grupo + (r.idioma === "es" ? " personas" : " people") + (r.pago === "anticipo" ? (r.idioma === "es" ? " · anticipo" : " · deposit") : "")).slice(0, 100);
     return json({
-      ok: true, orden, modo: A.modo, totalUSD: r.totalUSD, totalCOP: r.totalCOP, cobroCOP: r.cobroCOP, restoCOP: r.restoCOP,
+      ok: true, orden, modo: A.modo, totalUSD: r.totalUSD, totalCOP: r.totalCOP, cobroUSD: r.cobroUSD, restoUSD: r.restoUSD, cobroCOP: r.cobroCOP, restoCOP: r.restoCOP,
       bold: {
         apiKey: A.boldIdentidad, orderId: orden, amount: String(r.cobroCOP), currency: "COP",
         signature: await firmaBold(orden, r.cobroCOP, "COP", A.boldSecreta),
@@ -300,7 +303,7 @@ export function crearManejador(dep: Dependencias) {
     }
     const estado = f!.estado === "pagada" ? "pagada" : f!.estado === "rechazada" ? "rechazada" : "pendiente";
     // Solo datos del pago; los datos personales ya los tiene el celular del cliente.
-    return json({ ok: true, estado, orden, cobroCOP: f!.cobro_cop, restoCOP: f!.resto_cop, modo: f!.modo });
+    return json({ ok: true, estado, orden, cobroUSD: Number(f!.cobro_usd), restoUSD: Number(f!.resto_usd), cobroCOP: f!.cobro_cop, restoCOP: f!.resto_cop, modo: f!.modo });
   }
   async function webhook(req: Request) {
     const crudo = new Uint8Array(await req.arrayBuffer());
