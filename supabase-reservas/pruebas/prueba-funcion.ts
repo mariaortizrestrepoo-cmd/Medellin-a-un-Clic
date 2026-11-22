@@ -11,7 +11,7 @@ const T = (id: string, es: string, p: number[], horas: number, extra: Record<str
 const CFG: Config = {
   tasa: 3461, anticipo: 0.2, diasMinimos: 2, grupos: ["1-3", "4-6", "7-10", "11-16"], horaExtra: [30, 30, 35, 40],
   aeroRecargo: 10, aeroMunicipios: ["Bello", "Copacabana", "Girardota", "Barbosa", "Itagüí", "Envigado", "Sabaneta", "La Estrella", "Caldas"],
-  aeroSinRecargo: ["Rionegro", "Llanogrande", "La Ceja"], aeroGuatapeCOP: [320000, 400000, 480000, 540000],
+  aeroSinRecargo: ["Rionegro", "Llanogrande", "La Ceja"], aeroGuatapeUSD: [115, 140, 170, 190],
   nocturno: { desde: "22:00", hasta: "04:00", porcentaje: 15 }, lucesTemporada: { desde: "12-01", hasta: "01-10" },
   tours: [
     T("aeropuerto", "Aeropuerto", [60, 65, 80, 115], 2, { aeropuerto: true }), T("city", "City Tour", [95, 105, 120, 135], 5),
@@ -105,7 +105,9 @@ console.log("2. Reglas de precio");
   r = c({ tour: "aeropuerto", grupo: "1-3", tramo: "ida-regreso", municipio: "Envigado", fechaLlegada: min, horaLlegada: "23:30", vuelo: "AV1", fechaSalida: masDias(min, 5), horaVuelo: "09:00", horaRecogidaHotel: "05:30" });
   ok(r.ok && r.r.totalUSD === 70 * 1.15 + 70 && r.r.trayectos[0].noche && !r.r.trayectos[1].noche, "ida y regreso Envigado con una noche");
   r = c({ tour: "aeropuerto", grupo: "7-10", tramo: "llevada", municipio: "Guatapé", fechaSalida: min, horaVuelo: "12:00", horaRecogidaHotel: "07:00" });
-  ok(r.ok && r.r.totalUSD === Math.ceil(480000 / 3461), "aeropuerto Guatapé precio propio");
+  ok(r.ok && r.r.totalUSD === 170 && r.r.totalCOP === 589000 && r.r.cobroCOP === 118000, "aeropuerto Guatapé US$170 → COP 589.000, anticipo 118.000");
+  r = c({ tour: "aeropuerto", grupo: "1-3", tramo: "ida-regreso", municipio: "Guatapé", fechaLlegada: min, horaLlegada: "23:00", vuelo: "AV1", fechaSalida: masDias(min, 2), horaVuelo: "12:00", horaRecogidaHotel: "08:00" });
+  ok(r.ok && r.r.totalUSD === 115 * 1.15 + 115, "Guatapé ida y regreso = doble, nocturno solo en la recogida");
   r = c({ tour: "aeropuerto", grupo: "1-3", tramo: "recogida", municipio: "Rionegro", fechaLlegada: min, horaLlegada: "03:59", vuelo: "AV1" });
   ok(r.ok && r.r.totalUSD === 69, "Rionegro sin recargo, 03:59 nocturno");
   r = c({ tour: "aeropuerto", grupo: "1-3", tramo: "recogida", municipio: "Rionegro", fechaLlegada: min, horaLlegada: "04:00", vuelo: "AV1" });

@@ -2737,7 +2737,7 @@ const RESERVAS = {
   aeroRecargo: 10,                // US$ por trayecto
   aeroMunicipios: ['Bello', 'Copacabana', 'Girardota', 'Barbosa', 'Itagüí', 'Envigado', 'Sabaneta', 'La Estrella', 'Caldas'],
   aeroSinRecargo: ['Rionegro', 'Llanogrande', 'La Ceja'],      // mismo precio que Medellín
-  aeroGuatapeCOP: [320000, 400000, 480000, 540000],             // valores netos de Paola por trayecto (se pasan a US$ redondeando hacia arriba)
+  aeroGuatapeUSD: [115, 140, 170, 190],                         // Aeropuerto ↔ Guatapé, US$ por trayecto (precio final, se cobra en pesos con la tasa)
   // Recargo nocturno por trayecto (sobre el precio del trayecto, con el recargo del municipio incluido)
   nocturno: { desde: '22:00', hasta: '04:00', porcentaje: 15 },
   // Tour de Luces: solo en temporada de alumbrados (mes-día)
@@ -2827,8 +2827,7 @@ const RESERVAS = {
   const municipio = () => (esAero() ? ($('rsv-municipio').value || 'Medellín') : '');
   const esOtro = () => esAero() && municipio() === 'otro';
   const recargo = () => (esAero() && RESERVAS.aeroMunicipios.includes(municipio()) ? RESERVAS.aeroRecargo : 0);
-  const guatapeUSD = g => Math.ceil(RESERVAS.aeroGuatapeCOP[g] / RESERVAS.tasa);
-  const baseTrayecto = () => (esAero() && municipio() === 'Guatapé' ? guatapeUSD(grupo) : tour.precios[grupo] + recargo());
+  const baseTrayecto = () => (esAero() && municipio() === 'Guatapé' ? RESERVAS.aeroGuatapeUSD[grupo] : tour.precios[grupo] + recargo());
   // ¿La hora cae en el horario nocturno? (por ejemplo, de 22:00 a 04:00)
   const nocturna = hhmm => { if (!hhmm) return false; const n = RESERVAS.nocturno; return n.desde > n.hasta ? (hhmm >= n.desde || hhmm < n.hasta) : (hhmm >= n.desde && hhmm < n.hasta); };
   // Lista de trayectos con su hora: recogida = hora de llegada del vuelo; llevada = hora de recogida en el hotel

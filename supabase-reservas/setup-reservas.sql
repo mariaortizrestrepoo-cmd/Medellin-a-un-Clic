@@ -17,7 +17,7 @@ insert into public.mde_ajustes (clave, valor, nota) values
   ('aeroRecargo',     '10',    'US$ por trayecto para hoteles en los municipios de la lista'),
   ('aeroMunicipios',  '["Bello","Copacabana","Girardota","Barbosa","Itagüí","Envigado","Sabaneta","La Estrella","Caldas"]', 'Municipios con recargo'),
   ('aeroSinRecargo',  '["Rionegro","Llanogrande","La Ceja"]', 'Mismo precio que Medellín'),
-  ('aeroGuatapeCOP',  '[320000,400000,480000,540000]', 'Aeropuerto ↔ Guatapé, pesos por trayecto según el grupo'),
+  ('aeroGuatapeUSD',  '[115,140,170,190]', 'Aeropuerto ↔ Guatapé, US$ por trayecto según el grupo (precio final; se cobra en pesos con la tasa)'),
   ('nocturno',        '{"desde":"22:00","hasta":"04:00","porcentaje":15}', 'Recargo nocturno por trayecto'),
   ('lucesTemporada',  '{"desde":"12-01","hasta":"01-10"}', 'Temporada del Tour de Luces (mes-día)')
 on conflict (clave) do nothing;

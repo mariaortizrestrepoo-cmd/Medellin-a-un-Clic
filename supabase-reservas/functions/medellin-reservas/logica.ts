@@ -240,7 +240,7 @@ export function crearManejador(dep: Dependencias) {
   async function precios() {
     const c = await almacen.config();
     return json({ ok: true, modo: A.modo, tasa: c.tasa, anticipo: c.anticipo, diasMinimos: c.diasMinimos, grupos: c.grupos, horaExtra: c.horaExtra,
-      aeroRecargo: c.aeroRecargo, aeroMunicipios: c.aeroMunicipios, aeroSinRecargo: c.aeroSinRecargo, aeroGuatapeCOP: c.aeroGuatapeCOP,
+      aeroRecargo: c.aeroRecargo, aeroMunicipios: c.aeroMunicipios, aeroSinRecargo: c.aeroSinRecargo, aeroGuatapeUSD: c.aeroGuatapeUSD,
       nocturno: c.nocturno, lucesTemporada: c.lucesTemporada, tours: c.tours.filter((t) => t.activo !== false).map((t) => ({ id: t.id, precios: t.precios })) });
   }
   async function disponibilidad(b: Fila) {

@@ -30,7 +30,7 @@ const almacen: Almacen = {
     const c: Config = {
       tasa: Number(v.tasa), anticipo: Number(v.anticipo), diasMinimos: Number(v.diasMinimos),
       grupos: v.grupos, horaExtra: v.horaExtra, aeroRecargo: Number(v.aeroRecargo),
-      aeroMunicipios: v.aeroMunicipios, aeroSinRecargo: v.aeroSinRecargo, aeroGuatapeCOP: v.aeroGuatapeCOP,
+      aeroMunicipios: v.aeroMunicipios, aeroSinRecargo: v.aeroSinRecargo, aeroGuatapeUSD: v.aeroGuatapeUSD,
       nocturno: v.nocturno, lucesTemporada: v.lucesTemporada,
       tours: t.data!.map((x) => ({
         id: x.id, es: x.nombre_es, en: x.nombre_en,

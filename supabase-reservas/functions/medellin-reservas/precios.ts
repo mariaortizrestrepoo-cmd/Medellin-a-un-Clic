@@ -12,7 +12,7 @@ export type Config = {
   tasa: number; anticipo: number; diasMinimos: number;
   grupos: string[]; horaExtra: number[];
   aeroRecargo: number; aeroMunicipios: string[]; aeroSinRecargo: string[];
-  aeroGuatapeCOP: number[];
+  aeroGuatapeUSD: number[];     // Aeropuerto ↔ Guatapé, US$ por trayecto
   nocturno: { desde: string; hasta: string; porcentaje: number };
   lucesTemporada: { desde: string; hasta: string };
   tours: Tour[];
@@ -83,7 +83,7 @@ export function revisar(cfg: Config, d: Record<string, unknown>, cerrados: strin
     municipio = String(d.municipio ?? "");
     const zonas = ["Medellín", ...cfg.aeroSinRecargo, ...cfg.aeroMunicipios, "Guatapé"];
     if (!zonas.includes(municipio)) return no("For that place, message Paola on WhatsApp and she’ll give you a price.", "Para ese lugar, escríbele a Paola por WhatsApp y te cotiza el trayecto.");
-    const base = municipio === "Guatapé" ? Math.ceil(cfg.aeroGuatapeCOP[grupoIdx] / cfg.tasa)
+    const base = municipio === "Guatapé" ? cfg.aeroGuatapeUSD[grupoIdx]
       : tour.precios[grupoIdx] + (cfg.aeroMunicipios.includes(municipio) ? cfg.aeroRecargo : 0);
     const precio = (noche: boolean) => noche ? Math.round(base * (1 + cfg.nocturno.porcentaje / 100) * 100) / 100 : base;
     if (tramo !== "llevada") {
