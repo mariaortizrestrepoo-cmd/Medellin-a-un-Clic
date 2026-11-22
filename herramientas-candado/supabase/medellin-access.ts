@@ -13,6 +13,8 @@ const MAIL_FROM = Deno.env.get("MAIL_FROM") ?? "Medellín a un clic <acceso@acce
 const MAX_MOVES = Number(Deno.env.get("MAX_MOVES") ?? "3");
 const TABLE = "mde_buyers";
 const CODE_WAIT_MS = Number(Deno.env.get("CODE_WAIT_MS") ?? "60000");
+// Correos sin límite de celulares (la dueña, para revisar la app). Secreto SIN_LIMITE, separados por coma.
+const SIN_LIMITE = (Deno.env.get("SIN_LIMITE") ?? "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -100,6 +102,7 @@ Deno.serve(async (req) => {
     if (!EMAIL_RE.test(email)) return json({ ok: false, error: "bad_email" }, 400);
     const { data: buyer, error: e1 } = await db.from(TABLE).select("*").eq("email", email).maybeSingle();
     if (e1) throw e1;
+    const sinLimite = SIN_LIMITE.includes(email);
 
     // --- pedir código
     if (route === "request-code") {
@@ -130,14 +133,15 @@ Deno.serve(async (req) => {
         return json({ ok: false, error: "bad_code" }, 401);
       }
       let moves = buyer.moves ?? 0;
-      if (buyer.device_id && buyer.device_id !== device) {
+      if (!sinLimite && buyer.device_id && buyer.device_id !== device) {
         if (moves >= MAX_MOVES) {
           await db.from(TABLE).update({ code_hash: null }).eq("email", email);
           return json({ ok: false, error: "limit" }, 403);
         }
         moves += 1;
       }
-      const token = randomToken();
+      // Sin límite: todos sus equipos comparten el mismo pase, así ninguno saca al otro.
+      const token = sinLimite && buyer.session_token ? buyer.session_token : randomToken();
       await db.from(TABLE).update({
         device_id: device, session_token: token, moves, code_hash: null, code_expires: null,
         code_attempts: 0, activated_at: new Date().toISOString(),
@@ -147,7 +151,7 @@ Deno.serve(async (req) => {
 
     // --- ¿sigue siendo este el celular activo?
     if (route === "check") {
-      const ok = !!buyer && buyer.device_id === String(body.device ?? "") && buyer.session_token === String(body.token ?? "");
+      const ok = !!buyer && buyer.session_token === String(body.token ?? "") && (sinLimite || buyer.device_id === String(body.device ?? ""));
       return json({ ok });
     }
 

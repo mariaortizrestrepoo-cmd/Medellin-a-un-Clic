@@ -43,6 +43,10 @@ node build.mjs "https://kipooidlqcvivpngtebr.supabase.co/functions/v1/medellin-a
 - `CONTENT_KEY` es **secreta**. Está guardada en Supabase (proyecto "medellin a un click" → Edge Functions → Secrets → `CONTENT_KEY`). Debe ser **la misma** que usa la función; si se cambia, hay que cambiarla en los dos lados.
 - Dominio: https://medellin.mokeadigital.com · Pago: Systeme.io (https://apps.mokeadigital.com/medellin, US$19.99).
 - Acceso: tabla `mde_buyers` en Supabase. Acceso de cortesía = insertar el correo.
+- **Sin límite de celulares** (22 nov 2026, aprobado por María): los correos del secreto `SIN_LIMITE` de Supabase
+  (hoy solo `info@mokeadigital.com`, separados por coma; se comparan sin espacios y en minúsculas) no cuentan cambios
+  de equipo y comparten un mismo pase, así ninguno saca al otro. Igual necesitan el código del correo. Los demás
+  compradores siguen igual: un celular a la vez y máximo 3 cambios (`MAX_MOVES`). Función `medellin-access` versión 9.
 - `/welcome` redirige al pago (es el QR impreso en la hoja del carro; **no cambiar esa ruta**).
 - Verificar en vivo: `https://medellin.mokeadigital.com/sw.js` debe mostrar la VERSION nueva.
 
