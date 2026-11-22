@@ -63,6 +63,13 @@ https://medellin.mokeadigital.com/.well-known/assetlinks.json debe mostrar el pa
 
 Versión anterior: v157 (`medellin-lock-1795299039833`).
 
+**v158.1 (lista, sin publicar):** la v158 en vivo + solo un arreglo: los 8 cuadros de aviso de seguridad (Consejos,
+Río Claro, Hacienda Nápoles y Cisneros, en EN y ES) tenían fondo rosado claro `#FDE3E6` con letra crema invisible;
+ahora usan la clase `.nota.alerta` (tono coral oscuro, letra clara). sw.js `medellin-v158-1`. Código en la rama
+`v158.1-avisos` (`/home/user/medellin/v158.1/`, zip `medellin-codigo-v158.1.zip`), para publicarla sin las reservas.
+El mismo arreglo ya está en la v159. **Pendiente de María:** el botón "Colombian coffee →" / "Café colombiano →"
+(página Comida) tiene letra café oscura sobre café (casi no se lee); no se tocó.
+
 Versiones anteriores en vivo: v150 (`medellin-lock-1795283981798`), v149 (`medellin-lock-1795281462731`).
 
 Cambios de la v150: la app abre en el idioma que mostró el candado (`mde-idioma`); el título de la Embajada en SOS
