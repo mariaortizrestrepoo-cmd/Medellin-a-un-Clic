@@ -144,7 +144,15 @@ enviar ubicación), **Cerca de mí** (geolocalización, solo en el dispositivo),
 +57 319 463 5142 con mensaje prellenado), **Frases útiles con audio** (Web Speech API, solo en inglés),
 **Quiénes somos** con María y Paola, vehículos, Política de privacidad y Términos.
 
-## Plan para Google Play
+## DECISIÓN NUEVA (23 nov 2026): app de pago en Google Play y App Store, SIN candado
+
+María decidió que la app se publica en **Google Play y App Store como app normal de pago (US$19.99)**: se paga en la
+tienda y se descarga; **sin candado, sin correo ni código**. Debe sentirse como app de verdad (no página web).
+Reemplaza la "Opción 1" de abajo. Las reservas (Bold) siguen en modo de prueba hasta que Bold active el botón.
+Trabajo en la rama/copia **`app-nativa`** (`/home/user/medellin/app-nativa/`): Capacitor 8 en `nativa/`, plan completo
+en `PLAN-TIENDAS.md`. La web en vivo (v158 / v158.2 aprobada) no cambia hasta que María lo apruebe.
+
+## Plan para Google Play (anterior, reemplazado por la decisión de arriba)
 
 **Decisión (21 nov 2026): Opción 1.** En Google Play la app es gratis y solo entran quienes ya compraron, con su correo.
 La venta sigue por fuera (QR del carro, Systeme, anuncios). En la app de la tienda no hay ningún enlace de compra.
