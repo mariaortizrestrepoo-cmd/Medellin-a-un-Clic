@@ -2,7 +2,7 @@
 const VERSION = 'medellin-v159';
 const BASE = VERSION + '-base';
 const FOTOS = VERSION + '-fotos';
-const FILES = ['./', './index.html', './manifest.json', './icon.svg', './portada.jpg', './apple-touch-icon.png', './icon-192.png', './icon-512.png'];
+const FILES = ['./', './index.html', './manifest.json', './icon.svg', './portada.jpg', './apple-touch-icon.png', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './favicon-48.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(BASE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

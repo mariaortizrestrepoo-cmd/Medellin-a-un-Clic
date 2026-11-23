@@ -70,6 +70,18 @@ ahora usan la clase `.nota.alerta` (tono coral oscuro, letra clara). sw.js `mede
 El mismo arreglo ya está en la v159. **Pendiente de María:** el botón "Colombian coffee →" / "Café colombiano →"
 (página Comida) tiene letra café oscura sobre café (casi no se lee); no se tocó.
 
+**v158.2 (lista, sin publicar; reemplaza a la v158.1 para salir a vivo):** la v158.1 + (1) botón "Café colombiano →"
+dorado como los demás; (2) iniciales en los círculos vacíos de Hospedaje (Lares 70 = L70, Macedonia Plaza, Cauca Viejo,
+Los Patios, Manila, Provenza, Laureles, Envigado) y de "El Medellín de los reggaetoneros" (Casa Eterna, Callejón del Gato,
+Carolina & Provenza, 903, Medallo Club, Perro Negro), con colores visibles; **no se inventaron calificaciones**;
+(3) logo nuevo de María: icon-192/512, icon-maskable-512, apple-touch-icon, `favicon-48.png` nuevo, `icon.svg` con el
+ícono nuevo dentro, logo de la portada y del candado (usan icon-192), imagen para compartir nueva `compartir2.jpg`
+(logo completo + foto de la portada; nombre nuevo para que WhatsApp/Facebook no muestren la vieja); destacada y
+captura 1 de la tienda con el ícono nuevo; `tienda/icono-google-play-512.png`; `android/iconos/` listos para el
+próximo .aab (no se generó ni firmó nada). sw.js `medellin-v158-2`. Rama `v158.2` (`/home/user/medellin/v158.2/`),
+zip `medellin-codigo-v158.2.zip`. Todo esto también está en la v159.
+Sin tocar: los 6 círculos vacíos de Tradiciones (traje del arriero); "Clic" con mayúscula va solo en el logo.
+
 Versiones anteriores en vivo: v150 (`medellin-lock-1795283981798`), v149 (`medellin-lock-1795281462731`).
 
 Cambios de la v150: la app abre en el idioma que mostró el candado (`mde-idioma`); el título de la Embajada en SOS
