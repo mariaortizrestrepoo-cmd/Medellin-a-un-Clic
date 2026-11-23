@@ -1,0 +1,10 @@
+// Solo para esta compilación (--init-script): Maven Central limita las descargas (429);
+// se usa primero el espejo oficial de Maven Central que mantiene Google.
+def espejo = 'https://maven-central.storage-download.googleapis.com/maven2/'
+settingsEvaluated { s ->
+  s.pluginManagement.repositories { maven { url espejo } }
+}
+allprojects {
+  buildscript { repositories { maven { url espejo } } }
+  repositories { maven { url espejo } }
+}

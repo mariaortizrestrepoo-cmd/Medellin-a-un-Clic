@@ -43,3 +43,9 @@ Nada se publica en vivo sin aprobación de María.
 - Systeme.io (US$19.99 por fuera): apagar la venta web cuando salgan las tiendas.
 - Fotos con IA de negocios o personas reales (903 de Maluma, Casa Eterna, etc.): cuáles cambiar (riesgo de rechazo).
 - Países donde se vende (sugerido: todos, o al menos EE. UU., Panamá, México, Colombia, Canadá, España).
+
+## Notas técnicas
+- Si Maven Central responde 429 (demasiadas descargas) al compilar Android, usar el espejo de Google solo para esa
+  compilación: `./gradlew assembleDebug --init-script ../espejo-maven.gradle` (no cambia nada global).
+- Android compila con Java 21 (`JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64`). Compilación de prueba verificada el
+  23 nov 2026: paquete com.mokeadigital.medellinaunclic, versión 1.0.0 (1), target 36, nombre "Medellín", 121 archivos de la app adentro.
