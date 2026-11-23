@@ -43,6 +43,10 @@ node build.mjs "https://kipooidlqcvivpngtebr.supabase.co/functions/v1/medellin-a
 - `CONTENT_KEY` es **secreta**. Está guardada en Supabase (proyecto "medellin a un click" → Edge Functions → Secrets → `CONTENT_KEY`). Debe ser **la misma** que usa la función; si se cambia, hay que cambiarla en los dos lados.
 - Dominio: https://medellin.mokeadigital.com · Pago: Systeme.io (https://apps.mokeadigital.com/medellin, US$19.99).
 - Acceso: tabla `mde_buyers` en Supabase. Acceso de cortesía = insertar el correo.
+- **Sin límite de celulares** (22 nov 2026, aprobado por María): los correos del secreto `SIN_LIMITE` de Supabase
+  (hoy solo `info@mokeadigital.com`, separados por coma; se comparan sin espacios y en minúsculas) no cuentan cambios
+  de equipo y comparten un mismo pase, así ninguno saca al otro. Igual necesitan el código del correo. Los demás
+  compradores siguen igual: un celular a la vez y máximo 3 cambios (`MAX_MOVES`). Función `medellin-access` versión 9.
 - `/welcome` redirige al pago (es el QR impreso en la hoja del carro; **no cambiar esa ruta**).
 - Verificar en vivo: `https://medellin.mokeadigital.com/sw.js` debe mostrar la VERSION nueva.
 
@@ -58,6 +62,25 @@ en `_redirects`. Desde ahora `build.mjs` hace eso solo. Verificar en vivo:
 https://medellin.mokeadigital.com/.well-known/assetlinks.json debe mostrar el paquete y la huella `35:94:…:58:CC`.
 
 Versión anterior: v157 (`medellin-lock-1795299039833`).
+
+**v158.1 (lista, sin publicar):** la v158 en vivo + solo un arreglo: los 8 cuadros de aviso de seguridad (Consejos,
+Río Claro, Hacienda Nápoles y Cisneros, en EN y ES) tenían fondo rosado claro `#FDE3E6` con letra crema invisible;
+ahora usan la clase `.nota.alerta` (tono coral oscuro, letra clara). sw.js `medellin-v158-1`. Código en la rama
+`v158.1-avisos` (`/home/user/medellin/v158.1/`, zip `medellin-codigo-v158.1.zip`), para publicarla sin las reservas.
+El mismo arreglo ya está en la v159. **Pendiente de María:** el botón "Colombian coffee →" / "Café colombiano →"
+(página Comida) tiene letra café oscura sobre café (casi no se lee); no se tocó.
+
+**v158.2 (lista, sin publicar; reemplaza a la v158.1 para salir a vivo):** la v158.1 + (1) botón "Café colombiano →"
+dorado como los demás; (2) iniciales en los círculos vacíos de Hospedaje (Lares 70 = L70, Macedonia Plaza, Cauca Viejo,
+Los Patios, Manila, Provenza, Laureles, Envigado) y de "El Medellín de los reggaetoneros" (Casa Eterna, Callejón del Gato,
+Carolina & Provenza, 903, Medallo Club, Perro Negro), con colores visibles; **no se inventaron calificaciones**;
+(3) logo nuevo de María: icon-192/512, icon-maskable-512, apple-touch-icon, `favicon-48.png` nuevo, `icon.svg` con el
+ícono nuevo dentro, logo de la portada y del candado (usan icon-192), imagen para compartir nueva `compartir2.jpg`
+(logo completo + foto de la portada; nombre nuevo para que WhatsApp/Facebook no muestren la vieja); destacada y
+captura 1 de la tienda con el ícono nuevo; `tienda/icono-google-play-512.png`; `android/iconos/` listos para el
+próximo .aab (no se generó ni firmó nada). sw.js `medellin-v158-2`. Rama `v158.2` (`/home/user/medellin/v158.2/`),
+zip `medellin-codigo-v158.2.zip`. Todo esto también está en la v159.
+Sin tocar: los 6 círculos vacíos de Tradiciones (traje del arriero); "Clic" con mayúscula va solo en el logo.
 
 Versiones anteriores en vivo: v150 (`medellin-lock-1795283981798`), v149 (`medellin-lock-1795281462731`).
 
@@ -154,6 +177,42 @@ Lo que falta:
 5. **Formulario "Seguridad de los datos":** se guarda el correo (acceso); la ubicación se usa solo en el celular; Meta Pixel en la página de pago.
 6. **Cobro:** hoy se paga por fuera (Systeme). Revisar las reglas **vigentes** de Google Play sobre pagos externos antes de enviar.
 
+## Reservas de tours con pago y calendario (proyecto nuevo, 22 nov 2026)
+
+**Estado: v159 en MODO DE PRUEBA, guardada y sin publicar.** El formulario está en la página de Tours
+(`#reserva`, código `// ===== Reservas de tours` en `app/index.html`, dentro de la parte cifrada). Mientras
+`RESERVAS.modo = 'prueba'`, el pago es una simulación ("Aprobar / Rechazar"), con una franja "MODO DE PRUEBA".
+**No publicar la v159** hasta tener la parte de Supabase, Bold y el calendario conectada y aprobada.
+
+- Se reservan con pago 11 tours: Aeropuerto, City Tour, Comuna 13, Tour de Flores (= Santa Elena silletera), Tour de
+  Luces, Tequendamita, San Félix, Cuatrimotos (en Rionegro), Guatapé, Río Claro, Hacienda Nápoles. Santa Fe, Jardín,
+  Medellín esencial y Ciudad y naturaleza siguen solo con WhatsApp (Paola confirma sus precios).
+- **Precios de los tours de Paola en la app:** decisión nueva de María (22 nov 2026). Las actividades y entradas siguen
+  sin precio.
+- Todo lo que cambia está en el objeto `RESERVAS` (al principio del código): `modo`, `api`, `tasa` (3.461; el cobro en
+  pesos se redondea a miles hacia arriba), `anticipo` (20 %), `diasMinimos` (2), `grupos`, `horaExtra` (se paga el día
+  del tour), precios en US$ por grupo, `aeroRecargo` (US$10 por trayecto) y `aeroMunicipios` (Bello, Copacabana,
+  Girardota, Barbosa, Itagüí, Envigado, Sabaneta, La Estrella, Caldas), `aeroSinRecargo` (Rionegro, Llanogrande,
+  La Ceja), `aeroGuatapeUSD` (Aeropuerto ↔ Guatapé, US$ por trayecto, precio final:
+  115/140/170/190; se cobra en pesos con la misma tasa), `nocturno` (22:00 a 04:00, 15 % por trayecto) y `lucesTemporada`
+  (1 dic a 10 ene).
+- Aeropuerto: Recogida (fecha, vuelo, hora de llegada), Llevada (fecha, hora del vuelo, hora de recogida en el hotel)
+  o Ida y regreso (dos trayectos, se cobra cada uno). "Otro lugar (El Retiro u otro)" → cotizar por WhatsApp.
+  El 20 % del anticipo se calcula sobre el total con recargos (aprobado).
+- Hora de recogida libre; Paola la confirma por WhatsApp. Fechas desde pasado mañana (hora de Colombia); los días con
+  un evento de todo el día "CERRADO" en el calendario de Paola no se ofrecen (en modo de prueba hay dos días falsos).
+- Bold a nombre de Transportes R.T (aprobado por María: aparece solo en el pago y el comprobante; en la app, "Paola").
+- Datos que se guardan: nombre, WhatsApp, correo y lo de la reserva; se borran 1,5 años después del tour.
+- **Todo en dólares, con su conversión a pesos al lado** (decisión de María, 22 nov 2026): precios, anticipo, resto,
+  resumen, simulación de pago, correos y calendario muestran "US$… · COP …". Bold cobra en pesos.
+- **Parte de Supabase (modo de prueba, sin instalar):** carpeta `supabase-reservas/` (ver `LEEME-RESERVAS.md`):
+  tablas `mde_ajustes`, `mde_tours`, `mde_reservas` con borrado automático; función `medellin-reservas` (`/precios`,
+  `/disponibilidad`, `/crear`, `/confirmar`, `/webhook-bold`); 68 pruebas sin internet (`bash pruebas/correr.sh`).
+  Para instalarla, María da una llave de acceso de Supabase por el formulario seguro (opción b) y la borra al terminar.
+- **Falta:** tablas y función en Supabase (modo de prueba), claves de prueba de Bold (las pone Paola en los secretos de
+  Supabase), Gmail de Paola y cuenta de servicio de Google para el calendario, Política de privacidad y Términos
+  (regla del anticipo; conviene revisión de un abogado), y la aprobación final de María.
+
 ## Paquete de Android (Paso 6, 21 nov 2026)
 
 - Bubblewrap 1.27.0, Java 17, build-tools 36.1.0, Android 16 (target 36), **mínimo Android 7 (nivel 24)**, que es lo que
@@ -183,7 +242,8 @@ Lo que falta:
 ## Pendientes
 
 - **Sentry configurado en la cuenta (María, 21 nov 2026):** sin IP, sin Tracing, sin Session Replay y sin Logs.
-- **Precios de los tours** de Paola (hoy dice "pregúntale por WhatsApp").
+- **Precios de los tours** de Paola: ya están en el formulario de reservas (v159, modo de prueba). Faltan los de
+  Santa Fe, Jardín, Medellín esencial y Ciudad y naturaleza.
 - El resto de la app le habla al turista de "usted"; "Quiénes somos" y los textos nuevos usan "tú". Unificar a "tú" con cuidado.
 - **"Phrases" en el menú:** queda como está. El botón tiene la clase `en` y solo se ve en inglés, a propósito
   (las frases son para el turista que habla inglés). Decisión de María, 21 nov 2026.
