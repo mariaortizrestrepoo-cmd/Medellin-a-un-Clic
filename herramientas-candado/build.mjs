@@ -51,7 +51,7 @@ for (const m of ['VAULT', 'LOCK-', '__ACCESS_API__', '__BUY_URL__', '__VAULT__']
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 fs.cpSync(path.join(APP, 'img'), path.join(OUT, 'img'), { recursive: true });
-for (const f of ['manifest.json', 'icon.svg', 'portada.jpg', 'portada-movil.jpg', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'favicon-48.png', 'terminos.html', 'privacidad.html', 'compartir.jpg', 'compartir2.jpg']) fs.copyFileSync(path.join(APP, f), path.join(OUT, f));
+for (const f of ['manifest.json', 'icon.svg', 'portada.jpg', 'portada-movil.jpg', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'favicon-48.png', 'terminos.html', 'privacidad.html', 'compartir.jpg', 'compartir2.jpg', 'compartir3.jpg']) fs.copyFileSync(path.join(APP, f), path.join(OUT, f));
 fs.writeFileSync(path.join(OUT, 'index.html'), html);
 // Google Play (TWA): si existe app/.well-known/assetlinks.json (se revisó al inicio), se copia a /.well-known/.
 if (HAS_ASSETLINKS) {
