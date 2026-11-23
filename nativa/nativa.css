@@ -29,3 +29,13 @@ html.nativa img.mde-cargando{opacity:0}
   html.nativa .page{animation:none!important}
   html.nativa img{transition:none}
 }
+
+/* Versión para REVISIÓN de las tiendas: sin formulario de reservas con pago; el botón de WhatsApp pasa a ser el principal */
+html.revision #reserva,html.revision #rsv-listo,html.revision .rsv-abrir{display:none!important}
+html.revision .rsv-abrir+.tour-btn2{background:linear-gradient(135deg,#F3D08E,#E4B45E);color:#1A1406!important;font-weight:800;border:0;padding:12px;margin-top:0}
+
+/* Botón de compartir (al lado del corazón) y botón de mapa en "Cerca de mí" */
+.top #compartir{background:rgba(255,255,255,.07);border:1px solid var(--linea);border-radius:14px;color:var(--oro2);width:44px;height:44px;display:grid;place-items:center;cursor:pointer;flex:0 0 44px}
+.top #compartir[hidden]{display:none}
+@media (max-width:359px){.top #compartir,.top #fav{width:40px;height:40px;flex-basis:40px}}
+.cerca-it .cerca-mapa{margin-left:auto;flex:0 0 44px;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:var(--oro2);background:rgba(255,255,255,.06);border:1px solid var(--linea)}

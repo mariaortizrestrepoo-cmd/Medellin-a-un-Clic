@@ -3,10 +3,14 @@
 //   - sin candado (la app se paga en la tienda), sin "instalar la app", sin service worker ni manifiesto web
 //   - letras guardadas dentro (no se bajan de internet)
 //   - agrega nativa.css y nativa.js (comportamiento de app: atrás, gestos, transiciones, vibración, etc.)
-// app/ NO se modifica. Uso:  node armar-web.mjs
+// app/ NO se modifica.
+// Uso:  node armar-web.mjs            → versión para PRUEBAS (reservas en modo de prueba, como la app)
+//       node armar-web.mjs revision   → versión para REVISIÓN de las tiendas: sin formulario de reservas,
+//                                       los tours se piden por WhatsApp a Paola (decisión de María, 23 nov 2026)
 import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath } from 'node:url';
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
 const APP = path.join(AQUI, '..', 'app'), WWW = path.join(AQUI, 'www');
+const REVISION = process.argv[2] === 'revision';
 const NO_VAN = new Set(['sw.js', 'manifest.json', '.well-known', 'compartir.jpg', 'compartir2.jpg', 'icon.svg', 'favicon-48.png']);
 
 fs.rmSync(WWW, { recursive: true, force: true });
@@ -35,6 +39,14 @@ cambiar('sin zoom', /<meta name="viewport" content="width=device-width, initial-
 // 4) Marca "nativa" lo antes posible (antes de pintar) y el comportamiento de app al final
 cambiar('marca nativa', /<head>/, '<head>\n<script>document.documentElement.classList.add("nativa");</script>');
 cambiar('comportamiento de app', /<\/body>/, '<script src="nativa.js"></script>\n</body>');
+// 5) Versión para revisión: sin reservas con pago (vuelven con una actualización cuando Bold esté activo)
+if (REVISION) {
+  cambiar('marca revisión', /document\.documentElement\.classList\.add\("nativa"\);/, 'document.documentElement.classList.add("nativa","revision");');
+  cambiar('texto de tours (inglés)', / Book and pay right here, or ask her on WhatsApp\./, ' Ask her on WhatsApp and she will plan it with you.');
+  cambiar('texto de tours (español)', / Reserva y paga aquí mismo, o pregúntale por WhatsApp\./, ' Escríbele por WhatsApp y ella lo organiza contigo.');
+  cambiar('botones de WhatsApp (inglés)', /<span class="en">or ask Paola on WhatsApp<\/span>/g, '<span class="en">Book with Paola on WhatsApp</span>', (h.match(/<span class="en">or ask Paola on WhatsApp<\/span>/g) || []).length);
+  cambiar('botones de WhatsApp (español)', /<span class="es">o pregúntale a Paola por WhatsApp<\/span>/g, '<span class="es">Reserva con Paola por WhatsApp</span>', (h.match(/<span class="es">o pregúntale a Paola por WhatsApp<\/span>/g) || []).length);
+}
 fs.writeFileSync(path.join(WWW, 'index.html'), h);
 
 // Política y términos dentro de la app: sin íconos web
@@ -43,4 +55,5 @@ for (const f of ['privacidad.html', 'terminos.html']) {
   fs.writeFileSync(p, fs.readFileSync(p, 'utf8').replace(/<link rel="(icon|apple-touch-icon)"[^>]*>\s*/g, ''));
 }
 let n = 0; const contar = d => fs.readdirSync(d, { withFileTypes: true }).forEach(e => e.isDirectory() ? contar(path.join(d, e.name)) : n++); contar(WWW);
+console.log(REVISION ? 'VERSIÓN PARA REVISIÓN (sin reservas con pago)' : 'VERSIÓN PARA PRUEBAS (reservas en modo de prueba)');
 console.log('www/ listo:', n, 'archivos ·', cambios.join(' · '));

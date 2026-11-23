@@ -2684,6 +2684,7 @@ show(location.hash.slice(1) || 'inicio');
     parquenorte:[6.2712,-75.5673],hueco:[6.2484,-75.5730],joyas:[6.2600,-75.5600],rumba:[6.2085,-75.5672],llegada:[6.1645,-75.4231],
     guatape:[6.2335,-75.1586],oriente:[6.0596,-75.5040],pueblos:[6.5560,-75.8268],cisneros:[6.5385,-75.0884],rioclaro:[5.9040,-74.8590],napoles:[5.9120,-74.7270]};
   var POBLADO=[6.2087,-75.5666];
+  window.MDE_LUGARES=P;   // la app de las tiendas los usa para abrir cada lugar en el mapa del celular
   function km(a,b){ var R=6371,r=Math.PI/180,dl=(b[0]-a[0])*r,dg=(b[1]-a[1])*r,x=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dg/2)*Math.sin(dg/2); return 2*R*Math.asin(Math.sqrt(x)); }
   function img(id){ var c=document.querySelector('.hx-big[data-go="'+id+'"],.hx-mid[data-go="'+id+'"]'); if(c){ var m=(c.getAttribute('style')||'').match(/url\(([^)]+)\)/); if(m) return m[1].replace(/["']/g,''); } var i=document.querySelector('[data-go="'+id+'"] img.th'); if(i) return i.getAttribute('src'); var p=document.querySelector('#'+id+' img'); return p?p.getAttribute('src'):'portada.jpg'; }
   var list=document.getElementById('cerca-list'), msg=document.getElementById('cerca-msg');

@@ -102,6 +102,83 @@
     img.addEventListener('load', listo, { once: true }); img.addEventListener('error', listo, { once: true });
   });
 
+  // 9) Favoritos guardados en la memoria propia del celular (no se borran aunque el sistema limpie datos de la vista web)
+  var GUARDAR = ['mde-favs', 'mde-idioma', 'mde-bienvenida'];
+  if (P.Preferences) {
+    try {
+      var setOriginal = Storage.prototype.setItem;
+      Storage.prototype.setItem = function (k, v) {
+        setOriginal.apply(this, arguments);
+        if (this === window.localStorage && GUARDAR.indexOf(k) >= 0) P.Preferences.set({ key: k, value: String(v) }).catch(function () {});
+      };
+      // Si la vista web perdió los datos pero el celular los tiene guardados, se recuperan (una sola vez)
+      Promise.all(GUARDAR.map(function (k) { return P.Preferences.get({ key: k }).then(function (r) { return [k, r.value]; }); })).then(function (pares) {
+        var faltaba = false;
+        pares.forEach(function (kv) { if (kv[1] != null && localStorage.getItem(kv[0]) == null) { setOriginal.call(localStorage, kv[0], kv[1]); faltaba = true; } });
+        if (faltaba && !sessionStorage.getItem('mde-recuperado')) { sessionStorage.setItem('mde-recuperado', '1'); location.reload(); }
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  // 10) Ubicación con el permiso del celular ("Cerca de mí" y "Enviar mi ubicación" en SOS)
+  if (P.Geolocation && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition = function (ok, mal, opc) {
+      P.Geolocation.checkPermissions().then(function (s) {
+        return (s.location === 'granted' || s.coarseLocation === 'granted') ? s : P.Geolocation.requestPermissions({ permissions: ['location', 'coarseLocation'] });
+      }).then(function () {
+        return P.Geolocation.getCurrentPosition({ enableHighAccuracy: !!(opc && opc.enableHighAccuracy), timeout: (opc && opc.timeout) || 15000 });
+      }).then(function (pos) { ok(pos); }).catch(function (e) { if (mal) mal({ code: 1, message: String(e && e.message || e) }); });
+    };
+  }
+
+  // 11) Compartir (hoja de compartir del celular) desde cualquier lugar que se puede guardar en favoritos
+  var fav = $('fav');
+  if (fav && (P.Share || navigator.share || plataforma !== 'web')) {
+    var comp = document.createElement('button');
+    comp.id = 'compartir'; comp.type = 'button'; comp.setAttribute('aria-label', 'Share / Compartir');
+    comp.innerHTML = '<svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+    fav.parentNode.insertBefore(comp, fav);
+    var verComp = function () { comp.hidden = fav.hidden; };
+    new MutationObserver(verComp).observe(fav, { attributes: true, attributeFilter: ['hidden'] }); verComp();
+    comp.addEventListener('click', function () {
+      vibrar();
+      var es = document.body.classList.contains('lang-es');
+      var titulo = ($('toptitle') && $('toptitle').textContent) || 'Medellín';
+      var datos = {
+        title: titulo + ' · Medellín a un clic',
+        text: es ? 'Mira «' + titulo + '» en Medellín a un clic, la guía de Medellín en tu celular.'
+                 : 'Check out "' + titulo + '" in Medellín a un clic, your Medellín guide on your phone.',
+        url: 'https://medellin.mokeadigital.com',
+        dialogTitle: es ? 'Compartir' : 'Share'
+      };
+      if (P.Share) P.Share.share(datos).catch(function () {});
+      else if (navigator.share) navigator.share(datos).catch(function () {});
+    });
+  }
+
+  // 12) "Cerca de mí": cada lugar se puede abrir en el mapa del celular
+  var lista = $('cerca-list');
+  if (lista && window.MDE_LUGARES) {
+    var ponerMapas = function () {
+      lista.querySelectorAll('.cerca-it').forEach(function (it) {
+        if (it.querySelector('.cerca-mapa')) return;
+        var c = window.MDE_LUGARES[it.getAttribute('data-go')]; if (!c) return;
+        var m = document.createElement('span');
+        m.className = 'cerca-mapa'; m.setAttribute('role', 'button'); m.setAttribute('aria-label', 'Map / Mapa');
+        m.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>';
+        m.addEventListener('click', function (e) {
+          e.preventDefault(); e.stopPropagation(); vibrar();
+          var es = document.body.classList.contains('lang-es'), n = it.querySelector(es ? 'b .es' : 'b .en') || it.querySelector('b') || it;
+          var nombre = encodeURIComponent(n.textContent.trim());
+          abrirApp(plataforma === 'ios' ? 'https://maps.apple.com/?ll=' + c[0] + ',' + c[1] + '&q=' + nombre
+                                         : 'https://www.google.com/maps/search/?api=1&query=' + c[0] + ',' + c[1]);
+        }, true);
+        it.appendChild(m);
+      });
+    };
+    new MutationObserver(ponerMapas).observe(lista, { childList: true }); ponerMapas();
+  }
+
   // 8) Barra de estado oscura y pantalla de arranque: se quita cuando la app ya está lista
   try { if (P.StatusBar) { P.StatusBar.setStyle({ style: 'DARK' }); if (plataforma === 'android') P.StatusBar.setBackgroundColor({ color: '#0B1626' }); } } catch (e) {}
   var quitarArranque = function () { try { if (P.SplashScreen) P.SplashScreen.hide({ fadeOutDuration: 250 }); } catch (e) {} };
