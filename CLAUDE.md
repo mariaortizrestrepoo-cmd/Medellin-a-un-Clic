@@ -80,7 +80,9 @@ Carolina & Provenza, 903, Medallo Club, Perro Negro), con colores visibles; **no
 captura 1 de la tienda con el ícono nuevo; `tienda/icono-google-play-512.png`; `android/iconos/` listos para el
 próximo .aab (no se generó ni firmó nada). sw.js `medellin-v158-2`. Rama `v158.2` (`/home/user/medellin/v158.2/`),
 zip `medellin-codigo-v158.2.zip`. Todo esto también está en la v159.
-Sin tocar: los 6 círculos vacíos de Tradiciones (traje del arriero); "Clic" con mayúscula va solo en el logo.
+También iniciales en Tradiciones (traje del arriero: SA, CA, PM, RU, TA, AM). Ya no queda ningún círculo vacío.
+**María aprobó la v158.2 (23 nov 2026).** "Clic" con mayúscula va solo en el logo.
+Ojo: en el tema oscuro, `main [style*="color:#1E2A22"]` se vuelve crema; para letra oscura sobre dorado usar `#1A1406`.
 
 Versiones anteriores en vivo: v150 (`medellin-lock-1795283981798`), v149 (`medellin-lock-1795281462731`).
 
