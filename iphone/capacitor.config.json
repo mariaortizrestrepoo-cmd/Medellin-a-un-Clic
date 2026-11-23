@@ -1,0 +1,10 @@
+{
+  "appId": "com.mokeadigital.medellinaunclic",
+  "appName": "Medellín a un clic",
+  "webDir": "www",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#0B1626",
+    "limitsNavigationsToAppBoundDomains": false
+  }
+}

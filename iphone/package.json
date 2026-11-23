@@ -1,0 +1,16 @@
+{
+  "name": "medellin-a-un-clic-iphone",
+  "private": true,
+  "description": "Versión para iPhone (App Store) de Medellín a un clic — Mokea Digital LLC. PRUEBA, sin publicar.",
+  "scripts": {
+    "copiar": "node copiar-web.mjs",
+    "sync": "node copiar-web.mjs && cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.6.2",
+    "@capacitor/ios": "^8.6.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.2"
+  }
+}

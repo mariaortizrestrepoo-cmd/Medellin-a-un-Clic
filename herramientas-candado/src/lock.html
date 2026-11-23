@@ -1,9 +1,14 @@
 <script>
-// Versión de la tienda (Google Play): el paquete de Android abre la app con ?fuente=play.
+// Versión de las tiendas: Google Play (el paquete de Android abre la app con ?fuente=play) y App Store (la app de
+// iPhone trae los archivos adentro y abre desde capacitor://localhost; también acepta ?fuente=appstore).
 // La marca se guarda en el celular, así sigue activa al recargar o sin internet.
 (function(){
   var t = false;
-  try { t = new URLSearchParams(location.search).get('fuente') === 'play' || /^android-app:\/\/com\.mokeadigital\.medellinaunclic(\/|$)/.test(document.referrer || ''); } catch(e) {}
+  try {
+    var f = new URLSearchParams(location.search).get('fuente');
+    t = f === 'play' || f === 'appstore' || location.protocol === 'capacitor:' ||
+        /^android-app:\/\/com\.mokeadigital\.medellinaunclic(\/|$)/.test(document.referrer || '');
+  } catch(e) {}
   try { if (t) localStorage.setItem('mde-tienda', '1'); else t = localStorage.getItem('mde-tienda') === '1'; } catch(e) {}
   if (t) document.documentElement.classList.add('tienda');
 })();
