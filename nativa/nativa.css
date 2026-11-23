@@ -1,0 +1,31 @@
+/* Medellín a un clic — ajustes SOLO para la app de Google Play y App Store (html.nativa).
+   Quita lo que delata una página web y le da respuesta de app. La web no usa este archivo. */
+
+/* Sin el destello gris al tocar, sin el menú de "copiar/abrir enlace" al dejar el dedo, sin seleccionar textos
+   por accidente, sin "jalar para recargar" */
+html.nativa body{-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;overscroll-behavior:none}
+html.nativa input,html.nativa textarea,html.nativa select,html.nativa [contenteditable]{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+html.nativa{-webkit-text-size-adjust:100%;overscroll-behavior:none}
+
+/* Cosas de página web que no van en una app de tienda */
+html.nativa .js-install,html.nativa .hx-off,html.nativa #inst-modal{display:none!important}
+
+/* Respuesta al toque, como un botón de app */
+html.nativa button,html.nativa .card,html.nativa .hx-row>*,html.nativa .sos-btn,html.nativa a.btn,html.nativa .tour-btn,html.nativa .tour-btn2{transition:transform .12s ease,filter .12s ease}
+html.nativa button:active,html.nativa .card:active,html.nativa .hx-row>*:active,html.nativa a.btn:active,html.nativa .tour-btn:active{transform:scale(.97);filter:brightness(.92)}
+html.nativa .bar button:active{transform:scale(.9)}
+
+/* Cambio de pantalla: entra deslizándose (hacia adelante desde la derecha, al volver desde la izquierda) */
+@keyframes mde-adelante{from{opacity:.35;transform:translate3d(32px,0,0)}to{opacity:1;transform:none}}
+@keyframes mde-atras{from{opacity:.35;transform:translate3d(-32px,0,0)}to{opacity:1;transform:none}}
+html.nativa .page.mde-adelante{animation:mde-adelante .26s cubic-bezier(.2,.8,.2,1)}
+html.nativa .page.mde-atras{animation:mde-atras .26s cubic-bezier(.2,.8,.2,1)}
+
+/* Fotos: aparecen suavemente en vez de "pintarse" por pedazos */
+html.nativa img{transition:opacity .3s ease}
+html.nativa img.mde-cargando{opacity:0}
+
+@media (prefers-reduced-motion:reduce){
+  html.nativa .page{animation:none!important}
+  html.nativa img{transition:none}
+}

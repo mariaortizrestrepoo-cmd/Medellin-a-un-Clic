@@ -1,0 +1,13 @@
+{
+  "appId": "com.mokeadigital.medellinaunclic",
+  "appName": "Medellín a un clic",
+  "webDir": "www",
+  "backgroundColor": "#0B1626",
+  "loggingBehavior": "none",
+  "android": { "allowMixedContent": false, "captureInput": true },
+  "ios": { "contentInset": "never", "backgroundColor": "#0B1626", "scrollEnabled": true },
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 2500, "launchAutoHide": false, "backgroundColor": "#0B1626", "showSpinner": false, "androidScaleType": "CENTER_CROP" },
+    "StatusBar": { "style": "DARK", "backgroundColor": "#0B1626", "overlaysWebView": true }
+  }
+}
