@@ -152,6 +152,11 @@ Reemplaza la "Opción 1" de abajo. Las reservas (Bold) siguen en modo de prueba 
 Trabajo en la rama/copia **`app-nativa`** (`/home/user/medellin/app-nativa/`): Capacitor 8 en `nativa/`, plan completo
 en `PLAN-TIENDAS.md`. La web en vivo (v158 / v158.2 aprobada) no cambia hasta que María lo apruebe.
 
+**Ícono oficial de Medellín a un clic (23 nov 2026): AZUL, opción A** (montañas doradas y metrocable sobre azul,
+marco dorado; sin edificios). Reemplaza al verde en la app nativa (Android, iPhone, arranque, `app/icon-*.png`,
+`icon.svg`, `nativa/marca/`, `android/iconos/`, `tienda/icono-google-play-512.png`, destacada y captura 1) y en la
+tarjeta de la página de Mokea Digital. La web en vivo / v158.2 todavía tiene el verde (no se tocó).
+
 ## Plan para Google Play (anterior, reemplazado por la decisión de arriba)
 
 **Decisión (21 nov 2026): Opción 1.** En Google Play la app es gratis y solo entran quienes ya compraron, con su correo.
