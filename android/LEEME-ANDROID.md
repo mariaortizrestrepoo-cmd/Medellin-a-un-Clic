@@ -18,3 +18,15 @@ Se arma con **Bubblewrap 1.27.0** (herramienta oficial de Google para Trusted We
   `/.well-known/assetlinks.json  /assetlinks.json  200` en `_redirects`.
 - Paquetes 1.0.0 armados el 21 nov 2026 (.apk de prueba y .aab). La prueba en celular se hará con la prueba interna de
   Google Play (el bloqueador automático de Samsung impide instalar el .apk directamente).
+
+## Ícono nuevo (preparado el 23 nov 2026, v158.2) — todavía NO se ha generado ni firmado nada
+
+- Archivos del logo nuevo para Android: `android/iconos/icono-1024.png` (ícono normal) y
+  `android/iconos/icono-maskable-1024.png` (versión "maskable": todo el dibujo dentro de la zona segura,
+  se ve completo aunque Android lo recorte en círculo o en gota).
+- `twa-manifest.json` toma los íconos de `https://medellin.mokeadigital.com/icon-512.png` y `icon-maskable-512.png`.
+  Desde la v158.2 esas direcciones ya tienen el logo nuevo. Si se arma el .aab antes de publicar la v158.2, servir
+  `android/iconos/` en un servidor local y cambiar `iconUrl` y `maskableIconUrl` hacia esos dos archivos.
+- Para la próxima versión del .aab: subir `appVersionCode` a 2 y `appVersion` a 1.0.1, y firmar con la llave de
+  subida que guarda María (ella la sube solo en ese momento y se borra al terminar).
+- Ícono de 512 para la ficha de Google Play: `tienda/icono-google-play-512.png`.
