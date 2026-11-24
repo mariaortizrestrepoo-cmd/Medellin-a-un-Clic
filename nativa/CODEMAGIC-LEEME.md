@@ -25,10 +25,10 @@ En Codemagic: **su cuenta personal → Settings → codemagic.yaml settings → 
 | Keystore password | la contraseña de la llave (está en su archivo aparte de contraseñas) |
 | Key alias | `mokea-medellinaunclic` |
 | Key password | la contraseña de la clave (en el mismo archivo) |
-| **Reference name** | **`medellin_subida`** (exactamente así, en minúscula y con guion bajo) |
+| **Reference name** | **`medellinsubida`** (así aparece en Codemagic, sin guion bajo; Codemagic lo quitó al guardarla) |
 
 Comprobaciones automáticas en cada armada:
-- Si falta la llave `medellin_subida`, la armada se detiene con un aviso.
+- Si falta la llave `medellinsubida`, la armada se detiene con un aviso.
 - Si el .aab sale firmado con otra llave, la armada falla. La huella correcta es
   `35:94:F9:DE:0C:F4:14:40:FF:4B:77:F6:B3:E0:60:73:15:26:8E:3D:E1:79:EB:6C:5E:4A:2F:E4:E7:1A:58:CC`.
 - El número interno de versión sube solo en cada armada (empieza en 2). La versión visible es 2.0.0.

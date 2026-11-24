@@ -6,7 +6,7 @@
 #
 # NINGUNA llave ni contraseña va en este archivo ni en GitHub. Se suben una sola vez en Codemagic:
 #   Android: Settings → codemagic.yaml settings → Code signing identities → Android keystores
-#            Reference name: medellin_subida   (la llave de subida de siempre, alias mokea-medellinaunclic)
+#            Reference name: medellinsubida   (la llave de subida de siempre, alias mokea-medellinaunclic)
 #   iPhone:  Settings → codemagic.yaml settings → Code signing identities → iOS certificates y
 #            iOS provisioning profiles (tipo App Store, paquete com.mokeadigital.medellinaunclic)
 # Guía paso a paso: nativa/CODEMAGIC-LEEME.md
@@ -44,7 +44,7 @@ workflows:
       <<: *version_web
     environment:
       android_signing:
-        - medellin_subida
+        - medellinsubida
       java: 21
       node: 22
       vars:
@@ -54,7 +54,7 @@ workflows:
       - name: Revisar que la llave de subida esté en Codemagic
         script: |
           if [ -z "$CM_KEYSTORE_PATH" ] || [ ! -f "$CM_KEYSTORE_PATH" ]; then
-            echo "Falta la llave de subida. Súbala en Code signing identities → Android keystores con el nombre medellin_subida."
+            echo "Falta la llave de subida. Súbala en Code signing identities → Android keystores con el nombre medellinsubida."
             exit 1
           fi
       - *armar_web
