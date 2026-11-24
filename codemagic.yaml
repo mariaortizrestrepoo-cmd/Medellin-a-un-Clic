@@ -1,0 +1,120 @@
+# Medellín a un clic — armado de la app en Codemagic (Mokea Digital LLC)
+#
+# Dos flujos que se inician A MANO en Codemagic ("Start new build"). No se arman solos con cada cambio.
+#   1. android-google-play  → .aab firmado para Google Play
+#   2. iphone-app-store     → .ipa para la App Store (cuando Apple apruebe la cuenta)
+#
+# NINGUNA llave ni contraseña va en este archivo ni en GitHub. Se suben una sola vez en Codemagic:
+#   Android: Settings → codemagic.yaml settings → Code signing identities → Android keystores
+#            Reference name: medellin_subida   (la llave de subida de siempre, alias mokea-medellinaunclic)
+#   iPhone:  Settings → codemagic.yaml settings → Code signing identities → iOS certificates y
+#            iOS provisioning profiles (tipo App Store, paquete com.mokeadigital.medellinaunclic)
+# Guía paso a paso: nativa/CODEMAGIC-LEEME.md
+#
+# Este archivo NO publica nada en las tiendas: solo arma los archivos para descargarlos.
+# La subida a Google Play y a App Store Connect se agrega después, con la aprobación de María.
+
+definitions:
+  version_web: &version_web
+    version_web:
+      description: "¿Qué versión de la app? tienda = sin reservas con pago (para enviar a revisión). prueba = reservas en modo de prueba (solo para pruebas internas)."
+      type: choice
+      default: tienda
+      options:
+        - tienda
+        - prueba
+
+  armar_web: &armar_web
+    name: Armar la app (www) desde app/
+    script: |
+      cd "$CM_BUILD_DIR/nativa"
+      npm ci
+      if [ "${{ inputs.version_web }}" = "prueba" ]; then
+        node armar-web.mjs
+      else
+        node armar-web.mjs revision
+      fi
+
+workflows:
+  android-google-play:
+    name: Android · Google Play (.aab firmado)
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    inputs:
+      <<: *version_web
+    environment:
+      android_signing:
+        - medellin_subida
+      java: 21
+      node: 22
+      vars:
+        # Huella SHA-256 de la llave de subida (pública, no es secreta). Si el .aab sale firmado con otra llave, la armada falla.
+        HUELLA_SUBIDA: "35:94:F9:DE:0C:F4:14:40:FF:4B:77:F6:B3:E0:60:73:15:26:8E:3D:E1:79:EB:6C:5E:4A:2F:E4:E7:1A:58:CC"
+    scripts:
+      - name: Revisar que la llave de subida esté en Codemagic
+        script: |
+          if [ -z "$CM_KEYSTORE_PATH" ] || [ ! -f "$CM_KEYSTORE_PATH" ]; then
+            echo "Falta la llave de subida. Súbala en Code signing identities → Android keystores con el nombre medellin_subida."
+            exit 1
+          fi
+      - *armar_web
+      - name: Pasar la app al proyecto de Android
+        script: |
+          cd "$CM_BUILD_DIR/nativa"
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+          npx cap sync android
+      - name: Armar el .aab firmado
+        script: |
+          # Número de versión interno: sube solo en cada armada (Google Play no acepta repetirlo). Empieza en 2.
+          VERSION_CODE=$((BUILD_NUMBER + 1))
+          echo "Versión 2.0.0, número interno $VERSION_CODE, app: ${{ inputs.version_web }}"
+          cd "$CM_BUILD_DIR/nativa/android"
+          ./gradlew bundleRelease -PversionCode=$VERSION_CODE
+      - name: Comprobar la firma del .aab
+        script: |
+          AAB="$CM_BUILD_DIR/nativa/android/app/build/outputs/bundle/release/app-release.aab"
+          HUELLA=$(keytool -printcert -jarfile "$AAB" | grep -m1 'SHA256:' | awk '{print $2}')
+          echo "Huella del .aab: $HUELLA"
+          if [ "$HUELLA" != "$HUELLA_SUBIDA" ]; then
+            echo "El .aab NO está firmado con la llave de subida de Medellín a un clic."
+            exit 1
+          fi
+          cp "$AAB" "$CM_BUILD_DIR/Medellin-a-un-clic-2.0.0-${{ inputs.version_web }}-$((BUILD_NUMBER + 1)).aab"
+    artifacts:
+      - Medellin-a-un-clic-*.aab
+
+  iphone-app-store:
+    name: iPhone · App Store (.ipa)
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    inputs:
+      <<: *version_web
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.mokeadigital.medellinaunclic
+      node: 22
+      xcode: latest
+    scripts:
+      - *armar_web
+      - name: Pasar la app al proyecto de iPhone
+        script: |
+          cd "$CM_BUILD_DIR/nativa"
+          npx cap sync ios
+      - name: Poner la firma de Apple en el proyecto
+        script: xcode-project use-profiles
+      - name: Número de versión interno
+        script: |
+          # Apple no acepta repetir el número interno: sube solo en cada armada. La versión visible sigue en 2.0.0.
+          cd "$CM_BUILD_DIR/nativa/ios/App"
+          sed -i '' "s/CURRENT_PROJECT_VERSION = [0-9]*;/CURRENT_PROJECT_VERSION = $BUILD_NUMBER;/g" App.xcodeproj/project.pbxproj
+          grep -m1 "CURRENT_PROJECT_VERSION" App.xcodeproj/project.pbxproj
+      - name: Armar el .ipa
+        script: |
+          cd "$CM_BUILD_DIR/nativa/ios/App"
+          xcode-project build-ipa --project "App.xcodeproj" --scheme "App"
+    artifacts:
+      - nativa/ios/App/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    # Subida a TestFlight: se agrega después, con la aprobación de María, cuando exista la llave de
+    # App Store Connect en Codemagic (Settings → Integrations → Developer Portal).

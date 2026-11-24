@@ -7,7 +7,8 @@ android {
         applicationId "com.mokeadigital.medellinaunclic"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
+        // Codemagic manda un número nuevo en cada armada (-PversionCode=...); aquí, sin eso, queda en 2.
+        versionCode((project.findProperty('versionCode') ?: '2') as Integer)
         versionName "2.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -16,8 +17,22 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    // Firma para Google Play. La llave NO está en el repositorio: Codemagic la entrega durante la armada
+    // (Code signing identities → Android keystores) en estas variables. Sin ellas, el release sale sin firmar.
+    def llave = System.getenv("CM_KEYSTORE_PATH")
+    signingConfigs {
+        if (llave) {
+            release {
+                storeFile file(llave)
+                storePassword System.getenv("CM_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("CM_KEY_ALIAS")
+                keyPassword System.getenv("CM_KEY_PASSWORD")
+            }
+        }
+    }
     buildTypes {
         release {
+            if (llave) { signingConfig signingConfigs.release }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
