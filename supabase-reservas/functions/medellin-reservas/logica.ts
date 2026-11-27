@@ -201,7 +201,7 @@ export function crearManejador(dep: Dependencias) {
         det.vuelo ? ["Vuelo de llegada", det.vuelo] : null, det.horaVuelo ? ["Hora del vuelo de salida", det.horaVuelo] : null,
         ["Recogida / hotel", det.sitio + (det.municipio ? " (" + det.municipio + ")" : "")],
         ["Cliente", f.nombre], ["WhatsApp", f.whatsapp], ["Correo", f.correo], ["Idioma", es ? "español" : "inglés"],
-        ["Pagado en Bold", plata(f.cobro_usd, f.cobro_cop) + (f.pago === "anticipo" ? " (anticipo 20 %)" : " (total)")],
+        ["Pagado en Bold", plata(f.cobro_usd, f.cobro_cop) + (f.pago === "anticipo" ? " (anticipo " + Math.round(cfg.anticipo * 100) + " %)" : " (total)")],
         ["Por cobrar el día", f.resto_cop ? plata(f.resto_usd, f.resto_cop) : "nada, ya pagó todo"],
       ].filter(Boolean) as string[][];
       const htmlPaola = `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;color:#1d1d1b">
@@ -242,7 +242,7 @@ export function crearManejador(dep: Dependencias) {
   // ---------- Rutas ----------
   async function precios() {
     const c = await almacen.config();
-    return json({ ok: true, modo: A.modo, tasa: c.tasa, anticipo: c.anticipo, diasMinimos: c.diasMinimos, grupos: c.grupos, horaExtra: c.horaExtra,
+    return json({ ok: true, modo: A.modo, tasa: c.tasa, anticipo: c.anticipo, diasMinimos: c.diasMinimos, horasMinimas: c.horasMinimas ?? 48, grupos: c.grupos, horaExtra: c.horaExtra,
       aeroRecargo: c.aeroRecargo, aeroMunicipios: c.aeroMunicipios, aeroSinRecargo: c.aeroSinRecargo, aeroGuatapeUSD: c.aeroGuatapeUSD,
       nocturno: c.nocturno, lucesTemporada: c.lucesTemporada, tours: c.tours.filter((t) => t.activo !== false).map((t) => ({ id: t.id, precios: t.precios })) });
   }

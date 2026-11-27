@@ -813,15 +813,15 @@ html.es-app .js-install{display:none!important}
       <label><span class="en">How would you like to pay?</span><span class="es">¿Cómo quieres pagar?</span></label>
       <div class="rsv-pagos" id="rsv-pagos"></div>
       <p class="rsv-nota" id="rsv-hora-extra"></p>
-      <p class="rsv-nota"><span class="en">To hold your date, you pay a 20% deposit by card and the rest on the day of the tour, or, if you prefer, pay the full amount now. If you can’t make it, let us know at least 2 days in advance and your deposit stays valid for your next visit for one year. If you don’t let us know in time, the deposit is not refundable.</span><span class="es">Para separar la fecha, pagas un anticipo del 20% con tarjeta, y el resto el día del tour, o, si prefieres, pagas el total de una vez. Si no puedes viajar, avísanos con al menos 2 días de anticipación y tu anticipo te queda para tu próxima visita, válido por un año. Si no avisas a tiempo, el anticipo no se devuelve.</span></p>
+      <p class="rsv-nota"><span class="en"><b>Tours:</b> to hold your date, you pay a 15% deposit by card and the rest on the day of the tour, or, if you prefer, the full amount now. <b>Airport:</b> paid in full when you book. <b>If you can’t make it,</b> let Paola know at least 48 hours before the pickup time and what you paid stays as a credit for another date for one year. If you let her know later or don’t show up, you lose it. <b>Guarantee:</b> if Paola can’t take you, her team sends another vehicle or driver. If a road is closed or an authority doesn’t allow the tour, the date is changed at no cost. <b>Flight delays:</b> Paola waits for you at no cost for up to [X].</span><span class="es"><b>Tours:</b> para separar la fecha pagas un anticipo del 15 % con tarjeta y el resto el día del tour, o, si prefieres, el total de una vez. <b>Aeropuerto:</b> se paga completo al reservar. <b>Si no puedes ir,</b> avísale a Paola con mínimo 48 horas antes de la hora de recogida y lo que pagaste te queda como saldo a favor para otra fecha durante un año. Si avisas después o no llegas, lo pierdes. <b>Garantía:</b> si Paola no puede atenderte, su equipo te envía otro vehículo u otro conductor. Si una vía está cerrada o una autoridad no permite hacer el tour, se cambia la fecha sin costo. <b>Retraso de vuelo:</b> Paola te espera sin costo hasta [X].</span></p>
       <p class="rsv-nota"><span class="en">The tour price does not include activities, admission fees or meals. Ask Paola if you’d like us to put together an all-inclusive plan for you.</span><span class="es">El precio del tour no incluye actividades, entradas ni alimentación. Pregúntale a Paola si quieres que te armemos un plan con todo incluido.</span></p>
       <label class="rsv-acepto"><input type="checkbox" id="rsv-acepto"><span><span class="en">I accept the booking conditions and the <a href="terminos.html">Terms</a>.</span><span class="es">Acepto las condiciones de la reserva y los <a href="terminos.html">Términos</a>.</span></span></label>
       <div class="rsv-msg" id="rsv-msg"></div>
       <button class="tour-btn rsv-pagar" type="button" id="rsv-pagar"><span class="en">Pay by card</span><span class="es">Pagar con tarjeta</span></button>
-      <p style="font-size:13px!important;text-align:center;margin-top:8px!important"><span class="en">Secure payment with Bold. We never see your card details.</span><span class="es">Pago seguro con Bold. Nunca vemos los datos de tu tarjeta.</span></p>
+      <p style="font-size:13px!important;text-align:center;margin-top:8px!important"><span class="en">Secure payment with Bold. We never see your card details. The charge appears on your statement as “Transportes R.T” or with Paola’s name.</span><span class="es">Pago seguro con Bold. Nunca vemos los datos de tu tarjeta. El cobro aparece en tu extracto como “Transportes R.T” o con el nombre de Paola.</span></p>
       </div>
     </div>
-    <p class="rsv-nota" style="margin-top:16px!important"><span class="en">Book at least 2 days in advance so we can guarantee your vehicle and driver. But if something comes up at the last minute, you need the tour today or tomorrow, or more people are joining than you planned, don’t worry: message us and we’ll find a solution for you.</span><span class="es">Haz tu reserva con mínimo 2 días de anticipación, así te garantizamos el vehículo y el conductor. Pero si te surge algo de último momento, necesitas el tour para hoy o mañana, o resultaron más personas de las que tenías previstas, no te preocupes: escríbenos, que nosotros te tenemos una solución.</span></p>
+    <p class="rsv-nota" style="margin-top:16px!important"><span class="en">Book at least 48 hours before the pickup time so we can guarantee your vehicle and driver. But if something comes up at the last minute, you need the tour sooner, or more people are joining than you planned, don’t worry: message us and we’ll find a solution for you.</span><span class="es">Haz tu reserva con mínimo 48 horas antes de la hora de recogida, así te garantizamos el vehículo y el conductor. Pero si te surge algo de último momento, necesitas el tour antes, o resultaron más personas de las que tenías previstas, no te preocupes: escríbenos, que nosotros te tenemos una solución.</span></p>
     <a class="rsv-wa" id="rsv-wa-btn" target="_blank" rel="noopener" href="https://wa.me/573194635142"><span class="en">Message Paola on WhatsApp</span><span class="es">Escríbele a Paola por WhatsApp</span></a>
   </div>
   <div class="rsv" id="rsv-listo" hidden></div>
@@ -2736,8 +2736,9 @@ const RESERVAS = {
   modo: 'prueba',                 // 'prueba' = sin cobros reales (simulación); 'real' = Bold y Supabase
   api: '',                        // URL de la función de Supabase "medellin-reservas" (se llena al conectar)
   tasa: 3461,                     // pesos por dólar (se actualiza una vez al mes)
-  anticipo: 0.20,                 // 20 %
-  diasMinimos: 2,                 // reservar con mínimo 2 días de anticipación
+  anticipo: 0.15,                 // 15 % (solo tours; el aeropuerto se paga completo al reservar)
+  diasMinimos: 2,                 // primer día que se puede escoger en el calendario (hoy + 2)
+  horasMinimas: 48,               // reservar con mínimo 48 horas antes de la hora de recogida
   grupos: ['1-3', '4-6', '7-10', '11-16'],
   horaExtra: [30, 30, 35, 40],    // US$ por hora adicional (se paga el día del tour)
   whatsapp: '573194635142',
@@ -2872,9 +2873,11 @@ const RESERVAS = {
     const usd = totalUSD(), cop = aCOP(usd);
     const antUSD = usd * RESERVAS.anticipo, antCOP = aCOP(antUSD);
     const resto = cop - antCOP, restoUSD = Math.round((usd - antUSD) * 100) / 100;
-    $('rsv-pagos').innerHTML =
-      '<label class="' + (pago === 'anticipo' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="anticipo"' + (pago === 'anticipo' ? ' checked' : '') + '><span><b>' + T('20% deposit', 'Anticipo del 20%') + '</b><span class="v">US$' + fmtUSD(antUSD) + ' · COP ' + fmtCOP(antCOP) + '</span><small>' + T('The rest (US$' + fmtUSD(restoUSD) + ' · COP ' + fmtCOP(resto) + ') is paid on the day of the tour.', 'El resto (US$' + fmtUSD(restoUSD) + ' · COP ' + fmtCOP(resto) + ') se paga el día del tour.') + '</small></span></label>' +
-      '<label class="' + (pago === 'total' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="total"' + (pago === 'total' ? ' checked' : '') + '><span><b>' + T('Full amount', 'Total') + '</b><span class="v">US$' + fmtUSD(usd) + ' · COP ' + fmtCOP(cop) + '</span><small>' + T('Price for ' + RESERVAS.grupos[grupo] + ' people' + (trayectos() === 2 ? ', 2 trips' : '') + (recargo() ? ', includes US$' + recargo() + ' per trip to ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', Guatapé price' : '') + nocheTxt(false) + '.', 'Precio para ' + RESERVAS.grupos[grupo] + ' personas' + (trayectos() === 2 ? ', 2 trayectos' : '') + (recargo() ? ', incluye US$' + recargo() + ' por trayecto a ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', precio de Guatapé' : '') + nocheTxt(true) + '.') + '</small></span></label>';
+    const pct = Math.round(RESERVAS.anticipo * 100);
+    if (esAero()) pago = 'total';
+    $('rsv-pagos').innerHTML = (esAero() ? '' :
+      '<label class="' + (pago === 'anticipo' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="anticipo"' + (pago === 'anticipo' ? ' checked' : '') + '><span><b>' + T(pct + '% deposit', 'Anticipo del ' + pct + ' %') + '</b><span class="v">US$' + fmtUSD(antUSD) + ' · COP ' + fmtCOP(antCOP) + '</span><small>' + T('The rest (US$' + fmtUSD(restoUSD) + ' · COP ' + fmtCOP(resto) + ') is paid on the day of the tour.', 'El resto (US$' + fmtUSD(restoUSD) + ' · COP ' + fmtCOP(resto) + ') se paga el día del tour.') + '</small></span></label>' +
+      '<label class="' + (pago === 'total' ? 'on' : '') + '"><input type="radio" name="rsv-pago" value="total"' + (pago === 'total' ? ' checked' : '') + '><span><b>' + (esAero() ? T('Full payment', 'Pago completo') : T('Full amount', 'Total')) + '</b><span class="v">US$' + fmtUSD(usd) + ' · COP ' + fmtCOP(cop) + '</span><small>' + T('Price for ' + RESERVAS.grupos[grupo] + ' people' + (trayectos() === 2 ? ', 2 trips' : '') + (recargo() ? ', includes US$' + recargo() + ' per trip to ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', Guatapé price' : '') + nocheTxt(false) + '.', 'Precio para ' + RESERVAS.grupos[grupo] + ' personas' + (trayectos() === 2 ? ', 2 trayectos' : '') + (recargo() ? ', incluye US$' + recargo() + ' por trayecto a ' + esc(municipio()) : '') + (esAero() && municipio() === 'Guatapé' ? ', precio de Guatapé' : '') + nocheTxt(true) + '.') + (esAero() ? '<br>' + T('Airport trips are paid in full when you book.', 'Los trayectos al aeropuerto se pagan completos al reservar.') : '') + '</small></span></label>';
     const he = RESERVAS.horaExtra[grupo];
     $('rsv-hora-extra').innerHTML = T('<b>Extra hours</b> are not charged now: if you need more time, each extra hour (US$' + he + ' for ' + RESERVAS.grupos[grupo] + ' people) is paid to Paola on the day of the tour.',
       '<b>Las horas adicionales</b> no se cobran ahora: si necesitas más tiempo, cada hora adicional (US$' + he + ' para ' + RESERVAS.grupos[grupo] + ' personas) se le paga a Paola el día del tour.');
@@ -2905,14 +2908,18 @@ const RESERVAS = {
   }
   function pintarTodo() { pintarTours(); pintarMunicipios(); pintarGrupos(); pintarTour(); }
 
-  // Fechas: mínimo 2 días; los días CERRADO no se ofrecen
+  // Fechas: mínimo 48 horas antes de la hora de recogida (hora de Colombia); los días CERRADO no se ofrecen
   ['rsv-fecha', 'rsv-fecha-lleg', 'rsv-fecha-sal'].forEach(id => { $(id).min = minimo; $(id).addEventListener('change', revisarFechas); });
+  ['rsv-hora', 'rsv-hora-lleg', 'rsv-hora-hotel'].forEach(id => $(id).addEventListener('change', revisarFechas));
+  const MSG48 = () => T('Bookings need at least 48 hours before the pickup time. For sooner, message Paola on WhatsApp.', 'Las reservas son con mínimo 48 horas antes de la hora de recogida. Para antes, escríbele a Paola por WhatsApp.');
+  const horaDe = { 'rsv-fecha': 'rsv-hora', 'rsv-fecha-lleg': 'rsv-hora-lleg', 'rsv-fecha-sal': 'rsv-hora-hotel' };
+  const faltan48 = (f, h) => !!h && Date.parse(f + 'T' + h + ':00-05:00') - Date.now() < RESERVAS.horasMinimas * 3600000;
   function revisarFechas() {
     const m = $('rsv-msg-fecha'); m.className = 'rsv-msg'; m.innerHTML = '';
     const ids = esAero() ? (tramo() === 'recogida' ? ['rsv-fecha-lleg'] : tramo() === 'llevada' ? ['rsv-fecha-sal'] : ['rsv-fecha-lleg', 'rsv-fecha-sal']) : ['rsv-fecha'];
     for (const id of ids) {
       const f = $(id).value; if (!f) continue;
-      if (f < minimo) { m.className = 'rsv-msg err'; m.innerHTML = T('Bookings need at least 2 days’ notice. For today or tomorrow, message Paola on WhatsApp.', 'Las reservas son con mínimo 2 días de anticipación. Para hoy o mañana, escríbele a Paola por WhatsApp.'); return false; }
+      if (f < minimo || faltan48(f, $(horaDe[id]).value)) { m.className = 'rsv-msg err'; m.innerHTML = MSG48(); return false; }
       if (tour.temporada === 'luces' && !esAero()) { const v = ventanaLuces(); if (f < v.ini || f > v.fin) { m.className = 'rsv-msg err'; m.innerHTML = T('The Christmas Lights Tour can only be booked between ' + fechaBonita(v.ini) + ' and ' + fechaBonita(v.fin) + '.', 'El Tour de Luces solo se puede reservar entre el ' + fechaBonita(v.ini) + ' y el ' + fechaBonita(v.fin) + '.'); return false; } }
       if (cerrados.includes(f)) { m.className = 'rsv-msg err'; m.innerHTML = T('Paola is not available on ' + fechaBonita(f) + '. Please choose another date.', 'Paola no tiene disponibilidad el ' + fechaBonita(f) + '. Por favor escoge otra fecha.'); return false; }
     }
@@ -2938,7 +2945,7 @@ const RESERVAS = {
   $('rsv-form').addEventListener('change', () => { $('rsv-msg').className = 'rsv-msg'; $('rsv-msg').innerHTML = ''; });
 
   function datos() {
-    const d = { tour: tour.id, grupo: RESERVAS.grupos[grupo], pago, nombre: $('rsv-nombre').value.trim(), whatsapp: $('rsv-wa').value.trim(), correo: $('rsv-correo').value.trim().toLowerCase(), sitio: $('rsv-sitio').value.trim(), idioma: L() };
+    const d = { tour: tour.id, grupo: RESERVAS.grupos[grupo], pago: esAero() ? 'total' : pago, nombre: $('rsv-nombre').value.trim(), whatsapp: $('rsv-wa').value.trim(), correo: $('rsv-correo').value.trim().toLowerCase(), sitio: $('rsv-sitio').value.trim(), idioma: L() };
     if (esAero()) {
       d.tramo = tramo(); d.municipio = municipio();
       if (d.tramo !== 'llevada') { d.fechaLlegada = $('rsv-fecha-lleg').value; d.horaLlegada = $('rsv-hora-lleg').value; d.vuelo = $('rsv-vuelo-lleg').value.trim().toUpperCase(); }

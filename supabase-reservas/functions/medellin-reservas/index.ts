@@ -28,7 +28,7 @@ const almacen: Almacen = {
     if (a.error || t.error) throw new Error("config: " + (a.error ?? t.error)!.message);
     const v: Record<string, any> = Object.fromEntries(a.data!.map((x) => [x.clave, x.valor]));
     const c: Config = {
-      tasa: Number(v.tasa), anticipo: Number(v.anticipo), diasMinimos: Number(v.diasMinimos),
+      tasa: Number(v.tasa), anticipo: Number(v.anticipo), diasMinimos: Number(v.diasMinimos), horasMinimas: Number(v.horasMinimas ?? 48),
       grupos: v.grupos, horaExtra: v.horaExtra, aeroRecargo: Number(v.aeroRecargo),
       aeroMunicipios: v.aeroMunicipios, aeroSinRecargo: v.aeroSinRecargo, aeroGuatapeUSD: v.aeroGuatapeUSD,
       nocturno: v.nocturno, lucesTemporada: v.lucesTemporada,

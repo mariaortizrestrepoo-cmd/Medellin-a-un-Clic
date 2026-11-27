@@ -10,8 +10,9 @@ create table if not exists public.mde_ajustes (
 );
 insert into public.mde_ajustes (clave, valor, nota) values
   ('tasa',            '3461',  'Pesos por dólar. Se actualiza una vez al mes.'),
-  ('anticipo',        '0.20',  'Anticipo: 0.20 = 20 %'),
-  ('diasMinimos',     '2',     'Días mínimos de anticipación para reservar'),
+  ('anticipo',        '0.15',  'Anticipo de los tours: 0.15 = 15 % (el aeropuerto se paga completo)'),
+  ('diasMinimos',     '2',     'Primer día que el calendario deja escoger (hoy + 2)'),
+  ('horasMinimas',    '48',    'Reservar con mínimo estas horas antes de la hora de recogida'),
   ('grupos',          '["1-3","4-6","7-10","11-16"]', 'Tamaños de grupo (no cambiar sin avisar a la app)'),
   ('horaExtra',       '[30,30,35,40]', 'US$ por hora adicional según el grupo (se paga el día del tour)'),
   ('aeroRecargo',     '10',    'US$ por trayecto para hoteles en los municipios de la lista'),

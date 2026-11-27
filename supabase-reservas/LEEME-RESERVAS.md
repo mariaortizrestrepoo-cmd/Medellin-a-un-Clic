@@ -6,7 +6,7 @@ Esto es lo que funciona "detrás" del formulario de reservas de la app. Nada de 
 
 1. **El cliente llena el formulario.** La app le manda los datos a la función `medellin-reservas`.
 2. **El servidor vuelve a calcular el precio.** Usa la tabla de precios y no confía en el que manda el celular. Revisa también:
-   - que falten al menos 2 días;
+   - que falten al menos 48 horas antes de la hora de recogida (y el aeropuerto se cobre completo; los tours, 15 % o el total);
    - que no sea un día CERRADO de Paola;
    - la temporada del Tour de Luces.
 3. **El servidor guarda la reserva como "pendiente".** Firma el cobro con la llave secreta de Bold. La llave secreta nunca sale del servidor.

@@ -10,6 +10,7 @@ export type Tour = {
 };
 export type Config = {
   tasa: number; anticipo: number; diasMinimos: number;
+  horasMinimas?: number;        // reservar con mínimo estas horas antes de la hora de recogida (48)
   grupos: string[]; horaExtra: number[];
   aeroRecargo: number; aeroMunicipios: string[]; aeroSinRecargo: string[];
   aeroGuatapeUSD: number[];     // Aeropuerto ↔ Guatapé, US$ por trayecto
@@ -50,6 +51,11 @@ export type Reserva = {
 };
 
 // Devuelve la reserva con su precio, o un error con el texto para el cliente (en y es).
+export const MSG_48 = {
+  en: "Bookings need at least 48 hours before the pickup time. For sooner, message Paola on WhatsApp.",
+  es: "Las reservas son con mínimo 48 horas antes de la hora de recogida. Para antes, escríbele a Paola por WhatsApp.",
+};
+
 export function revisar(cfg: Config, d: Record<string, unknown>, cerrados: string[], ahora = new Date()):
   { ok: true; r: Reserva } | { ok: false; en: string; es: string } {
   const no = (en: string, es: string) => ({ ok: false as const, en, es });
@@ -57,7 +63,8 @@ export function revisar(cfg: Config, d: Record<string, unknown>, cerrados: strin
   if (!tour) return no("This tour is not available.", "Este tour no está disponible.");
   const grupoIdx = cfg.grupos.indexOf(String(d.grupo));
   if (grupoIdx < 0) return no("Please choose the group size.", "Escoge el número de personas.");
-  const pago = d.pago === "total" ? "total" : d.pago === "anticipo" ? "anticipo" : null;
+  // Aeropuerto: se paga completo al reservar. Tours: anticipo o total.
+  const pago = tour.aeropuerto ? "total" : d.pago === "total" ? "total" : d.pago === "anticipo" ? "anticipo" : null;
   if (!pago) return no("Please choose how to pay.", "Escoge cómo quieres pagar.");
   const nombre = txt(d.nombre, 80), whatsapp = txt(d.whatsapp, 25), correo = txt(d.correo, 120).toLowerCase(), sitio = txt(d.sitio, 160);
   const idioma = d.idioma === "es" ? "es" : "en";
@@ -69,7 +76,7 @@ export function revisar(cfg: Config, d: Record<string, unknown>, cerrados: strin
   const minimo = masDias(hoyCO(ahora), cfg.diasMinimos);
   const fechaOk = (f: string) => {
     if (!fechaValida(f)) return no("Please check the date.", "Revisa la fecha.");
-    if (f < minimo) return no("Bookings need at least 2 days’ notice. For today or tomorrow, message Paola on WhatsApp.", "Las reservas son con mínimo 2 días de anticipación. Para hoy o mañana, escríbele a Paola por WhatsApp.");
+    if (f < minimo) return no(MSG_48.en, MSG_48.es);
     if (f > masDias(minimo, 400)) return no("Please choose a closer date.", "Escoge una fecha más cercana.");
     if (cerrados.includes(f)) return no("Paola is not available on that date. Please choose another date.", "Paola no tiene disponibilidad ese día. Por favor escoge otra fecha.");
     return null;
@@ -108,6 +115,11 @@ export function revisar(cfg: Config, d: Record<string, unknown>, cerrados: strin
       if (f < v.ini || f > v.fin) return no("The Christmas Lights Tour can only be booked during the lights season.", "El Tour de Luces solo se puede reservar en la temporada de alumbrados.");
     }
     trayectos.push({ tipo: "tour", fecha: f, hora: h, noche: false, precioUSD: tour.precios[grupoIdx] });
+  }
+  // Mínimo 48 horas antes de la hora de recogida (hora de Colombia, UTC-5)
+  const horas = cfg.horasMinimas ?? 48;
+  for (const t of trayectos) {
+    if (Date.parse(t.fecha + "T" + t.hora + ":00-05:00") - ahora.getTime() < horas * 3600_000) return no(MSG_48.en, MSG_48.es);
   }
   const totalUSD = Math.round(trayectos.reduce((s, t) => s + t.precioUSD, 0) * 100) / 100;
   const totalCOP = aCOP(cfg, totalUSD), anticipoCOP = aCOP(cfg, totalUSD * cfg.anticipo);
