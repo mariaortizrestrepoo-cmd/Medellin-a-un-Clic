@@ -73,7 +73,8 @@
     e.preventDefault(); vibrar();
     if (/(^|\.)google\.[a-z.]+$/.test(u.hostname) && /^\/maps/.test(u.pathname)) {
       var q = u.searchParams.get('query') || u.searchParams.get('q');
-      abrirApp(plataforma === 'ios' && q ? 'https://maps.apple.com/?q=' + encodeURIComponent(q) : u.href);
+      // Los botones "Ver en Google Maps" (clase gmaps) abren Google Maps también en iPhone.
+      abrirApp(plataforma === 'ios' && q && !a.classList.contains('gmaps') ? 'https://maps.apple.com/?q=' + encodeURIComponent(q) : u.href);
       return;
     }
     if (/^(wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com)$/.test(u.hostname)) { abrirApp(u.href); return; }
